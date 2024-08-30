@@ -1,0 +1,74 @@
+# [Info]
+site_name: Bioinformatics Notes
+site_description: A documentation for my project
+site_author: YangWu
+copyright: Copyright © 2024 YangWu
+
+# [Navigation]
+nav:
+  - Home: index.md
+  - Linux:
+    - linux 基础: Linux/Linux_basics.md
+  #   - Advanced: 
+  # - R:
+  #   - Basics: 
+  #   - Advanced: 
+  # - Python:
+  #   - Basics: Python/Python_basics.md
+  #   - Advanced: 
+  # - Bioinformatics:
+  # - Workflow:
+  #   - Snakemake:
+  #   - Nextflow:
+  # - About: about.md
+  # - Contact: contact.md
+
+
+
+
+
+
+
+# [UI]
+theme:
+  name: material
+  language: 'zh'
+  features:
+    - navigation.instant  #即时加载
+    - navigation.tracking  #锚点跟踪
+    - content.code.copy
+    - navigation.indexes
+#    - navigation.tabs  #导航选项卡
+    - navigation.tabs.sticky  #粘性导航选项卡
+    - navigation.top  #全宽导航选项卡
+  palette: 
+    scheme: default
+    primary: indigo
+    accent: indigo
+  
+
+
+
+markdown_extensions:
+  - pymdownx.highlight:  #代码高亮，对代码块（SuperFences）和行内代码块（InlineHilite）的语法突出显示
+      anchor_linenums: true  #代码块行号锚链接，默认false
+      use_pygments: true  #在构建期间使用Pygments或在浏览器中使用 JavaScript 语法高亮器进行高亮显示，默认true
+      auto_title: false  #自动为所有代码块添加标题，显示正在使用的语言的名称，默认false
+      linenums: true #向所有代码块添加行号，默认false
+      linenums_style: pymdownx-inline #三种添加行号的方法，建议table或pymdownx-inline。默认table
+  - pymdownx.tabbed:  #内容选项卡
+      alternate_style: true  #启用内容选项卡替代样式，必须开启
+  - pymdownx.superfences # 代码块高亮
+  - pymdownx.inlinehilite  
+
+  - toc:
+      toc_depth: 3 #目录深度，默认6，0则隐藏
+#      title: On this page  #默认值，自动获取
+      permalink: true   #每个标题的末尾添加段落符号锚链接，默认false
+#      permalink: ⚓︎  #每个标题的末尾添加自定义符号锚链接
+      permalink_title: Anchor link to this section for reference #在悬停时显示并由屏幕阅读器阅读的锚链接的标题
+
+extra:
+  search:
+    language: 'jp'
+    suggest: true

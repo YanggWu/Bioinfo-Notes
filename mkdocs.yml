@@ -2,6 +2,7 @@
 site_name: Bioinformatics Notes
 site_description: A documentation for my project
 site_author: YangWu
+repo_url: https://github.com/YanggWu/Bioinfo-Notes
 copyright: Copyright © 2024 YangWu
 
 # [Navigation]

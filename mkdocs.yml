@@ -1,8 +1,10 @@
 # [Info]
 site_name: Bioinformatics Notes
 site_description: A documentation for my project
-site_author: YangWu
+docs_dir: "docs"
+site_dir: "site"
 repo_url: https://github.com/YanggWu/Bioinfo-Notes
+site_author: YangWu
 copyright: Copyright © 2024 YangWu
 
 # [Navigation]

@@ -14,7 +14,7 @@ nav:
     - linux 基础: Linux/Linux_basics.md
   - R:
     - base-R: R/test.md
-  - Python:
+#  - Python:
   - Workflow:
     - 基因组重测序: Workflow/基因组重测序.md
   #   - Snakemake:

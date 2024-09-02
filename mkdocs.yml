@@ -12,15 +12,11 @@ nav:
   - Home: index.md
   - Linux:
     - linux 基础: Linux/Linux_basics.md
-  #   - Advanced: 
-  # - R:
-  #   - Basics: 
-  #   - Advanced: 
-  # - Python:
-  #   - Basics: Python/Python_basics.md
-  #   - Advanced: 
-  # - Bioinformatics:
-  # - Workflow:
+  - R:
+    - base-R: R/test.md
+  - Python:
+  - Workflow:
+    - 基因组重测序: Workflow/基因组重测序.md
   #   - Snakemake:
   #   - Nextflow:
   # - About: about.md

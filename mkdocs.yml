@@ -10,13 +10,18 @@ copyright: Copyright © 2023 - 2024 YangWu
 # [Navigation]
 nav:
   - Home: index.md
+
   - Linux:
+    - Linux/index.md
     - linux 基础: Linux/Linux_basics.md
+
   - R:
+#    - R/index.md
     - base-R: R/test.md
 #  - Python:
   - Software:
     - Software/index.md
+    - Fastq比对: Software/fastq_mapping.md
   - Workflow:
     - 基因组重测序: Workflow/基因组重测序.md
   #   - Snakemake:

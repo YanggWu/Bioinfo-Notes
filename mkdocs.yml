@@ -25,11 +25,6 @@ nav:
   # - Contact: contact.md
 
 
-
-
-
-
-
 # [UI]
 theme:
   name: material
@@ -46,10 +41,10 @@ theme:
     scheme: default
     primary: indigo
     accent: indigo
-#  logo: assets/images/favicon.svg
+  logo: assets/images/favicon.svg
+  favicon: assets/images/favicon.svg
   
 extra:
-  favicon: assets/images/favicon.svg
   search:
     language: 'jp'
     suggest: true

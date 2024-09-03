@@ -5,7 +5,7 @@ docs_dir: "docs"
 site_dir: "site"
 repo_url: https://github.com/YanggWu/Bioinfo-Notes
 site_author: YangWu
-copyright: Copyright © 2024 YangWu
+copyright: Copyright © 2023 - 2024 YangWu
 
 # [Navigation]
 nav:
@@ -15,7 +15,8 @@ nav:
   - R:
     - base-R: R/test.md
 #  - Python:
-#  - Software:
+  - Software:
+    - Software/index.md
   - Workflow:
     - 基因组重测序: Workflow/基因组重测序.md
   #   - Snakemake:
@@ -62,7 +63,7 @@ markdown_extensions:
   - pymdownx.inlinehilite  
 
   - toc:
-      toc_depth: 3 #目录深度，默认6，0则隐藏
+      toc_depth: 4 #目录深度，默认6，0则隐藏
 #      title: On this page  #默认值，自动获取
       permalink: true   #每个标题的末尾添加段落符号锚链接，默认false
 #      permalink: ⚓︎  #每个标题的末尾添加自定义符号锚链接

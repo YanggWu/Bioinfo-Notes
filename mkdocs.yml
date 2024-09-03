@@ -15,6 +15,7 @@ nav:
   - R:
     - base-R: R/test.md
 #  - Python:
+#  - Software:
   - Workflow:
     - 基因组重测序: Workflow/基因组重测序.md
   #   - Snakemake:
@@ -37,8 +38,8 @@ theme:
     - navigation.tracking  #锚点跟踪
     - content.code.copy
     - navigation.indexes
-#    - navigation.tabs  #导航选项卡
-    - navigation.tabs.sticky  #粘性导航选项卡
+    - navigation.tabs  #导航选项卡
+#    - navigation.tabs.sticky  #粘性导航选项卡
     - navigation.top  #全宽导航选项卡
   palette: 
     scheme: default

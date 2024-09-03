@@ -16,7 +16,7 @@ program file | gzip > out.gz
 program < gzip -dc file.gz 
 #综合
 blastn -query <(gzip -dc ZS97_cds_10^6.fa.gz)  \
-	-db ./MH63_cds -outfmt 6 |gzip > ZS97_cds_10000.gz
+ -db ./MH63_cds -outfmt 6 |gzip > ZS97_cds_10000.gz
 ```
 
 ## 比对

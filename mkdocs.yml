@@ -18,7 +18,9 @@ nav:
   - R:
 #    - R/index.md
     - base-R: R/test.md
-#  - Python:
+    - 可视化案例: R/可视化案例.md
+  - Python:
+    - Python基础: Python/Python基础.md
   - Software:
     - Software/index.md
     - Fastq比对: Software/fastq_mapping.md

@@ -46,8 +46,13 @@ theme:
     scheme: default
     primary: indigo
     accent: indigo
+#  logo: assets/images/favicon.svg
   
-
+extra:
+  favicon: assets/images/favicon.svg
+  search:
+    language: 'jp'
+    suggest: true
 
 
 markdown_extensions:
@@ -69,7 +74,4 @@ markdown_extensions:
 #      permalink: ⚓︎  #每个标题的末尾添加自定义符号锚链接
       permalink_title: Anchor link to this section for reference #在悬停时显示并由屏幕阅读器阅读的锚链接的标题
 
-extra:
-  search:
-    language: 'jp'
-    suggest: true
+

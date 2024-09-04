@@ -19,11 +19,16 @@ nav:
 #    - R/index.md
     - base-R: R/test.md
     - 可视化案例: R/可视化案例.md
+
   - Python:
     - Python基础: Python/Python基础.md
+
   - Software:
     - Software/index.md
     - Fastq比对: Software/fastq_mapping.md
+    - Snakemake: Software/snakemake.md
+    - Parabricks: Software/Parabricks.md
+
   - Workflow:
     - 基因组重测序: Workflow/基因组重测序.md
   #   - Snakemake:
@@ -44,10 +49,19 @@ theme:
     - navigation.tabs  #导航选项卡
 #    - navigation.tabs.sticky  #粘性导航选项卡
     - navigation.top  #全宽导航选项卡
+
   palette: 
-    scheme: default
-    primary: indigo
-    accent: indigo
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
   logo: assets/images/favicon.svg
   favicon: assets/images/favicon.svg
   

@@ -9,14 +9,14 @@
 
 **常用值的类型**
 
-|        类型        |                             描述                             | 说明                                                         |
-| :----------------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
-|   数字（Number）   | •整数（int）  •浮点数（float）  •复数（complex）  •布尔（bool） | 整数（int），如：10、-10    浮点数（float），如：13.14、-13.14  复数（complex），如：4+3j，以j结尾表示复数  布尔（bool）表达现实生活中的逻辑，即真和假，True表示真，False表示假。  True本质上是一个数字记作1，False记作0 |
-|  字符串（String）  |                    描述文本的一种数据类型                    | 字符串（string）由任意数量的字符组成                         |
-|    列表（List）    |                        有序的可变序列                        | Python中使用最频繁的数据类型，可有序记录一堆数据             |
-|   元组（Tuple）    |                       有序的不可变序列                       | 可有序记录一堆不可变的Python数据集合                         |
-|    集合（Set）     |                        无序不重复集合                        | 可无序记录一堆不重复的Python数据集合                         |
-| 字典（Dictionary） |                      无序Key-Value集合                       | 可无序记录一堆Key-Value型的Python数据集合                    |
+|        类型        | 描述                                    | 说明                                                         |
+| :----------------: | :-------------------------------------- | ------------------------------------------------------------ |
+|   数字（Number）   | •  int  •  float    •  complex  •  bool | 整数，如：10、-10    浮点数，如：13.14、-13.14  复数，如：4+3j，以j结尾表示复数  布尔，True表示真，False表示假。  True本质上是一个数字记作1，False记作0 |
+|  字符串（String）  | 描述文本的一种数据类型                  | 字符串（string）由任意数量的字符组成                         |
+|    列表（List）    | 有序的可变序列                          | Python中使用最频繁的数据类型，可有序记录一堆数据             |
+|   元组（Tuple）    | 有序的不可变序列                        | 可有序记录一堆不可变的Python数据集合                         |
+|    集合（Set）     | 无序不重复集合                          | 可无序记录一堆不重复的Python数据集合                         |
+| 字典（Dictionary） | 无序Key-Value集合                       | 可无序记录一堆Key-Value型的Python数据集合                    |
 
 ### 算数运算符
 
@@ -312,7 +312,7 @@ else:
 
 ### 1. while循环语句
 
-#### while循环的基础
+**while循环的基础**
 
 ```py
 while 条件：
@@ -355,7 +355,7 @@ while g_num != num:
 print(f"恭喜你第{i}次猜对了数字：{num}")
 ```
 
-#### while循环的嵌套
+**while循环的嵌套**
 
 ```py
 while 条件1:
@@ -367,7 +367,7 @@ while 条件1:
 		.....
 ```
 
-#### 案例练习
+案例练习
 
 打印九九乘法表
 
@@ -385,7 +385,7 @@ while i <= 9:
 
 ### 2. for循环
 
-#### 基础语法
+基础语法
 
 ```py
 for 临时变量 in 待处理数据集:
@@ -396,7 +396,35 @@ for 临时变量 in 待处理数据集:
 
 包括：字符串、列表、元组、字典等
 
-**练习**
+**range语句**
+
+```py
+rang(num) # 获取一个从0开始，到num结束的数字序列（不含num本身）
+rang(num1,num2) # 获取一个从0开始，到num结束的数字序列（不含num本身）
+rang(num1,num2,step)
+```
+
+### 案例练习
+
+while
+
+```py
+# while cycle practice
+import random
+num = random.randint(1,100)
+i = 1
+g_num = int(input("请输入你猜测的数字："))
+while g_num != num:
+    if g_num > num:
+        print(f"第{i}次猜错了，你猜大了")
+    else:
+        print(f"第{i}次猜错了，你猜小了")
+    g_num = int(input("请重新输入你猜的数字："))
+    i += 1
+print(f"恭喜你第{i}次猜对了数字：{num}")
+```
+
+for
 
 ```py
 # for cycle practice
@@ -406,34 +434,7 @@ for seq in seqs:
     if seq == "A":
         i += 1
 print(f"这个序列中共含有：{i}个A")
-```
 
-#### range语句
-
-```py
-rang(num) # 获取一个从0开始，到num结束的数字序列（不含num本身）
-rang(num1,num2) # 获取一个从0开始，到num结束的数字序列（不含num本身）
-rang(num1,num2,step)
-```
-
-练习案例
-
-统计1到100范围内的偶数个数
-
-```py
-# practice
-num = 0
-for i in range(1,101):
-    if i % 2 == 0:
-        num += 1
-print(f"1:到100范围内，共有{num}个偶数")
-```
-
-#### for循环的嵌套
-
-#### 案例练习
-
-```py
 # Combined training
 money = 10000
 for i in range(1,21):
@@ -448,8 +449,9 @@ for i in range(1,21):
     elif money > 0:
         money -=1000
         print(f"员工{i}满足，发放工资1000元，账户余额还剩余{money}")
-
 ```
+
+
 
 ## 函数
 

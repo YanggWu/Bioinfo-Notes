@@ -25,12 +25,73 @@ blastn -query <(gzip -dc ZS97_cds_10^6.fa.gz)  \
 
 ### BWA
 
+```sh
+bwa mem -t 5 genome.fa data/sample_1.fa.gz data/sample_2.fa.gz \
+| samtools sort -@8 -o map/sample_sorted.bam
+```
+
 ### hisat2
+
+```sh
+hisat2 -p 5 -x  genome.fa -1 data/sample_1.fa.gz -2 data/sample_2.fa.gz \
+| samtools sort -@8 -o map/sample_sorted.bam
+```
 
 ### STAR
 
+STAR可是指定参数输出排序后的bam，但内存使用较多。
+
+```sh
+STAR --runThreadN 5 --genomeDir genome_dir/ \
+ --outSAMtype BAM SortedByCoordinate \
+ --outFileNamePrefix map/sample \
+ --readFilesCommand gunzip -c \
+ --readFilesIn data/sample_1.fa.gz data/sample_2.fa.gz
+```
+
 ### bowtie2
+
+比对输出bam后，使用samtool进行排序，之后删除未排序的bam
+
+```sh
+tophat2 -p 5 -o map/ \
+ data/sample_1.fa.gz data/sample_2.fa.gz
+samtools sort -@8 -o map/sample_sorted.bam map/sample.bam
+rm map/sample.bam
+```
 
 ## 去重
 
-部分流程比对完成之后需要去重，以下是一些常用的去重方式：
+部分流程比对完成之后需要去重。
+
+```
+RNA-seq     一般不去重
+ChIP-seq    一般要去重
+Call SNP    一般要去重
+RRBS        一般不去重
+Targeted-seq （Amplicon seqencing） 一般不去重
+WGBS        一般要去重
+ATAC-seq    一般要去重
+```
+
+**samtools**
+
+```sh
+samtools rmdup $sortedbam $depbam
+```
+
+如果多个reads具有相同的比对位置时，rmdup将它们标记为duplicates，然后去除重复，通常只保留第一个识别到的reads。
+
+**Picard**
+
+```sh
+java -Xmx8g -jar ${EBROOTPICARD}/picard.jar MarkDuplicates  \
+    MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=512 \
+    VALIDATION_STRINGENCY=LENIENT  \
+    INPUT=$sortedbam \
+    OUTPUT=$depbam \
+    METRICS_FILE=${i}_dedup_metrics.txt && samtools index -@ $nt $depbam
+```
+
+该工具的MarkDuplicates方法对duplicates做一个标记，只在需要的时候对reads进行去重。
+

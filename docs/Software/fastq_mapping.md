@@ -74,7 +74,7 @@ WGBS        一般要去重
 ATAC-seq    一般要去重
 ```
 
-**samtools**
+### Samtools
 
 ```sh
 samtools rmdup $sortedbam $depbam
@@ -82,7 +82,7 @@ samtools rmdup $sortedbam $depbam
 
 如果多个reads具有相同的比对位置时，rmdup将它们标记为duplicates，然后去除重复，通常只保留第一个识别到的reads。
 
-**Picard**
+### Picard
 
 ```sh
 java -Xmx8g -jar ${EBROOTPICARD}/picard.jar MarkDuplicates  \

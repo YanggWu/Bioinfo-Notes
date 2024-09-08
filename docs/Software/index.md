@@ -109,6 +109,12 @@ conda info -e
 
 - **使用生物信息学工具的 Docker 镜像**: Docker Hub 上有许多预构建的生物信息学工具镜像。
 
+从 Docker Hub 中搜索符合条件的镜像
+
+```sh
+docker search qiime
+```
+
   ```bash
   docker pull biocontainers/fastqc:v0.11.9_cv8
   docker run biocontainers/fastqc:v0.11.9_cv8 fastqc --version
@@ -131,3 +137,4 @@ conda info -e
 
 **Singularity** 是一种开源的容器平台，专为高性能计算（HPC）和科学计算环境设计。它允许用户打包应用程序及其所有依赖项到一个可移植的镜像文件中，确保在不同计算环境中具有一致的运行表现。与 Docker 不同，Singularity 是为多用户共享系统设计的，尤其是在需要严格安全控制的 HPC 集群上使用时。
 
+[Singularity](http://127.0.0.1:8000/Software/#singularity){ data-preview }

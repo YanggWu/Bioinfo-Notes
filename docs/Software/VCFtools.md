@@ -2,6 +2,20 @@
 
 VCFtools是一款常用的生物信息软件，用于处理和分析VCF（Variant Call Format）文件，这些文件包含了基因组变异数据。VCFtools提供了一系列命令和参数，用于过滤、统计、转换和注释VCF文件
 
+官网：<https://vcftools.github.io/man_latest.html>
+
+## 安装
+
+```
+git clone https://github.com/vcftools/vcftools.git
+cd vcftools/
+./configure
+make
+make install
+```
+
+
+
 ## 常用参数
 
 ```sh

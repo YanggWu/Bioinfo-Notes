@@ -26,5 +26,5 @@ jobs:
             mkdocs-material-
       - run: pip install mkdocs-material
       - name: Add CNAME for custom domain
-        run: echo "yourdomain.com" > docs/CNAME
+        run: echo "ywu.info" > docs/CNAME
       - run: mkdocs gh-deploy --force

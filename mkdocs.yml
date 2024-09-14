@@ -13,7 +13,8 @@ nav:
 
   - Linux:
     - Linux/index.md
-    - linux 基础: Linux/Linux基础.md
+    - Linux 基础: Linux/Linux基础.md
+    - Shell 编程: Linux/Shell编程.md
     - 服务器环境搭建: Linux/云服务器环境搭建.md
     - SSH登陆服务器: Linux/SSH登陆服务器.md
 
@@ -28,6 +29,7 @@ nav:
   - Software:
     - Software/index.md
     - Mamba: Software/Mamba.md
+    - Singularity: Software/Singularity.md
     - Fastq比对: Software/fastq_mapping.md
     - Snakemake: Software/snakemake.md
     - Parabricks: Software/Parabricks.md

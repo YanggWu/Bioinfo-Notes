@@ -14,11 +14,11 @@ conda install mamba -n base -c conda-forge
 
 `-n base`：指定将 Mamba 安装到 Conda 的基础环境 `base` 中。
 
-`-c conda-forge`：使用 **Conda-Forge** 频道安装 Mamba
+`-c conda-forge`：使用 Conda-Forge 频道安装 Mamba
 
 ### Micromamba
 
-**Micromamba** 是 Mamba 的一个轻量级版本，它没有依赖 Conda，安装非常简单。
+Micromamba 是 Mamba 的一个轻量级版本，它没有依赖 Conda，安装非常简单。
 
 ```bash
 mkdir ~/bin
@@ -34,7 +34,7 @@ source ~/.bashrc
 
 ### Miniforge3
 
-与 **Miniconda** 类似，**Miniforge3** 是一个精简的 Conda 发行版，默认使用社区维护的 **conda-forge** 包仓库。与 **Mamba**、**Micromamba** 完全兼容，用户可以选择使用 Mamba 来代替 Conda 进行更快的包管理和环境创建。
+与 Miniconda 类似，Miniforge3 是一个精简的 Conda 发行版，默认使用社区维护的 conda-forge 包仓库。与 Mamba、Micromamba 完全兼容，用户可以选择使用 Mamba 来代替 Conda 进行更快的包管理和环境创建。
 
 ```bash
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh

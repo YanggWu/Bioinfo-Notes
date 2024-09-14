@@ -15,6 +15,7 @@ nav:
     - Linux/index.md
     - Linux 基础: Linux/Linux基础.md
     - Shell 编程: Linux/Shell编程.md
+    - Linux 小技巧: Linux/Linux小技巧.md
     - 服务器环境搭建: Linux/云服务器环境搭建.md
     - SSH登陆服务器: Linux/SSH登陆服务器.md
 

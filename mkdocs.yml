@@ -34,6 +34,7 @@ nav:
     - Snakemake: Software/snakemake.md
     - Parabricks: Software/Parabricks.md
     - VCFtools: Software/VCFtools.md
+    - MultiQC: Software/Multiqc.md
     - Fastp: Software/Fastp.md
     - SAMtools: Software/SAMtools.md
 

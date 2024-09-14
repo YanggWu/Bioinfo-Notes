@@ -23,6 +23,7 @@ nav:
 #    - R/index.md
     - base-R: R/test.md
     - 可视化案例: R/可视化案例.md
+    - BSA 可视化: R/BSA可视化.md
 
   - Python:
     - Python基础: Python/Python基础.md
@@ -38,6 +39,7 @@ nav:
     - MultiQC: Software/Multiqc.md
     - Fastp: Software/Fastp.md
     - SAMtools: Software/SAMtools.md
+    - GEMMA: Software/GEMMA.md
 
   - Workflow:
     - 基因组重测序: Workflow/基因组重测序.md

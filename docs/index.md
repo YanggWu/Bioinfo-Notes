@@ -3,6 +3,7 @@
 ![GitHub stars](https://img.shields.io/github/stars/yanggwu/Bioinfo-Notes?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/yanggwu/Bioinfo-Notes?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/yanggwu/Bioinfo-Notes?style=social)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fywu.info&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
 
 **🔭 为学日益，为道日损**
 
@@ -15,7 +16,7 @@
 
 
 
-## 🔗 链接
+### 🔗 链接
 
 <div class="grid cards" markdown>
 
@@ -30,10 +31,9 @@
 </div>
 
 
-### :material-contacts: 联系我
+###  🔉 联系我
 
 如果你有任何问题、建议或者希望交流的内容，欢迎与我联系。感谢你的访问，希望这里的内容能对你有所帮助！
 
-:e-mail: - 1285141496@qq.com
+:e-mail: - ywu.info@gmail.com
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fywu.info&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)

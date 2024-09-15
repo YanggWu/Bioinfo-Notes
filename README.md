@@ -11,6 +11,6 @@
 
 记录和分享生物信息学领域知识、技能和工作流程的个人文档网站。
 
-:octicons-link-24: https://ywu.info
+:link: https://ywu.info
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fywu.info&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)

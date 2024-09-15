@@ -5,7 +5,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/yanggwu/Bioinfo-Notes?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/yanggwu/Bioinfo-Notes?style=social)
 
-*\*🔭 为学日益，为道日损\**
+*🔭 为学日益，为道日损*
 
 ![](https://raw.githubusercontent.com/YanggWu/Image/main/markdown_image/Bioinfo-Notes-home-image1.svg)
 

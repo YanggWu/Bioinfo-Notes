@@ -24,7 +24,7 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material
+      - run: pip install mkdocs-material  mkdocs-glightbox
       - name: Add CNAME for custom domain
         run: echo "ywu.info" > docs/CNAME
       - run: mkdocs gh-deploy --force

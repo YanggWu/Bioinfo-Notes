@@ -137,3 +137,4 @@ extra_css:
 # Plugins
 plugins:
    - glightbox
+   - search

@@ -87,10 +87,10 @@ ggplot(data = snpindex, aes(x = pos, y = DELTA_SNPindex, color = CHROM, group = 
     snp_index_file <- "snp_index.tsv"
     smooth_file <- "snp-index-SNPNUM-smooth_2000.tsv"
     fai_file <- "MSU7.0_dna.fa.fai"
-
+    
     # 预处理数据
     processed_data <- preprocess_data(snp_index_file, smooth_file, fai_file)
-
+    
     # 绘制曼哈顿图
     plot_manhattan(processed_data$snpindex, processed_data$smoothdata, processed_data$fai)
     ```
@@ -100,7 +100,7 @@ ggplot(data = snpindex, aes(x = pos, y = DELTA_SNPindex, color = CHROM, group = 
 
     # 设置工作路径（可通过参数传递）
     setwd("~/Desktop/QTL-seq/")
-
+    
     ## 数据预处理函数 ##
     preprocess_data <- function(snp_index_file, smooth_file, fai_file, gap_ratio = 0.005) {
       # 读取 SNP-index 数据
@@ -135,7 +135,7 @@ ggplot(data = snpindex, aes(x = pos, y = DELTA_SNPindex, color = CHROM, group = 
       # 返回处理后的数据
       list(snpindex = snpindex, smoothdata = smoothdata, fai = fai)
     }
-
+    
     ## 绘图函数 ##
     plot_manhattan <- function(snpindex, smoothdata, fai, colors = c("#fec44f", "#addd8e")) {
       ggplot(data = snpindex, aes(x = pos, y = DELTA_SNPindex, color = CHROM, group = CHROM)) +
@@ -151,6 +151,6 @@ ggplot(data = snpindex, aes(x = pos, y = DELTA_SNPindex, color = CHROM, group = 
         theme_classic(base_size = 12) +
         theme(legend.position = "none", axis.text = element_text(size = 10, color = "black"), axis.text.x = element_text(angle = 65, vjust = 1, hjust = 1))
     }
-
+    
     ```
 

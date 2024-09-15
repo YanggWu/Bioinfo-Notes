@@ -78,19 +78,19 @@ QTL-seq 默认通过固定窗口化计算 SNP-index 或 ΔSNP-index 的平均值
     ```bash
     # 输入的 SNP-index 数据文件（由 QTL-seq 分析生成的 snp_index.tsv 文件）
     SNP_INDEX_FILE="snp_index.tsv"
-
+    
     # 参考基因组的 FAI 索引文件路径（用于获取染色体长度信息）
     FAI_FILE="~/1_reference/MSU/MSU7.0_dna.fa.fai"
-
+    
     # 平滑类型（指定平滑处理的类型，这里使用 SNP 数量进行平滑）
     SMOOTH_TYPE="SNPNUM"
-
+    
     # 平滑窗口的 SNP 数量阈值（在平滑处理时，每个窗口包含的最小 SNP 数量）
     SNP_WIDTH=5000  # 每个平滑窗口至少包含 5000 个 SNP
-
+    
     # SNP-index 平滑处理的输出目录（如果不存在将自动创建）
     SMOOTH_OUTPUT_DIR="qtlseq_spad_smooth"
-
+    
     # SNP-index 平滑处理的输出文件名前缀
     SMOOTH_OUTPUT_NAME="snp-index-SNPNUM-smooth-5000"
     ```

@@ -1,61 +1,38 @@
-# 欢迎来到 Bioinformatics Notes
+# Bioinformatics Notes
+![GitHub repo size](https://img.shields.io/github/repo-size/yanggwu/Bioinfo-Notes)
+![GitHub stars](https://img.shields.io/github/stars/yanggwu/Bioinfo-Notes?style=social)
+![GitHub forks](https://img.shields.io/github/forks/yanggwu/Bioinfo-Notes?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/yanggwu/Bioinfo-Notes?style=social)
 
-Bioinformatics Notes 是一个专注于生物信息学和数据科学领域的个人学习记录和知识整理平台。在这里，我记录了自己在工作中使用的工作流、学习的笔记，以及对各种工具和方法的总结。
+**🔭 为学日益，为道日损**
 
-这个网站的主要目的是帮助我自己更好地整理和回顾所学的知识，同时，也希望这些记录能对有相似需求的你有所帮助。
+![Cover](./assets/images/Bioinfo-Notes-home-image1.svg)
 
-## 网站内容导航
+欢迎来到 Bioinformatics Notes！本网站是一个专注于生物信息学和数据科学领域的个人学习记录和知识整理平台。在这里，我记录了自己在工作中使用的工作流、学习的笔记，以及对各种工具和方法的总结。
 
-- **Linux 使用与技巧**
-  - **内容简介**: 记录和分享我在Linux环境下工作的经验和技巧，帮助生物信息学研究者和数据科学家更高效地使用命令行工具和Linux系统。
-  - **内容包括**:
-    - 基础命令行操作
-    - 文件和数据管理
-    - 常用生物信息学工具的安装与使用
-    - Shell 脚本编写和自动化流程
+!!! success "目标与愿景"
+    本站的主要目的是帮助我自己更好地整理和回顾所学的知识，同时，也希望这些记录能对有相似需求的你有所帮助。请点击顶部或左侧的导航栏开始探索本站。
 
-- **R 编程与数据分析**
-  - **内容简介**: 集中记录R语言在数据分析和可视化中的应用，特别是如何在生物信息学中利用R进行数据处理和统计分析。
-  - **内容包括**:
-    - R基础语法与数据操作
-    - 数据可视化（如ggplot2）
-    - 生物统计学分析
-    - 常用R包（如Bioconductor）的使用
 
-- **Python 编程与数据科学**
-  - **内容简介**: 分享Python在生物信息学和数据科学领域的应用，包括数据分析、机器学习和自动化流程等方面的内容。
-  - **内容包括**:
-    - Python编程基础
-    - 数据处理（如NumPy和pandas）
-    - 生物信息学工具与库（如BioPython）的使用
-    - 可视化（如Matplotlib和Seaborn）和机器学习
 
-- **生物信息学知识与资源**
-  - **内容简介**: 整理生物信息学中的各种基础知识和高级话题，分享有用的资源、工具和数据库，帮助学习者更好地理解和应用生物信息学技术。
-  - **内容包括**:
-    - 基因组数据分析
-    - RNA-Seq 和转录组学分析
-    - 蛋白质结构预测和功能分析
-    - 常用数据库和在线工具介绍
+## 🔗 链接
 
-- **软件使用与教程**
-  - **内容简介**: 针对生物信息学常用软件的使用教程和操作指南，帮助科研人员快速上手并高效利用这些工具。
-  - **内容包括**:
-    - 生物信息学软件安装与配置（如BLAST, BWA, GATK）
-    - 数据可视化工具（如IGV）
-    - 数据处理和分析软件的使用技巧
+<div class="grid cards" markdown>
 
-- **工作流程与自动化**
-  - **内容简介**: 记录和分享在科研工作中使用的工作流程和自动化方法，帮助提高数据处理和分析的效率。
-  - **内容包括**:
-    - 生物信息学数据分析的标准流程
-    - 自动化数据处理脚本和管道
-    - 项目管理和数据组织方法
+-   :fontawesome-brands-github:{ .lg .middle } __Github__
 
-### 目标与愿景
+    ---
 
-这个网站的首要目标是帮助我自己更好地记录、整理和反思所学的知识和工作经验。同时，如果这些内容能为其他人提供参考或帮助，那将是额外的收获。我希望这个平台不仅是我自己的学习笔记，也是一个开放的知识共享空间，帮助更多的人在生物信息学领域取得进展。
+    Github主页
 
-### 联系我
+    [:octicons-arrow-right-24: <a href="https://github.com/Shuaiwen-Cui" target="_blank"> 传送门 </a>](#)
 
-如果你有任何问题、建议或者希望交流的内容，欢迎通过 [联系页面](http://127.0.0.1:8000/Linux/Linux_basics/#shell) 与我联系。感谢你的访问，希望这里的内容能对你有所帮助！
+</div>
+
+
+### :material-contacts: 联系我
+
+如果你有任何问题、建议或者希望交流的内容，欢迎与我联系。感谢你的访问，希望这里的内容能对你有所帮助！
+
+:e-mail: - 1285141496@qq.com
+

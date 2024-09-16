@@ -1,4 +1,5 @@
 # Bioinformatics Notes
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/yanggwu/Bioinfo-Notes)
 ![GitHub stars](https://img.shields.io/github/stars/yanggwu/Bioinfo-Notes?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/yanggwu/Bioinfo-Notes?style=social)
@@ -14,26 +15,39 @@
 !!! success "目标与愿景"
     本站的主要目的是帮助我自己更好地整理和回顾所学的知识，同时，也希望这些记录能对有相似需求的你有所帮助。请点击顶部或左侧的导航栏开始探索本站。
 
+### 🌐 学习平台
 
+<div class="grid cards" markdown>
+
+- :whale: **和鲸社区**
+    
+    ---
+
+    一个数据科学和人工智能领域的协作平台，提供了丰富的学习资源、项目分享。
+
+- :material-file-document-outline: **Bioinfo-Workbook**
+
+    ---
+
+    一个由专业科研人员编写的在线资源，旨在提供实用的生物信息学指导和教程。
+</div>
 
 ### 🔗 链接
 
 <div class="grid cards" markdown>
 
--   :fontawesome-brands-github:{ .lg .middle } __Github__
+- :fontawesome-brands-github:{ .lg .middle } **Github**
 
     ---
 
-    Github主页
+    Github 主页
 
-    [:octicons-arrow-right-24: <a href="https://github.com/Shuaiwen-Cui" target="_blank"> 传送门 </a>](#)
+    [:octicons-arrow-right-24: <a href="https://github.com/YanggWu" target="_blank"> 传送门 </a>](#)
 
 </div>
 
-
-###  🔉 联系我
+### 🔉 联系我
 
 如果你有任何问题、建议或者希望交流的内容，欢迎与我联系。感谢你的访问，希望这里的内容能对你有所帮助！
 
-:e-mail: - ywu.info@gmail.com
-
+:e-mail: - <ywu.info@gmail.com>

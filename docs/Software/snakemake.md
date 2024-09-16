@@ -2,11 +2,16 @@
 
 **Snakemake** 是一个流行的开源工作流管理工具，专为生物信息学和科学数据分析而设计。它使用一个基于 Python 的声明性语言来定义复杂的数据分析工作流。Snakemake 通过定义规则（rules）和依赖关系（dependencies），自动化并管理数据处理步骤，使得复杂的分析流程变得更加可重复和可维护。
 
-官方文档：<https://snakemake.readthedocs.io/en/stable/>
+<div  class="grid cards" markdown>
 
-代码库：<https://github.com/snakemake-workflows>
+- :material-file-document: **官方文档**：[:octicons-arrow-right-24: <a href="https://snakemake.readthedocs.io/en/stable/" target="_blank"> 传送门 </a>](#)
 
-常用snakemake流程：<https://snakemake.github.io/snakemake-workflow-catalog/>
+- :material-file-code: **代码库**：[:octicons-arrow-right-24:<a href="https://github.com/snakemake-workflows" target="_blank"> 传送门 </a>](#)
+
+    <https://snakemake.readthedocs.io/en/stable/>
+
+- :octicons-workflow-16: **snakemake 流程**：[:octicons-arrow-right-24:<a href="https://snakemake.github.io/snakemake-workflow-catalog/" target="_blank"> 传送门 </a>](#)
+</div>
 
 ## Snakemake 的基本概念
 

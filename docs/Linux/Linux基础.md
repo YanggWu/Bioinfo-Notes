@@ -2,56 +2,108 @@
 
 ## 一切皆文件
 
-“一切皆文件” 是类 Unix 操作系统（包括 Linux、macOS 以及其他 Unix 系统）的一个核心设计理念。这一概念意味着在这些操作系统中，几乎所有的系统资源都被表示为文件，或至少可以通过类似于文件操作的方式进行访问和管理。这种设计思想不仅统一了系统资源的访问接口，还大大简化了系统的使用和开发。
+在 Linux 中，一切都被视为文件。这不仅包括我们常见的文本文件和图片，还包括目录、设备、甚至系统配置文件。通过这种统一的设计，用户可以用相同的方式访问不同类型的资源。
 
-1. 普通文件：这是我们通常所说的文件，例如文本文件、图片文件、二进制文件等。这些文件存储在磁盘上，并具有实际的内容。
+- **普通文件**：文本、图片、程序等存储在磁盘上的文件。
+- **目录**：存储文件和子目录的特殊文件，构建文件系统的结构。
+- **设备文件**：硬盘、键盘、显示器等设备在 /dev 目录下以文件形式存在。
+- **链接文件**：硬链接指向相同的文件数据，符号链接类似于 Windows 的快捷方式。
+- **系统信息文件**：/sys 和 /proc 目录提供系统状态和配置数据的接口。
 
-2. 目录：目录在 Linux 中也是一种文件，它存储了其他文件和子目录的名称及其相关信息。目录文件的内容是文件系统元数据，提供了文件系统的结构。
-
-3. 设备文件：在 Linux 中，硬件设备（如硬盘、键盘、显示器、网络接口等）被表示为特殊的文件，通常位于 /dev 目录中。设备文件分为
-
-4. 链接文件：Linux 中有两种类型的链接文件：硬链接和符号链接（软链接）。硬链接将多个文件名指向相同的物理文件数据。符号链接类似于 Windows 中的快捷方式，它是一个指向另一个文件或目录的路径。
-
-5. 系统信息：系统状态和配置数据通过文件形式呈现，如 /sys 文件系统。它提供了内核和硬件的状态和配置接口，允许用户查询和调整系统行为。
+!!! tip "学习 Linux 的个人建议"
+    学习 Linux 的资源和书籍非常丰富，选择自己喜欢的方式进行系统学习即可。更重要的是，不必死记硬背各种命令，熟练掌握常用操作即可。不常用的命令可以在需要时查找和学习，关键是通过实践积累经验。因此，下面的内容将分享一些常用的基础命令，帮助你在日常操作中快速上手。
 
 ## 常用命令
 
 ### 文件操作
 
+文件操作是 Linux 系统中最常用的功能之一,掌握 `ls`, `cd`, `pwd`, `rm`, `mv` 等文件操作命令是使用 Linux 系统的重要基础。
+
+=== "ls"
+
+=== "cd"
+
+=== "rm"
+
+=== "cp"
+
+=== "pwd"
+
 ### 文件传输
 
+=== "wget"
 
+    `wget` 是一个从网络上自动下载文件的命令行工具，支持HTTP、HTTPS和FTP协议。
+    ```bash
+    # 基本语法
+    wget [OPTION]... [URL]...
+
+    # 下载单个文件
+    wget http://example.com/file.iso
+
+    # 下载并保存为不同的文件名：
+    wget -O newfilename.iso http://example.com/file.iso
+    ```
+
+=== "curl"
+    `curl` 用来传输数据的工具，支持多种协议如 HTTP、HTTPS、FTP等。curl 比 wget 更加强大，支持更多的协议和选项。
+    ```bash
+    # 基本语法
+    curl [option] [url]
+    
+    # 下载文件
+    curl -O http://example.com/file.iso
+    ```
+=== "scp"
+    `scp` 命令用于在本地和远程之间安全地复制文件和目录。它通过SSH协议进行数据传输，提供与SSH相同的安全性和身份验证。
+    ```bash
+    scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+    
+    # 从本地复制文件到远程服务器
+    scp localfile.txt username@remotehost:/path/to/destination/
+
+    # 从远程服务器复制文件到本地
+    scp username@remotehost:/path/to/remotefile.txt /local/destination/
+    ```
+
+    `user@` 表示远程系统的用户名。
+
+    `SRC_HOST` 或 `DEST_HOST` 表示源或目标主机的主机名或IP地址。
+    
+    `file1` 和 `file2` 是源文件和目标文件的路径。
 
 ### 压缩工具
 
-**`gzip`**
+=== "gzip"
+    **`gzip`**
 
-只能压缩单个文件，不支持目录。
+    只能压缩单个文件，不支持目录。
 
-```bash
-gzip -6 -T 4 file
-```
+    ```bash
+    gzip -6 -T 4 file
+    ```
 
-- 默认的压缩级别为 6（在 1 到 9 的范围内），级别越高，压缩效果越好但压缩速度越慢。
-- -T：使用多线程压缩。
-- `-d` 解压缩，或使`gunzip`
+    - `-6`: 默认的压缩级别为 6（在 1 到 9 的范围内），级别越高，压缩效果越好但压缩速度越慢。
+    - `-T`: 使用多线程压缩。
+    - `-d`: 解压缩，或使 `gunzip`
 
-**`pigz`**
+=== "pigz"
+    **`pigz`**
 
-它是 `gzip` 的并行版本，可以充分利用多核 CPU 来加速压缩过程。
+    它是 `gzip` 的并行版本，可以充分利用多核 CPU 来加速压缩过程。
 
-支持压缩多个文件
+    支持压缩多个文件
 
-```bash
-pigz file1 file2 file3
-```
+    ```bash
+    pigz file1 file2 file3
+    ```
 
-参数：
+    参数：
 
-- `-k` 选项可以保留原始文件。
-- `-p` 选项指定使用的线程数量。
-- `-d` 解压缩，或使用 `unpigz`
-
+    - `-k` 选项可以保留原始文件。
+    - `-p` 选项指定使用的线程数量。
+    - `-d` 解压缩，或使用 `unpigz`
+    - 
 ## 管理数据流
 
 ### 重定向
@@ -59,46 +111,59 @@ pigz file1 file2 file3
 重定向允许用户将命令的输出或输入从默认的地方（通常是终端）转移到文件或其他命令中。
 
 - **输出重定向**：将命令的标准输出（stdout）保存到文件中。
- 	- 符号: `>` 和 `>>`
+  - 符号: `>` 和 `>>`
 - **错误输出重定向**：将标准错误输出（`stderr`）重定向到文件中。
- 	- 符号: `2>`, `2>>`
+  - 符号: `2>`, `2>>`
 - **合并标准输出和错误输出**：将标准输出和标准错误同时重定向到同一个文件。
- 	- 符号: `&>`
+  - 符号: `&>`
 
-**常用操作**
+!!! tip "常用操作"
 
-```bash
-exec > ${index}.log 2>&1
-```
-
-将当前脚本中所有后续命令的标准输出和标准错误输出都重定向到日志文件中，而不是输出到终端。
+    将当前脚本中所有后续命令的标准输出和标准错误输出都重定向到日志文件中，而不是输出到终端。
+    ```bash
+    exec > ${index}.log  2>&1
+    ```
 
 ### 管道（Pipe）
 
-管道是将一个命令的输出作为另一个命令的输入。
+管道使用符号 `|` 将一个命令的输出直接作为另一个命令的输入。这使得多个命令可以串联起来，形成一个处理流水线。
 
-- **符号**: `|`
-- **作用**: 将前一个命令的输出传递给下一个命令作为输入。
+```bash
+# 将 ls 命令的输出传递给 grep 命令搜索特定的文件
+ls -la | grep "sample"
+```
 
-### `xargs`参数传递
-
+### 参数传递
 
 `xargs`命令用于将标准输入转换为命令行参数，它通常与管道一起使用，用于将前一个命令的输出作为参数传递给另一个命令。
 
-- **作用**: 读取标准输入的数据，并将其作为参数传递给指定的命令。
-- **常见选项**:
-	- `-n`：指定每次传递的参数个数。
-	- `-I {}`：定义占位符，`xargs`会将读取到的数据替换到占位符的位置。
-	- `-P`：并行执行的任务数。
-- **示例**:
+**常见选项**:
 
-**查找包含"pattern"的文件并删除**
+- `-n`：指定每次传递的参数个数。
+  
+- `-I {}`：定义占位符，`xargs`会将读取到的数据替换到占位符的位置。
 
-```bash
-grep -l "pattern" *.txt | xargs rm
+- `-P`：并行执行的任务数。
 
-echo "file1 file2 file3" | xargs -n 1 -I {} mv {} /path/to/destination/
-```
+!!! example "基本使用"
+    `xargs` 是一个极其强大的工具，特别是在处理大量文件或生成命令行参数时。强烈建议熟练掌握
+
+    ```bash
+    # 默认使用空白字符（包括空格、tab、换行符）作为输入分隔符
+    echo "one two three" | xargs mkdir # 这将创建三个目录：one、two、three。
+
+    # 如果输入包含特殊字符或特定格式（如 CSV 文件），可以使用 -d 选项指定分隔符。
+    echo "one,two,three" | xargs -d ',' echo
+
+    # 限制参数数量：xargs 可以通过 -n 选项限制每次命令调用的参数数量。
+    echo "one two three" | xargs -n 2  # xargs 默认使用 echo 命令
+
+    # 查找包含"pattern"的文件并删除
+    grep -l "pattern" *.txt | xargs rm
+
+    echo "file1 file2 file3" | xargs -n 1 -I {} mv {} /path/to/destination/
+
+    ```
 
 ##### 结合实例
 
@@ -107,337 +172,3 @@ echo "file1 file2 file3" | xargs -n 1 -I {} mv {} /path/to/destination/
 `grep -l "pattern" *.txt | xargs -I {} mv {} /path/to/destination/`
 
 这个命令首先使用`grep`找到包含指定字符串的文件列表，然后通过`xargs`将这些文件传递给`mv`命令，最后将它们移动到指定的目录。
-
-#### 简单的shell编程
-
-##### 变量
-
-**常用的变量运算符**： 
-
-
-- `${varname#pattern}`：若模式匹配变量的开头出，删除匹配的最短部分。
-- `${varname##pattern}`：若模式匹配变量的开头处， 删除匹配的最长部分。
-- `${varname%pattern}`：若模式匹配变量的结果处， 删除匹配的最短部分。
-- `${varname%%pattern}`： 若模式匹配变量的结果处， 删除匹配的最长部分。
-- `${varname/pattern/string}`：若匹配，只有第一部分被替换。
-- `${varname//pattern/string}`：若匹配，所有匹配部分都替换。
-- 实例
-
-    ```bash
-    path=yourPath/fast/reseq/data/P1_1.fq.gz
-    
-    echo ${path%/*}    # yourPath/fast/reseq/data
-    echo ${path%%/*}   # yourPath
-    echo ${path#*/}    # fast/reseq/data/P1_1.fq.gz
-    echo ${path##*/}   # P1_1.fq.gz
-    ```
-
-
-##### 运算符
-
-
-**逻辑运算符**
-
-##### Table
-
-
-**操作符**
-
-**说明**
-
-**举例**
-
-&&
-
-逻辑的 AND
-
-`[[ $a -lt 100 && $b -gt 100 ]]` 返回 false
-
-||
-
-逻辑的 OR
-
-`[[ $a -lt 100 \| $b -gt 100 ]]` 返回 true
-
-**文件测试运算符**
-
-##### Table
-
-
-**操作符**
-
-**说明**
-
-**举例**
-
--d file
-
-检测文件是否是目录，如果是，则返回 true。
-
-[ -d $file ] 返回false。
-
--f file
-
-检测文件是否是普通文件，如果是，则返回 true。
-
-[ -f $file ] 返回 true。
-
--r file
-
-检测文件是否可读，如果是，则返回 true。
-
-[ -r $file ] 返回 true。
-
--w file
-
-检测文件是否可写，如果是，则返回 true。
-
-[ -w $file ] 返回 true。
-
--x file
-
-检测文件是否可执行，如果是，则返回 true。
-
-[ -x $file ] 返回 true。
-
--s file
-
-检测文件是否为空（文件大小是否大于0），不为空返回 true。
-
-[ -s $file ] 返回 true。
-
--e file
-
-检测文件（包括目录）是否存在，如果是，则返回 true。
-
-[ -e $file ] 返回 true。
-
-#### 流编辑`Sed`
-
-
-#### 文本处理`AWK`
-
-
-##### awk 内置变量
-
-
-AWK 内置变量在文本处理和数据操作中起着关键作用。下面是一些常见的内置变量及其解释和用法
-
-**1. `$0`**
-
-
-- **解释**：表示当前记录（行）的全部文本内容。
-- **用法**：通常用于打印或处理整行数据。
-
-```other
-awk '{ print $0 }' filename
-```
-
-
-**2. `$1, $2, ..., $n`**
-
-
-- **解释**：表示当前记录的第 `n` 个字段（以字段分隔符分隔）。
-- **用法**：用于访问和操作特定字段。
-
-```other
-awk '{ print $1, $2 }' filename
-```
-
-
-**3. `FS` (Field Separator)**
-
-
-- **解释**：字段分隔符，默认为空格或制表符。
-- **用法**：可以在 `BEGIN` 块中设置，或者使用 `-F` 选项设置。
-
-```other
-awk 'BEGIN { FS="," } { print $1, $2 }' filename
-# 或者
-awk -F ',' '{ print $1, $2 }' filename
-```
-
-
-**4. `OFS` (Output Field Separator)**
-
-
-- **解释**：输出字段分隔符，默认为空格。
-- **用法**：可以在 `BEGIN` 块中设置，用于控制输出时字段之间的分隔符。
-
-```other
-awk 'BEGIN { OFS="," } { print $1, $2 }' filename
-```
-
-
-**5. `RS` (Record Separator)**
-
-
-- **解释**：记录分隔符，默认为换行符。
-- **用法**：可以在 `BEGIN` 块中设置，用于定义记录（行）的分隔符。
-
-```other
-awk 'BEGIN { RS="" } { print $0 }' filename
-```
-
-
-**6. `ORS` (Output Record Separator)**
-
-
-- **解释**：输出记录分隔符，默认为换行符。
-- **用法**：可以在 `BEGIN` 块中设置，用于控制输出时记录之间的分隔符。
-
-```other
-awk 'BEGIN { ORS="\n\n" } { print $0 }' filename
-```
-
-
-**7. `NF` (Number of Fields)**
-
-
-- **解释**：当前记录中的字段数。
-- **用法**：用于循环遍历所有字段或检查字段数。
-
-```other
-awk '{ print NF }' filename
-# 打印每行的字段数
-
-awk '{ for (i=1; i<=NF; i++) print $i }' filename
-# 打印每行的所有字段
-```
-
-
-**8. `NR` (Number of Records)**
-
-
-- **解释**：已经读到的记录数（行号，从 1 开始）。
-- **用法**：用于跟踪处理的行数或在特定行进行操作。
-
-```other
-awk '{ print NR, $0 }' filename
-# 打印行号和对应的行内容
-
-awk 'NR == 10 { print $0 }' filename
-# 只打印第 10 行
-```
-
-
-**9. `FNR` (File Number of Records)**
-
-
-- **解释**：当前文件的记录数（当前文件的行号，从 1 开始）。
-- **用法**：在处理多个文件时使用，区别每个文件的行号。
-
-```other
-awk 'FNR == 1 { print "File:", FILENAME } { print FNR, $0 }' file1 file2
-# 打印每个文件的文件名和每行的行号及内容
-```
-
-
-**10. `FILENAME`**
-
-
-- **解释**：当前输入文件的名称。
-- **用法**：在处理多个文件时使用，用于区分文件。
-
-```other
-awk '{ print FILENAME, $0 }' file1 file2
-# 打印文件名和对应的行内容
-```
-
-
-**11. `ARGC` 和 `ARGV`**
-
-
-- **解释**：
-	- `ARGC`：命令行参数的个数。
-	- `ARGV`：包含命令行参数的数组，从 `ARGV[0]` 到 `ARGV[ARGC-1]`。
-- **用法**：用于访问和操作命令行参数。
-
-```other
-awk 'BEGIN { for (i = 0; i < ARGC; i++) print ARGV[i] }' filename
-# 打印所有命令行参数
-```
-
-
-**12. `ENVIRON`**
-
-
-- **解释**：环境变量的数组，可以通过环境变量的名称访问其值。
-- **用法**：用于访问系统环境变量。
-
-```other
-awk 'BEGIN { print ENVIRON["HOME"] }'
-# 打印 HOME 环境变量的值
-```
-
-
-**13. `CONVFMT` 和 `OFMT`**
-
-
-- **解释**：
-	- `CONVFMT`：数字转换格式，默认为 "%.6g"。
-	- `OFMT`：数字输出格式，默认为 "%.6g"。
-- **用法**：用于控制数字的格式化。
-
-```other
-awk 'BEGIN { CONVFMT="%.2f"; print 123.456 }'
-# 以两位小数格式打印数字
-```
-
-
-**14. `FIELDWIDTHS`**
-
-
-- **解释**：一个以空格分隔的宽度列表，用于指定固定宽度字段。
-- **用法**：在 `BEGIN` 块中设置，用于处理固定宽度字段的文件。
-
-```other
-awk 'BEGIN { FIELDWIDTHS = "5 10 15" } { print $1, $2, $3 }' filename
-# 根据指定的宽度读取和打印字段
-```
-
-
-##### 实例
-
-1. **通过`awk`提取符合特定条件的内容。**
-
-    ```bash
-    # 直接根据基因位置和染色体信息提取特定范围的SNP信息
-    gene_chr=1
-    gene_pos=1500
-    range=500
-    # 或者先根据Geneid 提取位置信息
-    
-    
-    awk -v gene_chr="$gene_chr" -v gene_pos="$gene_pos" -v range="$range" '$2 == gene_chr && $3 >= (gene_pos - range) && $3 <= (gene_pos + range)' LOC_Os01g02390_brief_gemma.txt
-    ```
-
-2. **使用 `grep` 和 `awk` 赋值给变量**
-
-	在 Linux shell 中，可以使用命令替换将命令的输出赋值给变量
-
-    ```bash
-    #!/bin/bash
-    
-    # 提取值并赋值给变量
-    read var1 var2 <<< $(grep LOC_Os04g42950 Gene_position_MSU.txt | awk '{print $2,$4}')
-    
-    # 打印变量以确认
-    echo "Variable 1: $var1"
-    echo "Variable 2: $var2"
-    ```
-
-- `read var1 var2 <<< $(...)`：将 `grep` 和 `awk` 命令的输出赋值给 `var1` 和 `var2` 变量。`$(...)` 用于命令替换，将命令的输出作为字符串返回，`read` 用于将这个字符串分配到变量中。
-- `<<<` 是 Bash 的一个输入重定向操作符，可以将一个字符串传递给命令，而不是通过文件或其他输入方式。**语法**：`command <<< "string"`
-
-**示例**
-
-假设 `Gene_position_MSU.txt` 文件的内容如下：
-
-    ```other
-    LOC_Os04g42950 12345 67890 100
-    LOC_Os01g12345 54321 98765 200
-    ```
-
-
-运行脚本后，`var1` 和 `var2` 将分别是 `12345` 和 `100`。你可以通过 `echo` 命令确认它们的值。

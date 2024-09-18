@@ -9,7 +9,7 @@
 3. **便于集成 HPC 系统**：许多 HPC 系统支持 Singularity，因为它提供了对文件系统和计算资源的强大支持。
 4. **高安全性**：Singularity 容器中用户和主机系统的 UID 是一致的，避免了 Docker 中存在的权限提升问题。
 
-[官方文档](https://www.sylabs.io/guides/3.1/user-guide/)
+:octicons-container-16: [官方文档](https://www.sylabs.io/guides/3.1/user-guide/)
 
 ## 安装
 

@@ -17,22 +17,20 @@
 
 - `${varname//pattern/string}`：若匹配，所有匹配部分都替换。
 
-- 实例
-
-  ```bash
-  path=yourPath/fast/reseq/data/P1_1.fq.gz
+```bash title="实例"
+path=yourPath/fast/reseq/data/P1_1.fq.gz
   
-  echo ${path%/*}    # yourPath/fast/reseq/data
-  echo ${path%%/*}   # yourPath
-  echo ${path#*/}    # fast/reseq/data/P1_1.fq.gz
-  echo ${path##*/}   # P1_1.fq.gz
-  ```
+echo ${path%/*}    # yourPath/fast/reseq/data
+echo ${path%%/*}   # yourPath
+echo ${path#*/}    # fast/reseq/data/P1_1.fq.gz
+echo ${path##*/}   # P1_1.fq.gz
+```
 
 **逻辑运算符**
 
 | **操作符** | **说明**   | **举例**                                  |
 | ---------- | ---------- | ----------------------------------------- |
-| &&         | 逻辑的 AND | [[ $a -lt 100 && $b -gt 100 ]] 返回 false |
+|  &&         | 逻辑的 AND | [[ $a -lt 100 && $b -gt 100 ]] 返回 false |
 | \|\|       | 逻辑的 OR  | [[ $a -lt 100 \| $b -gt 100 ]] 返回 true  |
 
 **文件测试运算符**

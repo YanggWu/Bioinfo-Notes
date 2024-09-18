@@ -18,6 +18,8 @@ multiqc . -m fastqc
 
 ## 常用参数
 
--n, --filename :报告和文件前缀
--o, --outdir :指定输出目录
--m, -module :仅包含特定工具的模块
+`-n, --filename` 报告和文件前缀
+
+`-o, --outdir` 指定输出目录
+
+`-m, -module` 仅包含特定工具的模块

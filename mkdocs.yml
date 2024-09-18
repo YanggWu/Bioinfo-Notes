@@ -21,7 +21,7 @@ nav:
     - SSH 登陆服务器: Linux/SSH登陆服务器.md
 
   - R:
-#    - R/index.md
+    - R/index.md
     - base-R: R/test.md
     - 可视化案例: R/可视化案例.md
     - BSA 可视化: R/BSA可视化.md

@@ -22,7 +22,7 @@ nav:
 
   - R:
     - R/index.md
-    - base-R: R/test.md
+    - base-R: R/base-R.md
     - 可视化案例: R/可视化案例.md
     - BSA 可视化: R/BSA可视化.md
 
@@ -54,6 +54,8 @@ nav:
 theme:
   name: material
   language: 'zh'
+  font:
+    text: Noto Serif SC
   features:
     - navigation.instant  #即时加载
     - navigation.instant.prefetch

@@ -21,7 +21,7 @@ R语言是一种开源的统计计算和图形绘制的编程语言，广泛用�
     ```
     https://mirrors.tuna.tsinghua.edu.cn/CRAN/
     https://mirrors.ustc.edu.cn/CRAN/
-    http://mirrors.xmu.edu.cn/CRAN/
+    https://mirrors.xmu.edu.cn/CRAN/
     ```
 
 **安装 RStudio**

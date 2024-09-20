@@ -63,15 +63,19 @@ theme:
     - scheme: default
       toggle:
         icon: material/brightness-7 
-        name: Switch to dark mode
+        name: 切换至夜间模式
+      accent: deep orange
+      primary: custom
 
     # Palette toggle for dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: 切换至日间模式
         # primary: blue grey  # indigo 设置主题颜色
       accent: deep orange
+      primary: black
 
   icon:
     previous: fontawesome/solid/angle-left

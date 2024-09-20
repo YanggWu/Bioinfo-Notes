@@ -14,7 +14,7 @@ nav:
 
   - Linux:
     - Linux/index.md
-    - Linux 基础: Linux/Linux基础.md
+    - Linux 基础: Linux/Linux_basic.md
     - Shell 编程: Linux/Shell编程.md
     - Linux 小技巧: Linux/Linux小技巧.md
     - 服务器环境搭建: Linux/云服务器环境搭建.md
@@ -36,6 +36,7 @@ nav:
     - Mamba: Software/Mamba.md
     - Singularity: Software/Singularity.md
     - Fastq比对: Software/fastq_mapping.md
+    - gzip 文件读写: Software/read_write_gzip.md
     - Snakemake 🎯: Software/snakemake.md
     - Parabricks: Software/Parabricks.md
     - VCFtools: Software/VCFtools.md

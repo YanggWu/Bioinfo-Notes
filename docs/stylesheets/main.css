@@ -45,6 +45,13 @@ button.md-top {                 /* 设置回到顶部按钮的字体格式 */
     /* 修改字体颜色 */
 }
 
+pre, code {             /* 设置代码块的字体格式 */
+    font-family: "Fira Code", monospace;
+    /* 修改字体 */
+    font-size: 15px;
+    /* 修改字体大小 */
+    font-weight: normal;  /* 设置字重为 normal 避免过于粗重 */
+}
 
 .md-typeset h1 {
     font-size: 1.9em;
@@ -53,7 +60,7 @@ button.md-top {                 /* 设置回到顶部按钮的字体格式 */
 }
 
 .md-typeset h2 {
-    font-size: 1.65em;
+    font-size: 1.6em;
     line-height: 1.3;
     margin: 1.4em 0 0.5em;
 }
@@ -84,7 +91,8 @@ button.md-top {                 /* 设置回到顶部按钮的字体格式 */
 
 /******* 表格相关设置 *******/
 .md-typeset__table {
-   min-width: 90%;
+  font-family: "Roboto", sans-serif;
+   min-width: 95%;
    margin-bottom: 0.2em;
    padding: 0.2rem 0.3rem;
 }

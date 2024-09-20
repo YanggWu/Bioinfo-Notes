@@ -27,3 +27,28 @@ extra_css:
   - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap #自定义思源宋体
 ```
 
+## 详细自定义字体设置
+
+设置最上方标题大小
+
+```CSS
+.md-header__ellipsis .md-header__topic:nth-child(1) .md-ellipsis { /* 最上方标题的样式 */ 
+    font-size: 18px;  /* 增大字体大小 */
+}
+```
+
+<img src="https://raw.githubusercontent.com/YanggWu/Image/main/markdown_image/202409202026499.png" width="400">
+
+
+
+设置最上面一排目录样式
+
+```
+li.md-tabs__item  {             /* 最上面一级目录的样式 */       
+  /* 修改字体 */
+  font-weight: 600;
+  color: whitesmoke;
+}
+```
+
+<img src="https://raw.githubusercontent.com/YanggWu/Image/main/markdown_image/202409202030026.png" width="400">

@@ -6,7 +6,7 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/yanggwu/Bioinfo-Notes?style=social)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fywu.info&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
 
-<p style="font-size: 16px; font-weight: 700;">🔭 为学日益，为道日损</p>
+<p class="font-2" style="font-size: 21.5px; font-weight: 700;">🔭 “为学日益 为道日损”</p>
 
 ![Cover](./assets/images/Bioinfo-Notes-home-image1.svg)
 

@@ -59,8 +59,19 @@ theme:
   #   code: Roboto Mono  #代码字体
 
   palette:
-    # primary: blue grey  # indigo 设置主题颜色
-    accent: deep purple
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+        # primary: blue grey  # indigo 设置主题颜色
+      accent: deep orange
 
   icon:
     previous: fontawesome/solid/angle-left

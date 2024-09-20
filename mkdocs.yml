@@ -54,8 +54,25 @@ nav:
 theme:
   name: material
   language: 'zh'
-  font:
-    text: Noto Serif SC
+  # font: #谷歌字体，自行搜索
+  #   text: Bitter  #文本字体
+  #   code: Roboto Mono  #代码字体
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default # 日间模式
+      primary: blue grey # 上方的
+      accent: blue # 链接等可交互元件的高亮色  
+    # primary: blue grey  # indigo 设置主题颜色
+    # accent: deep purple
+
+  icon:
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
+
+  logo: assets/images/favicon.svg    #左上角logo，可插入图片链接
+  favicon: assets/images/favicon.svg # 网页icon
+
   features:
     - navigation.instant  #即时加载
     - navigation.instant.prefetch
@@ -70,17 +87,7 @@ theme:
     - navigation.top  #全宽导航选项卡
     - content.code.annotate
 
-  palette:
-    primary: indigo
-    accent: deep purple
 
-  icon:
-    previous: fontawesome/solid/angle-left
-    next: fontawesome/solid/angle-right
-
-  logo: assets/images/favicon.svg
-  favicon: assets/images/favicon.svg
-  
 extra:
   search:
     language: 'jp'
@@ -134,10 +141,13 @@ markdown_extensions:
 #   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 #   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
 #   - javascripts/tablesort.js
-extra_css:
-  - javascripts/extra.css
 
-# Plugins
+extra_css:
+  - stylesheets/main.css
+  - stylesheets/extra.css
+  - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap #自定义思源宋体
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体
+
 plugins:
-   - glightbox
+   - glightbox # 图片放大插件
    - search

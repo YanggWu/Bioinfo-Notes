@@ -1,0 +1,7 @@
+/* 自定义主题颜色 */
+:root>* {
+    --md-primary-fg-color: #518FC1;
+    --md-primary-fg-color--light: #518FC1;
+    --md-primary-fg-color--dark: #518FC1;
+  
+  }

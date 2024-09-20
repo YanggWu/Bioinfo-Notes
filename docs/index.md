@@ -51,7 +51,7 @@
 
 <div class="grid cards" markdown>
 
-- :fontawesome-brands-github:{ .lg .middle } **Github**  [:octicons-arrow-right-24: <a href="https://github.com/YanggWu" target="_blank"> 传送门 </a>](#)
+- :fontawesome-brands-github:{ .lg  } **Github**  [:octicons-arrow-right-24: <a href="https://github.com/YanggWu" target="_blank"> 传送门 </a>](#)
 
 </div>
 

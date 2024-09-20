@@ -1,6 +1,17 @@
-img{
+img {
 max-width:700px;
 height: auto;
+}
+
+img.twemoji {
+    vertical-align: middle;  
+    transform: translateY(2px); 
+}
+
+span.twemoji {
+    display: inline-block;  
+    vertical-align: middle;  
+    transform: translateY(3px); 
 }
 
 

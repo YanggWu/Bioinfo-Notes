@@ -1,3 +1,5 @@
+
+/******* 图片、图标相关设置 *******/
 img {
 max-width:700px;
 height: auto;
@@ -14,24 +16,11 @@ span.twemoji {
     transform: translateY(3px); 
 }
 
+
+/******* 字体、文字相关设置 *******/
 body {
     font-family: "Noto Serif SC", system-ui;
-    font-weight: 500; /* 或者其他你想要的字重 */
-  }
-span.md-nav__icon {
-    font-weight: 700; 
-  }
-
-
-.md-typeset__table {
-   min-width: 100%;
-   margin-bottom: 0.2em;
-   padding: 0.2rem 0.3rem;
-}
-
-.md-typeset table:not([class]) td {
-    border-top: 0.05rem solid var(--md-typeset-table-color);
-    padding: 0.3em 0.4em;
+    font-weight: 500; /* 设置字体基础字重 */
 }
 
 .md-typeset h1 {
@@ -66,6 +55,30 @@ span.md-nav__icon {
     margin-bottom: 0.4em;
 }
 
+.md-typeset strong {
+    font-weight: 600;
+}
+
+/******* 表格相关设置 *******/
+.md-typeset__table {
+   min-width: 90%;
+   margin-bottom: 0.2em;
+   padding: 0.2rem 0.3rem;
+}
+
+.md-typeset table:not([class]) td {
+    border-top: 0.05rem solid var(--md-typeset-table-color);
+    padding: 0.3em 0.4em;
+}
+
+.md-typeset table:not([class]) {
+    display: table;
+    font-size: px2rem(11px);
+    border-spacing:  px2em(1px);
+}
+
+
+/******* 内嵌代码块相关设置 *******/
 .md-typeset p > code {
     color: #E33D70;
   }
@@ -98,20 +111,13 @@ span.md-nav__icon {
     color: #E33D70;
 }
 
-.md-typeset table:not([class]) {
-    display: table;
-    font-size: px2rem(11px);
-    border-spacing:  px2em(1px);
-}
 
-
-
-/* Grid Cards */
+/******* Grid Cards *********/
 .md-typeset .grid.cards > ul > li {
     border-radius: var(--base-border-radius);
   }
 
-  /* 渐变 */
+/* 渐变 */
 #grad1 {
     height: 200px;
     background-color: red; /* 不支持线性的时候显示 */

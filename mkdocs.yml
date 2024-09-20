@@ -49,7 +49,6 @@ nav:
     - BSA 混池定位: Workflow/BSA_Analysis.md
 
 
-
 # [UI]
 theme:
   name: material
@@ -59,12 +58,8 @@ theme:
   #   code: Roboto Mono  #代码字体
 
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default # 日间模式
-      primary: blue grey # 上方的
-      accent: blue # 链接等可交互元件的高亮色  
     # primary: blue grey  # indigo 设置主题颜色
-    # accent: deep purple
+    accent: deep purple
 
   icon:
     previous: fontawesome/solid/angle-left
@@ -141,6 +136,7 @@ markdown_extensions:
 #   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 #   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
 #   - javascripts/tablesort.js
+
 
 extra_css:
   - stylesheets/main.css

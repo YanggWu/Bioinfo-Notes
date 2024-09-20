@@ -142,8 +142,8 @@ extra_css:
   - stylesheets/main.css
   - stylesheets/extra.css
   - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap #自定义思源宋体
-  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体
-
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体 2
+  - https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap # 字体3
 plugins:
    - glightbox # 图片放大插件
    - search

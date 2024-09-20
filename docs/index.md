@@ -6,7 +6,7 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/yanggwu/Bioinfo-Notes?style=social)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fywu.info&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
 
-**🔭 为学日益，为道日损**
+<p style="font-size: 16px; font-weight: 700;">🔭 为学日益，为道日损</p>
 
 ![Cover](./assets/images/Bioinfo-Notes-home-image1.svg)
 
@@ -15,12 +15,13 @@
 欢迎来到 Bioinformatics Notes！本网站是一个专注于生物信息学和数据科学领域的个人学习记录和知识整理平台。在这里，我记录了自己在工作中使用的工作流、学习的笔记，以及对各种工具和方法的总结。
 
 !!! success "目标与愿景"
-    本站的主要目的是帮助我自己更好地整理和回顾所学的知识，同时，也希望这些记录能对有相似需求的你有所帮助。请点击顶部或左侧的导航栏开始探索本站。
+    <p class="font-3">本站的主要目的是帮助我自己更好地整理和回顾所学的知识，同时，也希望这些记录能对有相似需求的你有所帮助。请点击顶部或左侧的导航栏开始探索本站。
 
 !!! tip "Just do it !"
-    本站内容以个人学习和实践过程中的需求为导向，关于有些基础内容的学习，主要参考各部分的资源推荐。 
+    <p class="font-3">本站内容以个人学习和实践过程中的需求为导向，关于有些基础内容的学习，主要参考各部分的资源推荐。</p> 
 
-    在信息泛滥的今天，我们不是缺少资源，而是缺少行动。实践是最好的老师。学会利用手边的资源，不要让迷茫或自我怀疑阻碍前行。做我们能做的，行动起来吧！
+    <p class="font-3">在信息泛滥的今天，我们不是缺少资源，而是缺少行动。实践是最好的老师。学会利用手边的资源，不要让迷茫或自我怀疑阻碍前行。做我们能做的，行动起来吧！
+
 
 
 ### 🌐 学习资源

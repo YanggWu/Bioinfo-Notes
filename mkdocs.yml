@@ -38,6 +38,7 @@ nav:
     - Mamba: Software/Mamba.md
     - Singularity: Software/Singularity.md
     - Fastq比对: Software/fastq_mapping.md
+    - 测序数据下载: Software/download_data.md
     - gzip 文件读写: Software/read_write_gzip.md
     - Snakemake 🎯: Software/snakemake.md
     - Salmon: Software/Salmon.md
@@ -50,6 +51,7 @@ nav:
 
   - Workflow:
     - 基因组重测序: Workflow/基因组重测序.md
+    - GWAS 分析: Workflow/GWAS.md
     - BSA 混池定位: Workflow/BSA_Analysis.md
 
 

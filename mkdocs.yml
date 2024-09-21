@@ -24,6 +24,8 @@ nav:
     - R/index.md
     - base-R: R/base-R.md
     - 可视化案例: R/可视化案例.md
+    - 富集分析可视化: R/enrichment_plot.md
+    - lme4包-BLUP值: R/BLUP.md
     - BSA 可视化: R/BSA可视化.md
 
   - Python:

@@ -76,3 +76,7 @@ fastp -w 3 \
     `-a / --adapter_sequence`：手动指定单端测序接头序列或者是双端测序的 read1 接头。
 
     `--adapter_sequence_r2`：手动指定双端测序的 read2 接头序列。
+
+4. 其他参数
+
+    `-w / --thread`：线程数，默认为 3。

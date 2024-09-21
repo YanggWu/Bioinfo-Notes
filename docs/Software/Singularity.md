@@ -11,6 +11,7 @@
 
 :octicons-container-16: [官方文档](https://www.sylabs.io/guides/3.1/user-guide/)
 
+:material-web: [常用生信singularity镜像](https://depot.galaxyproject.org/singularity/)
 ## 安装
 
 Singularity 需要 **Go** 语言和 **Development Tools**，因此需要先安装这些依赖。
@@ -51,4 +52,13 @@ singularity有许多命令，通过 pull、exec、build 等命令拉取、运行
     singularity exec ubuntu_20.04.sif bash
     ```
     这将在容器内部运行 bash，你可以在容器内执行命令。
+
+=== "shell"
+
+    进入容器内部的 shell
+    ```bash
+    singularity shell docker://tensorflow/tensorflow:latest
+    # 或者本地已经下载
+    singularity shell tensorflow.sif
+    ```
 

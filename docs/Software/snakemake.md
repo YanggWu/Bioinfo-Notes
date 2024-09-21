@@ -37,6 +37,10 @@ pip install snakemake
 === "运行"
 
     ```sh
+    module load fastp/0.23.4
+    module load FastQC/0.11.9
+    module load MultiQC/1.13
+    
     # 运行前检查
     snakemake  -np
     
@@ -47,14 +51,14 @@ pip install snakemake
 === "Snakefile"
 
     ```py
-
+    
     SAMPLES = ['A1', 'A2', 'A3']
-
+    
     # 规则 all 定义所有工作流的最终目标文件
     rule all:
         input: 
             "1.fastQc/multiqc_report.html",
-
+    
     # 规则 fastqc 使用 FastQC 进行初始质量控制
     rule fastqc:
         input:
@@ -90,7 +94,7 @@ pip install snakemake
                 --detect_adapter_for_pe \
                 -h {output.html} -j {output.json} 
             """
-
+    
     # 规则 multiqc 使用 MultiQC 汇总 FastQC 和 Fastp质控的结果
     rule multiqc:
         input:
@@ -99,7 +103,7 @@ pip install snakemake
             multiqc="1.fastQc/multiqc_report.html",
         shell:
             "multiqc 1.fastQc/ --filename multiqc_report --outdir 1.fastQc/ "
-
+    
     ```
 
 !!! tip
@@ -113,8 +117,33 @@ pip install snakemake
 
 ```sh
 snakemake --cores 1
+
+snakemake --cores 3 --set-threads 
 ```
 
-设置需要使用的核心数
+-c, --cores 设置需要使用的核心数
 
 ## Profiles
+
+## 在集群中使用
+
+LSF是常见的高性能计算批处理系统，在LSF集群中使用Snakemake，需要借助执行器插件。
+
+```bash
+# 通过使用pip或mamba安装此插件
+pip install snakemake-executor-plugin-lsf
+```
+
+### 使用
+
+```yaml
+executor: lsf
+jobs: 100
+
+# 指定默认资源
+default-resources:
+#  mem_mb: 2000  # 设置默认内存为 2000MB
+  lsf_project: default  # 设置默认 LSF 项目
+  lsf_queue: q2680v2    # 设置默认 LSF 队列
+```
+

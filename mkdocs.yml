@@ -40,6 +40,7 @@ nav:
     - Fastq比对: Software/fastq_mapping.md
     - gzip 文件读写: Software/read_write_gzip.md
     - Snakemake 🎯: Software/snakemake.md
+    - Salmon: Software/Salmon.md
     - Parabricks: Software/Parabricks.md
     - VCFtools: Software/VCFtools.md
     - MultiQC: Software/Multiqc.md

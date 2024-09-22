@@ -134,7 +134,30 @@ LSF是常见的高性能计算批处理系统，在LSF集群中使用Snakemake�
 pip install snakemake-executor-plugin-lsf
 ```
 
-### 使用
+### 命令行提交
+
+直接调用lsf，不指定使用的资源参数，最终由于没有指定队列无法获取使用的默认资源而无法提交到集群。
+
+```bash
+# 调用lsf插件，直接提交
+snakemake --executor lsf --jobs 5
+
+## No LSF project given, trying to guess.
+## Guessed LSF project: default
+## No wall time information given. This might or might not work on your cluster. If not, specify the resource runtime in your rule or as a reasonable default via --default-resources.
+## No job memory information ('mem_mb' or 'mem_mb_per_cpu') is given - submitting without. This might or might not work on your cluster. 
+```
+
+可以直接在命令行设置任务提交到集群所需要的一些默认资源和队列等信息。
+
+```bash
+snakemake  --executor lsf --default-resources lsf_queue=normal  lsf_project=default --jobs 5
+
+```
+
+### 配置profile提交
+
+推荐通过配置profile文件提供rule默认使用的资源信息，方便重复使用。
 
 ```yaml
 executor: lsf
@@ -142,10 +165,74 @@ jobs: 100
 
 # 指定默认资源
 default-resources:
-#  mem_mb: 2000  # 设置默认内存为 2000MB
   lsf_project: default  # 设置默认 LSF 项目
   lsf_queue: q2680v2    # 设置默认 LSF 队列
 ```
+
+同时可以在为特定的rule设置使用的资源，以及通过 lsf_extra传递一些额外的参数给lsf作业调度系统。
+
+```py
+rule a:
+    input: ...
+    output: ...
+    threads: 8
+    resources:
+        mem_mb=14000
+        lsf_extra="-R a100 -gpu num=2"
+```
+
+
+
+## 使用容器环境
+
+### 步骤
+
+1. **设置全局 Singularity 映像**
+
+你可以在 Snakemake 文件中使用 `singularity` 关键字设置全局容器：
+
+```python
+singularity: "path/to/global_container.sif"
+```
+
+2. **为特定规则手动设置容器**
+
+在需要不同容器的规则中，可以手动指定特定的容器路径：
+
+```python
+rule special_rule:
+    input:
+        "input_special.txt"
+    output:
+        "output_special.txt"
+    singularity:
+        "path/to/special_container.sif"
+    shell:
+        """
+        command_for_special_rule {input} {output}
+        """
+```
+
+### 运行工作流程
+
+当你运行 Snakemake 时，使用 `--use-singularity` 参数来启用 Singularity 支持：
+
+```other
+snakemake --use-singularity
+```
+
+### 小结
+
+通过设置全局 Singularity 映像并为特定规则手动设置容器，你可以简化大多数规则的容器管理，同时为需要不同环境的特定规则提供灵活性。这在处理复杂工作流时尤其有用，确保每个规则在正确的环境中运行。
+
+### 测试
+
+```
+# 使用singularity容器环境
+snakemake  --use-singularity -c 1 mapped/a.sorted.bam.bai
+```
+
+
 
 ##  Wrapper的基本使用
 
@@ -180,13 +267,13 @@ wrapper:
 
 ### 二. 构建本地wrapper
 
-> 以**samtools index**例子
+**以samtools index例子**
 
-![Image.png](https://res.craft.do/user/full/5cc4bf2e-e733-e007-a61a-a9eddc2e4039/doc/F1FA09A2-4FF6-4526-ADE9-5447250F7558/0A88EC44-0FE2-43C4-8949-8EBACB41383A_2/JzwyxtaCdsi6xUx5wSWRupqCDsL1OgnQ1o2imXszoasz/Image.png)
+<img src="https://raw.githubusercontent.com/YanggWu/Image/main/markdown_image/Image.png" width="300">
 
 要在 Snakemake 中使用本地的 wrapper，需要确保本地目录结构与 Snakemake wrapper 期望的目录结构相匹配。具体来说，Snakemake wrapper 通常包含 `wrapper.py` 和 `environment.yaml` 文件。以下是如何设置和使用本地 wrapper 的详细步骤：
 
-#### 1.本地 wrapper 目录结构
+#### 1. wrapper 目录结构
 
 在你的本地目录中创建一个包含 `wrapper.py` 和（可选的）`environment.yaml` 文件的目录。例如，在 `/public/home/ywu/wrappers/samtools/index` 目录下创建以下文件：
 
@@ -197,7 +284,7 @@ touch wrapper.py
 touch environment.yaml  # 如果你需要自定义环境
 ```
 
-#### 2. 编写 `wrapper.py` 文件
+#### 2. 编写 `wrapper.py` 
 
 将你的 wrapper 逻辑写入 `wrapper.py` 文件中。例如：
 
@@ -224,7 +311,7 @@ shell(
 )
 ```
 
-#### 3.  `environment.yaml` 文件
+#### 3.  `environment.yaml` 
 
 如果你不需要使用 conda 环境，可以省略这个文件。但如果需要，可以这样定义：
 
@@ -285,47 +372,9 @@ wrapper:
 
 这样，Snakemake 应该能够正确找到并使用本地的 wrapper 文件。如果问题仍然存在，请检查路径拼写和文件权限。
 
-## 使用容器环境
 
-### 步骤
 
-1. **设置全局 Singularity 映像**
 
-你可以在 Snakemake 文件中使用 `singularity` 关键字设置全局容器：
-
-```python
-singularity: "path/to/global_container.sif"
-```
-
-2. **为特定规则手动设置容器**
-
-在需要不同容器的规则中，可以手动指定特定的容器路径：
-
-```python
-rule special_rule:
-    input:
-        "input_special.txt"
-    output:
-        "output_special.txt"
-    singularity:
-        "path/to/special_container.sif"
-    shell:
-        """
-        command_for_special_rule {input} {output}
-        """
-```
-
-### 运行工作流程
-
-当你运行 Snakemake 时，使用 `--use-singularity` 参数来启用 Singularity 支持：
-
-```other
-snakemake --use-singularity
-```
-
-### 小结
-
-通过设置全局 Singularity 映像并为特定规则手动设置容器，你可以简化大多数规则的容器管理，同时为需要不同环境的特定规则提供灵活性。这在处理复杂工作流时尤其有用，确保每个规则在正确的环境中运行。
 
 ## 测试
 

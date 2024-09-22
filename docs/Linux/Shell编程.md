@@ -94,6 +94,14 @@ echo "Today is `date`"
 
 
 ## 流编辑 `Sed`
+sed（stream editor）是一种强大的文本处理工具，常用于在 Linux 和 Unix 系统中快速处理和转换文本数据。
+
+### 简单的使用
+sed 是基于行的，按顺序对每一行执行命令。默认将结果写入标准输出，不修改输入文件。
+
+删除行
+```bash
+
 
 ## 文本处理 `AWK`
 
@@ -160,98 +168,98 @@ AWK 内置变量在文本处理和数据操作中起着关键作用。下面是�
     ```bash
     awk 'BEGIN { ORS="\n\n" } { print $0 }' filename
     ```
+=== "NF"
+    **7. `NF` (Number of Fields)**
 
-**7. `NF` (Number of Fields)**
+    - **解释**：当前记录中的字段数。
+    - **用法**：用于循环遍历所有字段或检查字段数。
 
-- **解释**：当前记录中的字段数。
-- **用法**：用于循环遍历所有字段或检查字段数。
+    ```other
+    awk '{ print NF }' filename
+    # 打印每行的字段数
 
-```other
-awk '{ print NF }' filename
-# 打印每行的字段数
+    awk '{ for (i=1; i<=NF; i++) print $i }' filename
+    # 打印每行的所有字段
+    ```
+=== "NR"
+    **8. `NR` (Number of Records)**
 
-awk '{ for (i=1; i<=NF; i++) print $i }' filename
-# 打印每行的所有字段
-```
+    - **解释**：已经读到的记录数（行号，从 1 开始）。
+    - **用法**：用于跟踪处理的行数或在特定行进行操作。
 
-**8. `NR` (Number of Records)**
+    ```other
+    awk '{ print NR, $0 }' filename
+    # 打印行号和对应的行内容
 
-- **解释**：已经读到的记录数（行号，从 1 开始）。
-- **用法**：用于跟踪处理的行数或在特定行进行操作。
+    awk 'NR == 10 { print $0 }' filename
+    # 只打印第 10 行
+    ```
+=== "FNR"
+    **9. `FNR` (File Number of Records)**
 
-```other
-awk '{ print NR, $0 }' filename
-# 打印行号和对应的行内容
+    - **解释**：当前文件的记录数（当前文件的行号，从 1 开始）。
+    - **用法**：在处理多个文件时使用，区别每个文件的行号。
 
-awk 'NR == 10 { print $0 }' filename
-# 只打印第 10 行
-```
+    ```other
+    awk 'FNR == 1 { print "File:", FILENAME } { print FNR, $0 }' file1 file2
+    # 打印每个文件的文件名和每行的行号及内容
+    ```
+=== "FILENAME"
+    **10. `FILENAME`**
 
-**9. `FNR` (File Number of Records)**
+    - **解释**：当前输入文件的名称。
+    - **用法**：在处理多个文件时使用，用于区分文件。
 
-- **解释**：当前文件的记录数（当前文件的行号，从 1 开始）。
-- **用法**：在处理多个文件时使用，区别每个文件的行号。
+    ```other
+    awk '{ print FILENAME, $0 }' file1 file2
+    # 打印文件名和对应的行内容
+    ```
+=== "ARGC"
+    **11. `ARGC` 和 `ARGV`**
 
-```other
-awk 'FNR == 1 { print "File:", FILENAME } { print FNR, $0 }' file1 file2
-# 打印每个文件的文件名和每行的行号及内容
-```
+    - **解释**：
+     	- `ARGC`：命令行参数的个数。
+     	- `ARGV`：包含命令行参数的数组，从 `ARGV[0]` 到 `ARGV[ARGC-1]`。
+    - **用法**：用于访问和操作命令行参数。
 
-**10. `FILENAME`**
+    ```other
+    awk 'BEGIN { for (i = 0; i < ARGC; i++) print ARGV[i] }' filename
+    # 打印所有命令行参数
+    ```
+=== "ENVIRON"
+    **12. `ENVIRON`**
 
-- **解释**：当前输入文件的名称。
-- **用法**：在处理多个文件时使用，用于区分文件。
+    - **解释**：环境变量的数组，可以通过环境变量的名称访问其值。
+    - **用法**：用于访问系统环境变量。
 
-```other
-awk '{ print FILENAME, $0 }' file1 file2
-# 打印文件名和对应的行内容
-```
+    ```other
+    awk 'BEGIN { print ENVIRON["HOME"] }'
+    # 打印 HOME 环境变量的值
+    ```
+=== "OFMT"
+    **13. `CONVFMT` 和 `OFMT`**
 
-**11. `ARGC` 和 `ARGV`**
+    - **解释**：
+     	- `CONVFMT`：数字转换格式，默认为 "%.6g"。
+     	- `OFMT`：数字输出格式，默认为 "%.6g"。
+    - **用法**：用于控制数字的格式化。
 
-- **解释**：
- 	- `ARGC`：命令行参数的个数。
- 	- `ARGV`：包含命令行参数的数组，从 `ARGV[0]` 到 `ARGV[ARGC-1]`。
-- **用法**：用于访问和操作命令行参数。
+    ```other
+    awk 'BEGIN { CONVFMT="%.2f"; print 123.456 }'
+    # 以两位小数格式打印数字
+    ```
+=== "FIELDWIDTHS"
+    **14. `FIELDWIDTHS`**
 
-```other
-awk 'BEGIN { for (i = 0; i < ARGC; i++) print ARGV[i] }' filename
-# 打印所有命令行参数
-```
+    - **解释**：一个以空格分隔的宽度列表，用于指定固定宽度字段。
+    - **用法**：在 `BEGIN` 块中设置，用于处理固定宽度字段的文件。
 
-**12. `ENVIRON`**
+    ```other
+    awk 'BEGIN { FIELDWIDTHS = "5 10 15" } { print $1, $2, $3 }' filename
+    # 根据指定的宽度读取和打印字段
+    ```
 
-- **解释**：环境变量的数组，可以通过环境变量的名称访问其值。
-- **用法**：用于访问系统环境变量。
-
-```other
-awk 'BEGIN { print ENVIRON["HOME"] }'
-# 打印 HOME 环境变量的值
-```
-
-**13. `CONVFMT` 和 `OFMT`**
-
-- **解释**：
- 	- `CONVFMT`：数字转换格式，默认为 "%.6g"。
- 	- `OFMT`：数字输出格式，默认为 "%.6g"。
-- **用法**：用于控制数字的格式化。
-
-```other
-awk 'BEGIN { CONVFMT="%.2f"; print 123.456 }'
-# 以两位小数格式打印数字
-```
-
-**14. `FIELDWIDTHS`**
-
-- **解释**：一个以空格分隔的宽度列表，用于指定固定宽度字段。
-- **用法**：在 `BEGIN` 块中设置，用于处理固定宽度字段的文件。
-
-```other
-awk 'BEGIN { FIELDWIDTHS = "5 10 15" } { print $1, $2, $3 }' filename
-# 根据指定的宽度读取和打印字段
-```
-
-##### 实例
+### 实例
 
 1. **通过`awk`提取符合特定条件的内容。**
 

@@ -38,8 +38,10 @@ nav:
     - Mamba: Software/Mamba.md
     - Singularity: Software/Singularity.md
     - Fastq比对: Software/fastq_mapping.md
+    - hisat2: Software/hisat2.md
     - 测序数据下载: Software/download_data.md
     - gzip 文件读写: Software/read_write_gzip.md
+    - 提取测试数据: Software/extract_test_data.md
     - Snakemake 🎯: Software/snakemake.md
     - Salmon: Software/Salmon.md
     - Parabricks: Software/Parabricks.md

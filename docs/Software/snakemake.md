@@ -123,6 +123,88 @@ snakemake --cores 3 --set-threads
 
 -c, --cores 设置需要使用的核心数
 
+## benchmarking
+
+**基准测试** 通过 `benchmark` 指令，Snakemake 可以被指示去测量一个作业的墙上时间（wall clock time，即实际的执行时间）。我们在规则 `bwa_map` 中启用了基准测试：
+
+!!! note
+    基准测试主要用于评估规则的运行性能，特别是其耗时和内存使用情况。这对于大型项目尤其重要，帮助优化工作流，找出瓶颈。
+
+```py
+rule bwa_map:
+    input:
+        "data/genome.fa",
+        lambda wildcards: config["samples"][wildcards.sample]
+    output:
+        temp("mapped_reads/{sample}.bam")
+    params:
+        rg="@RG\tID:{sample}\tSM:{sample}"
+    log:
+        "logs/bwa_mem/{sample}.log"
+    benchmark:
+        "benchmarks/{sample}.bwa.benchmark.txt"
+    threads: 8
+    shell:
+        "(bwa mem -R '{params.rg}' -t {threads} {input} | "
+        "samtools view -Sb - > {output}) 2> {log}"
+
+```
+
+`benchmark` 指令接收一个字符串，指定了用于存储基准测试结果的文件路径。
+
+## 使用容器环境
+
+snakemake支持使用singularity简化分析环境部署，可以有2种方式使用：利用snakemake特性；使用singularity exec，将其当普通程序原生使用。
+
+### 步骤
+
+1. **设置全局 Singularity 映像**
+
+你可以在 Snakemake 文件中使用 `singularity` 关键字设置全局容器：
+
+```python
+singularity: "path/to/global_container.sif"
+```
+
+2. **为特定规则手动设置容器**
+
+在需要不同容器的规则中，可以手动指定特定的容器路径：
+
+```python
+rule special_rule:
+    input:
+        "input_special.txt"
+    output:
+        "output_special.txt"
+    singularity:
+        "path/to/special_container.sif"
+    shell:
+        """
+        command_for_special_rule {input} {output}
+        """
+```
+
+### 运行
+
+当你运行 Snakemake 时，使用 `--use-singularity` 参数来启用 Singularity 支持：
+
+```other
+snakemake --use-singularity
+```
+
+通过设置全局 Singularity 映像并为特定规则手动设置容器，你可以简化大多数规则的容器管理，同时为需要不同环境的特定规则提供灵活性。这在处理复杂工作流时尤其有用，确保每个规则在正确的环境中运行。
+
+### 测试
+
+```
+# 使用singularity容器环境
+snakemake  --use-singularity -c 1 mapped/a.sorted.bam.bai
+```
+
+
+
+
+
 ## Profiles
 
 ## 在集群中使用
@@ -180,59 +262,6 @@ rule a:
         mem_mb=14000
         lsf_extra="-R a100 -gpu num=2"
 ```
-
-
-
-## 使用容器环境
-
-### 步骤
-
-1. **设置全局 Singularity 映像**
-
-你可以在 Snakemake 文件中使用 `singularity` 关键字设置全局容器：
-
-```python
-singularity: "path/to/global_container.sif"
-```
-
-2. **为特定规则手动设置容器**
-
-在需要不同容器的规则中，可以手动指定特定的容器路径：
-
-```python
-rule special_rule:
-    input:
-        "input_special.txt"
-    output:
-        "output_special.txt"
-    singularity:
-        "path/to/special_container.sif"
-    shell:
-        """
-        command_for_special_rule {input} {output}
-        """
-```
-
-### 运行工作流程
-
-当你运行 Snakemake 时，使用 `--use-singularity` 参数来启用 Singularity 支持：
-
-```other
-snakemake --use-singularity
-```
-
-### 小结
-
-通过设置全局 Singularity 映像并为特定规则手动设置容器，你可以简化大多数规则的容器管理，同时为需要不同环境的特定规则提供灵活性。这在处理复杂工作流时尤其有用，确保每个规则在正确的环境中运行。
-
-### 测试
-
-```
-# 使用singularity容器环境
-snakemake  --use-singularity -c 1 mapped/a.sorted.bam.bai
-```
-
-
 
 ##  Wrapper的基本使用
 
@@ -353,7 +382,7 @@ rule samtools_index:
 2. **文件存在**：确保 `wrapper.py` 文件存在于指定路径中。
 3. **权限问题**：确保你的用户有读取这些文件的权限。
 
-### 示例项目结构
+### 三. 示例项目结构
 
 确保你的项目结构如下：
 
@@ -372,13 +401,3 @@ wrapper:
 
 这样，Snakemake 应该能够正确找到并使用本地的 wrapper 文件。如果问题仍然存在，请检查路径拼写和文件权限。
 
-
-
-
-
-## 测试
-
-```python
-# 使用singularity容器环境
-snakemake  --use-singularity -c 1 mapped/a.sorted.bam.bai
-```

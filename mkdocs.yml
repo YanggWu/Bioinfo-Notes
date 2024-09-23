@@ -52,6 +52,8 @@ nav:
     - GEMMA: Software/GEMMA.md
 
   - Workflow:
+    - Fastq 文件质控: Workflow/dataQC.md
+    - 构建常用 index: Workflow/build_index.md
     - 基因组重测序: Workflow/基因组重测序.md
     - GWAS 分析: Workflow/GWAS.md
     - BSA 混池定位: Workflow/BSA_Analysis.md

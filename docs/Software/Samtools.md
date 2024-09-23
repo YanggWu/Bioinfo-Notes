@@ -29,3 +29,12 @@ export PATH=/where/to/install/bin:$PATH
     sudo yum install bzip2-devel
     sudo yum install xz-devel
     ```
+
+## 基本使用
+
+创建基因组 fai 索引。会将索引genome.fa.fai 输出到跟genom.fa 同一目录中。
+
+```
+samtools faidx /path/data/ref/genome.fa
+```
+

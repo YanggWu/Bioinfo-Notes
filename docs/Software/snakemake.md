@@ -13,7 +13,7 @@
 - :octicons-workflow-16: **snakemake 流程**：[:octicons-arrow-right-24:<a href="https://snakemake.github.io/snakemake-workflow-catalog/" target="_blank"> 传送门 </a>](#)
 </div>
 
-## Snakemake 的基本概念
+## 一. 基本概念
 
 在介绍如何使用 Snakemake 搭建生信分析流程之前，了解一些基本概念非常重要：
 
@@ -24,7 +24,7 @@
 5. **配置文件（Config files）**：用于存储一些通用的参数和选项，以便在多个规则中重用。
 6. **环境（Environments）**：通过 Conda 或者 Docker 可以为不同的规则配置不同的计算环境。
 
-## 基本使用
+## 二. 基本使用
 
 **安装 Snakemake**
 
@@ -113,17 +113,81 @@ pip install snakemake
     snakemake -np -s qc.smk.py
     ```
 
-### 常用参数
+### rule all
 
-```sh
-snakemake --cores 1
+在 Snakemake 中，`rule all` 是一种特殊的规则，通常用于定义工作流的最终目标，它指定了所有其他规则所需要生成的文件。目的是为 Snakemake 提供一个执行起点，确保在调用 Snakemake 时所有指定的输出都被正确生成。
 
-snakemake --cores 3 --set-threads 
+```py
+# rule all 的定义非常直接，例如：
+rule all:
+    input:
+        "plots/summary.png",
+        "results/final_report.txt"
 ```
 
--c, --cores 设置需要使用的核心数
+`rule all` 的输入可能不是静态列出的文件，而是由一组文件名动态生成的一系列文件，这可以通过使用 `expand` 函数
 
-## benchmarking
+```py
+rule all:
+    input:
+        expand("plots/{sample}.png", sample=SAMPLES),
+        expand("results/report_{date}.txt", date=DATES)
+```
+
+### **expand函数**
+
+可以方便地利用一些简单的列表和基本模板，得到文件列表。一般用在需要多个输入或输出文件的场合。
+
+### glob_wildcards
+
+在上面的Snakefile脚本中，我们是通过手动指定文件的通配符从而将多个样品分别输入给rule。如果样本数比较多、且有一定的规律，可以使用`glob_wildcards`函数，它帮助用户从匹配特定模式的一组文件名中提取通配符，进而用于动态地定义工作流中的任务（rules）
+
+比如有如下数据，一共A，B两组双端测序数据。
+
+```
+data/
+├── A_1.fq.gz
+├── A_2.fq.gz
+├── B_1.fq.gz
+└── B_2.fq.gz
+```
+
+glob_wildcards可以接受一个或多个通配符表达式，
+
+```py
+(SAMPLE_LIST,) = glob_wildcards("data/{sample}.fq.gz")
+
+# 函数最后返回一个由list组成的tuple
+# SAMPLE_LIST 结果为 ['A_1', 'A_2', 'B_1', 'B_2']
+```
+
+### 常用参数 
+
+```bash
+snakemake --cores 4
+snakemake --cores 4 --set-threads myrule=2
+snakemake --cores 4 --set-resources myrule:partition="foo"
+# graphviz 工具可视化，生成DAG
+snakemake --dag | dot -Tpdf > dag.pdf
+```
+
+-c, --cores 设置需要使用的核心数，省略数字则表示使用可用的全部核心数。
+
+-n, --dry-run 试运行，对于测试工作流是否定义正确以及估计所需的计算量很有用。
+
+--set-threads, --set-resources 覆盖默认值，为特定的rule 设置使用的资源。
+
+-d, --directory 指定工作目录（snakefile 中的相对路径将使用此目录作为其原点）。
+
+## 二. 其他用法
+
+### 输入
+
+在前面的示例中都是使用的静态路径模式。也就是说，文件路径格式是预先确定的，文件名和目录结构是基于统一模式生成的。我们通过占位符来指定了多个输入文件，不通文件之间这是 Snakemake 中的常见用法之一，适用于简单的文件路径结构。
+
+对于样品比较多，命令复杂的情况，可以基于配置文件中的值或动态需要选择不同的路径。也可以将样本信息写入单独的文件中，编写python函数读取样本信息传递给input。
+
+### benchmarking
 
 **基准测试** 通过 `benchmark` 指令，Snakemake 可以被指示去测量一个作业的墙上时间（wall clock time，即实际的执行时间）。我们在规则 `bwa_map` 中启用了基准测试：
 
@@ -152,13 +216,11 @@ rule bwa_map:
 
 `benchmark` 指令接收一个字符串，指定了用于存储基准测试结果的文件路径。
 
-## 使用容器环境
+### 使用容器环境
 
 snakemake支持使用singularity简化分析环境部署，可以有2种方式使用：利用snakemake特性；使用singularity exec，将其当普通程序原生使用。
 
-### 步骤
-
-1. **设置全局 Singularity 映像**
+**1. 设置全局 Singularity 映像**
 
 你可以在 Snakemake 文件中使用 `singularity` 关键字设置全局容器：
 
@@ -166,7 +228,7 @@ snakemake支持使用singularity简化分析环境部署，可以有2种方式�
 singularity: "path/to/global_container.sif"
 ```
 
-2. **为特定规则手动设置容器**
+**2. 为特定规则手动设置容器**
 
 在需要不同容器的规则中，可以手动指定特定的容器路径：
 
@@ -184,7 +246,7 @@ rule special_rule:
         """
 ```
 
-### 运行
+**运行**
 
 当你运行 Snakemake 时，使用 `--use-singularity` 参数来启用 Singularity 支持：
 
@@ -192,22 +254,21 @@ rule special_rule:
 snakemake --use-singularity
 ```
 
-通过设置全局 Singularity 映像并为特定规则手动设置容器，你可以简化大多数规则的容器管理，同时为需要不同环境的特定规则提供灵活性。这在处理复杂工作流时尤其有用，确保每个规则在正确的环境中运行。
+通过设置全局 Singularity 映像并为特定规则手动设置容器，可以简化大多数规则的容器管理，同时为需要不同环境的特定规则提供灵活性。这在处理复杂工作流时尤其有用，确保每个规则在正确的环境中运行。
 
-### 测试
+### Profiles
+
+### 全局配置
+
+Snakemake 直接支持工作流程的配置，配置以 JSON 或 YAML 文件的形式提供，可以使用以下方式加载。
 
 ```
-# 使用singularity容器环境
-snakemake  --use-singularity -c 1 mapped/a.sorted.bam.bai
+configfile: "path/to/config.yaml"
 ```
 
 
 
-
-
-## Profiles
-
-## 在集群中使用
+## 三. 在集群中使用
 
 LSF是常见的高性能计算批处理系统，在LSF集群中使用Snakemake，需要借助执行器插件。
 
@@ -263,11 +324,11 @@ rule a:
         lsf_extra="-R a100 -gpu num=2"
 ```
 
-##  Wrapper的基本使用
+##  四. Wrapper的基本使用
 
 :material-contain: [The Snakemake Wrappers repository | Snakemake wrappers](https://snakemake-wrappers.readthedocs.io/en/stable/)
 
-### 一. 官网 wrapper
+###  官网 wrapper
 
 直接调用官网封装好的wrapper
 
@@ -294,7 +355,7 @@ wrapper:
 !!! note
     本地的 wrapper 必须使用绝对路径
 
-### 二. 构建本地wrapper
+### 构建本地wrapper
 
 **以samtools index例子**
 
@@ -382,7 +443,7 @@ rule samtools_index:
 2. **文件存在**：确保 `wrapper.py` 文件存在于指定路径中。
 3. **权限问题**：确保你的用户有读取这些文件的权限。
 
-### 三. 示例项目结构
+### 示例项目结构
 
 确保你的项目结构如下：
 

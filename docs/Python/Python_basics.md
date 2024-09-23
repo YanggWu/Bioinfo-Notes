@@ -1,5 +1,13 @@
 ### Python基础
 
+## Python的数据结      
+
+### 变量相关
+
+变量是Python中可以用来储存数值或者字符串的对象。变量有很多中类型，比如仅数值变量就细分有整数（int）、浮点数（float）等类型。而所有基于文本的变量都是字符串（str）类型。
+
+
+
 #### 字符串
 
 ##### 字符串格式化
@@ -179,7 +187,7 @@ print(template.safe_substitute(name=name, age=age, balance=f"{balance:.2f}"))
  # 判断模块是否作为主程序运行
  if __name__ == '__main__':
   main()
- 
+
 在这个示例中：
 
 - `main()` 函数定义了主程序的逻辑处理。

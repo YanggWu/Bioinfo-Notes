@@ -31,6 +31,7 @@ nav:
   - Python:
     - Python/index.md
     - Python基础: Python/Python基础.md
+    - 提取KEGG注释: Python/extract_KEGG.md
 
 
   - Software:

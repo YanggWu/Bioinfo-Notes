@@ -3,8 +3,8 @@
 构建索引是基因组比对中的一个关键步骤，它允许比对软件高效地查询和比对测序数据。不同的比对软件通常需要不同格式的索引，下面是几种常见比对软件的索引构建的流程。
 
 ## snakemake 流程
-**运行**
 
+**运行**
 常见软件的索引将生成到参考基因所在目录中，类似 hisat2_index/ 的目录下。
 
 ```bash
@@ -13,8 +13,6 @@ snakemake -p -s ref.smk
 # 生成DAG流程图
 snakemake -s ref.smk --dag |dot -Tpdf >ref_dag.pdf
 ```
-
-
 **流程图**
 
 <img src="https://raw.githubusercontent.com/YanggWu/Image/main/markdown_image/202409232117511.png" width="450">

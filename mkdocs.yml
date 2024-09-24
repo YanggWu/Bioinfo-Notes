@@ -31,6 +31,8 @@ nav:
   - Python:
     - Python/index.md
     - Python基础: Python/Python基础.md
+    - 正则表达式: Python/regularexpression.md
+    - Pandas: Python/pandas.md
     - 提取KEGG注释: Python/extract_KEGG.md
 
 

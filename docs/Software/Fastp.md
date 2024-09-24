@@ -69,11 +69,11 @@ fastp -w 3 \
 
 3. 长度过滤
 
-​	`-l, --length_required`：设置read的最小长度，默认是 15。
+    `-l, --length_required`：设置read的最小长度，默认是 15。
 
-​	`--length_limit`：设置read的最大长度, 默认没有限制。
+    `--length_limit`：设置read的最大长度, 默认没有限制。
 
-1. 去接头相关参数
+4. 去接头相关参数
 
     `-A, --disable_adapter_trimming`：默认情况下，接头序列去除是启用的。可以使用这个选项来禁用接头序列的剪切。
 
@@ -83,7 +83,7 @@ fastp -w 3 \
 
     `--adapter_sequence_r2`：手动指定双端测序的 read2 接头序列。
 
-2. 其他参数
+5. 其他参数
 
     `-W, --cut_window_size`：设置滑动窗口大小
 

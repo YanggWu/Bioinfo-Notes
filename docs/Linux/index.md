@@ -10,7 +10,9 @@ Linux 是一种开源的操作系统，因其稳定性、安全性和强大的�
 
 - :material-web: [Linux 命令大全](https://wangchujiang.com/linux-command/)
 - :simple-linux: [命令行的艺术](https://github.com/jlevy/the-art-of-command-line)
+- :simple-linuxfoundation: [Linux 系统教程](https://zq99299.github.io/linux-tutorial/)
 </div>
+
 !!! tip
     `命令行的艺术`，GitHub 150k+ 标星，非常推荐。包含入门&进阶指南，技巧覆盖面广，且富含具体的例子。
 

@@ -27,10 +27,26 @@
 
 ## 文件操作
 
-1. 跳过第一行而不输出.
+跳过第一行不输出.
 
 ```bash
 tail -n +2 input.txt
 awk 'NR > 1' input.txt
 sed '1d' input.txt
 ```
+
+批量移动特定文件
+
+```bash
+# 1. 简单的 mv 结合通配符， 但只能移动特定目录，无法递归目录
+mv /path/to/source/*.gz /path/to/destination/
+
+# 2. 使用 find 命令, 查找 test/ 目录及其子目录下所有 .gz 文件，并移动到 ./data
+find test/ -name "*.gz" -exec mv {} ./data  \;
+
+# 3. find 结合 xargs 命令，-t 选项用于指定目标目录。
+find test/ -name "*.gz" |xargs  mv -t ./data
+find test/ -name "*.gz" |xargs -i mv {} ./data
+find test/ -name "*.gz" |xargs -I {} mv {} .
+```
+

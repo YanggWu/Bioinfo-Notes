@@ -127,34 +127,16 @@ pre, code {             /* 设置代码块的字体格式 */
     font-size: 15.5px;
   }
 
-.md-typeset strong > code {
-    color: #E33D70;
-  }
-
-.md-typeset li > code {
-    color: #E33D70;
-  }
-
-.md-typeset td > code {
-    color: #E33D70;
+.md-typeset strong code,
+.md-typeset li code,
+.md-typeset td code,
+.md-typeset th code,
+.md-typeset h2 code,
+.md-typeset h3 code,
+.md-typeset h4 code,
+.md-typeset div code {
+    color: #E33D70 !important; /* 使用 !important */
 }
-
-.md-typeset th > code {
-    color: #E33D70;
-}
-
-.md-typeset h2 > code {
-    color: #E33D70;
-}
-
-.md-typeset h3 > code {
-    color: #E33D70;
-}
-
-.md-typeset h4 > code {
-    color: #E33D70;
-}
-
 
 /******* Grid Cards *********/
 .md-typeset .grid.cards > ul > li {

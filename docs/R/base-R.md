@@ -86,25 +86,70 @@ trunc(3.9)  # 结果为 3
 
 ## 数据结构 
 
+!!! note
+
+    注意使用 `[ ]` 和 `[[ ]]` 提取各种数据类型时的区别。 `[ ]` 用于提取对象的子集，类型仍然是该对象。`[[ ]]` 用于提取对象的内容（即下一级元素）。
+
 ### 向量
 
 在R语言中，向量是最基本的数据结构之一，用于存储同质数据元素的序列。常见的向量有数值向量、逻辑向量和字符向量。
 
 === "创建"
-    向量可以通过c()函数创建，该函数代表"combine"，用于将多个元素组合成一个向量。
+    向量可以通过 `c( )` 函数创建，该函数代表"combine"，用于将多个元素组合成一个向量。
 
     ```r
     # 创建一个数值向量
     numeric_vector <- c(1, 2, 3, 4, 5)
     print(numeric_vector)  # 输出: [1] 1 2 3 4 5
-
+    
     # 创建一个字符向量
     character_vector <- c("apple", "banana", "cherry")
     print(character_vector)  # 输出: [1] "apple" "banana" "cherry"
-
+    
     # 创建一个逻辑向量
     logical_vector <- c(TRUE, FALSE, TRUE, FALSE)
     print(logical_vector)  # 输出: [1] TRUE FALSE TRUE FALSE
+    ```
+    创建向量常用的一些函数。`rep()` `seq()` `sample()`
+    
+    ```R
+    ### 1. seq() 生成指定步长的序列, 默认从 1 开始。###
+    seq(10)				# 等同 1:10
+    ##  [1]  1  2  3  4  5  6  7  8  9 10
+    
+    seq(2, 10, 2)		# 从 2 开始，指定步长为 2
+    ##  [1]  2  4  6  8 10
+    
+    ### 2. rep() 创建重复的向量, times 设置重复的次数， each 设置每个元素重复的次数 ###
+    rep(1:3, 2)
+    ##  [1] 1 2 3 1 2 3
+    
+    rep(1:3, each=2)	# 每个元素分别重复。
+    ##  [1] 1 1 2 2 3 3
+    
+    rep(c("a", "b"), 2, each=2)
+    ##  [1] "a" "a" "b" "b" "a" "a" "b" "b"
+    
+    ## 创建随机数值向量
+    sample(1:100, 10)
+    ```
+
+=== "索引切片"
+
+    可以通过索引访问向量中的元素，索引从1开始。
+    ```r
+    # 访问第二个元素
+    second_element <- numeric_vector[2]
+    print(second_element)  # 输出: [1] 2
+    
+    # 切片，获取第二个到第四个元素
+    sub_vector <- numeric_vector[2:4]
+    print(sub_vector)  # 输出: [1] 2 3 4
+    
+    # 使用等长的逻辑向量， 以此决定每一个元素是否被获取
+    v1 <- seq(5)
+    v1 > 3          ## [1] FALSE FALSE FALSE  TRUE  TRUE
+    v1[v1 > 3]      ## [1] 4 5
     ```
 === "运算"
     向量支持元素级的运算， 可以同时对向量中的元素执行运算。
@@ -119,14 +164,26 @@ trunc(3.9)  # 结果为 3
     result_mul <- v1 * v2
     print(result_mul)  # 输出: [1] 4 10 18
     ```
-=== "索引切片"
-    可以通过索引访问向量中的元素，索引从1开始。
-    ```r
-    # 访问第二个元素
-    second_element <- numeric_vector[2]
-    print(second_element)  # 输出: [1] 2
+### 矩阵
+矩阵是一种二维数据结构，具有相同的数据类型。适用于向量的性质和方法大多也适用于矩阵
 
-    # 切片，获取第二个到第四个元素
-    sub_vector <- numeric_vector[2:4]
-    print(sub_vector)  # 输出: [1] 2 3 4
-    ```
+函数 `matrix( )` 将一个向量创建为矩阵
+
+```R
+matrix(data = NA,       # 向量
+		nrow = 1,		# 设置 1 行
+        ncol = 1, 		# 设置 1 列
+        byrow = FALSE,	# 默认按照列填充
+       	dimnames = NULL)
+
+matrix(1:9,nrow = 3)
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+
+# 为矩阵行列命名
+rownames(m1) = c("r1", "r2", "r3")
+colnames(m1) = c("c1", "c2", "c3")
+```
+

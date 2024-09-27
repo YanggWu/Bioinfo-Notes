@@ -34,6 +34,7 @@ nav:
     - 正则表达式: Python/regularexpression.md
     - Pandas: Python/pandas.md
     - 提取KEGG注释: Python/extract_KEGG.md
+    - 自定义VCF文件ID: Python/update_vcf_ids.md
 
 
   - Software:

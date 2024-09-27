@@ -35,6 +35,7 @@ nav:
     - Pandas: Python/pandas.md
     - 提取KEGG注释: Python/extract_KEGG.md
     - 自定义VCF文件ID: Python/update_vcf_ids.md
+    - 可视化: Python/py_visualization.md
 
 
   - Software:

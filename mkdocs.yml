@@ -32,6 +32,7 @@ nav:
     - Python/index.md
     - Python基础: Python/Python基础.md
     - 正则表达式: Python/regularexpression.md
+    - 常见标准库: Python/standard_library.md
     - Pandas: Python/pandas.md
     - 提取KEGG注释: Python/extract_KEGG.md
     - 自定义VCF文件ID: Python/update_vcf_ids.md
@@ -51,6 +52,7 @@ nav:
     - Salmon: Software/Salmon.md
     - Parabricks: Software/Parabricks.md
     - VCFtools: Software/VCFtools.md
+    - Aspera: Software/aspera.md
     - MultiQC: Software/Multiqc.md
     - Fastp: Software/Fastp.md
     - SAMtools: Software/SAMtools.md
@@ -96,7 +98,7 @@ theme:
     next: fontawesome/solid/angle-right
 
   logo: assets/images/favicon.svg    #左上角logo，可插入图片链接
-  favicon: assets/images/favicon.svg # 网页icon
+  favicon: assets/images/favicon2.svg # 网页icon
 
   features:
     - navigation.instant  #即时加载

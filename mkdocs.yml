@@ -175,6 +175,7 @@ markdown_extensions:
 
 
 extra_css:
+  - stylesheets/highlight.js
   - stylesheets/main.css
   - stylesheets/extra.css
   - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap #自定义思源宋体

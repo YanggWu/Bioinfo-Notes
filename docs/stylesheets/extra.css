@@ -4,7 +4,7 @@
     --md-primary-fg-color--light: #4482b4;
     --md-primary-fg-color--dark: #0d314f;
   
-  }
+}
 
 .md-header__ellipsis .md-header__topic:nth-child(1) .md-ellipsis { /* 最上方标题的样式 */ 
     font-size: 18px;  /* 增大字体大小 */
@@ -42,3 +42,21 @@ li.md-nav__item {                   /* 下方目录样式设置*/
 .admonition p {
   font-size: 13.2px; /* 较小的字体大小，相对于全局设置 */
 }
+
+
+/* 修改特定语言代码块的背景和字体颜色 */
+/* 参数颜色 */
+.highlight .nv {
+  color: #cd8468; /* 橙色 */
+}
+/* 文件名和路径 */
+.highlight .fm {
+  color: #dcdcaa; /* 黄色 */
+}
+/* 注释 */
+.highlight .c, .highlight .cm, .highlight .c1 {
+  /* color: #6a9955; 绿色 */
+  font-style: italic;
+}
+
+

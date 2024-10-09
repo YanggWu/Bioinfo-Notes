@@ -1,132 +1,152 @@
+/******************** 图片、图标相关设置 ******************/
 
-/******* 图片、图标相关设置 *******/
+/* 设置所有图片的最大宽度为 700px，高度自动适应 */
 img {
-max-width:700px;
-height: auto;
+  max-width: 700px;
+  height: auto;
 }
 
+/* 调整带有类名 'twemoji' 的图片的垂直对齐和位置 */
 img.twemoji {
-    vertical-align: middle;  
-    transform: translateY(2px); 
+  vertical-align: middle;
+  transform: translateY(2px);
 }
 
+/* 调整带有类名 'twemoji' 的 span 元素的显示和位置 */
 span.twemoji {
-    display: inline-block;  
-    vertical-align: middle;  
-    transform: translateY(3px); 
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(3px);
 }
 
+/**************** 字体、文字相关设置 ****************/
 
-/******* 字体、文字相关设置 *******/
+/* 设置全局字体为 'Noto Serif SC'，系统默认字体作为备用 */
 body {
-    font-family: "Noto Serif SC", system-ui;
-    font-weight: 500; /* 设置字体基础字重 */
+  font-family: "Noto Serif SC", system-ui;
+  font-weight: 500; /* 设置字体基础字重 */
 }
 
+/* 定义类名为 'font-2' 的字体样式 */
 .font-2 {
-    font-family: LXGW WenKai;
-    font-size: 16px;
+  font-family: "LXGW WenKai"; /* 使用 'LXGW WenKai' 字体 */
+  font-size: 16px; /* 设置字体大小 */
 }
 
+/* 定义类名为 'font-3' 的字体样式 */
 .font-3 {
-    font-family: "Klee One", cursive;
-    font-weight: 600;
-    font-size: 16px;
+  font-family: "Klee One", cursive; /* 使用 'Klee One' 字体，备用字体为手写体 */
+  font-weight: 600; /* 设置字体加粗 */
+  font-size: 16px; /* 设置字体大小 */
 }
 
-
-
-button.md-top {                 /* 设置回到顶部按钮的字体格式 */
-    font-family: LXGW WenKai;
-    /* 修改字体 */
-    font-size: 16px;
-    /* 修改字体大小 */
-    font-weight: lighter;
-    /* 修改字体粗细 */
-    color: #4351AF; */
-    /* 修改字体颜色 */
+/* 设置返回顶部按钮的字体样式 */
+button.md-top {
+  font-family: "LXGW WenKai"; /* 使用 'LXGW WenKai' 字体 */
+  font-size: 16px; /* 设置字体大小 */
+  font-weight: lighter; /* 设置字体粗细为细体 */
+  color: #4351AF; /* 设置字体颜色 */
 }
 
-pre, code {             /* 设置代码块的字体格式 */
-
-    /* 修改字体 */
-    font-size: 15.3px;
-    /* 修改字体大小 */
-    font-weight: normal;  /* 设置字重为 normal 避免过于粗重 */
+/* 设置代码块和内联代码的字体样式 */
+pre,
+code {
+  font-size: 15.3px; /* 设置字体大小 */
+  font-weight: normal; /* 设置字重为 normal，避免过于粗重 */
 }
 
+/* 标题样式设置 */
 .md-typeset h1 {
-    font-family: LXGW WenKai;
-    font-size: 2em;
-    line-height: 1.3;
-    margin: 0 0 0.6em;
+  font-family: "LXGW WenKai"; /* 设置标题字体 */
+  font-size: 2em; /* 设置字体大小 */
+  line-height: 1.3; /* 设置行高 */
+  margin: 0 0 0.6em; /* 设置外边距 */
 }
 
 .md-typeset h2 {
-    font-family: LXGW WenKai;
-    font-weight: 400;
-    font-size: 1.5em;
-    line-height: 1.3;
-    margin: 1.4em 0 0.5em;
+  font-family: "LXGW WenKai";
+  font-weight: 400; /* 设置字重 */
+  font-size: 1.5em;
+  line-height: 1.3;
+  margin: 1.4em 0 0.5em;
 }
 
 .md-typeset h3 {
-    font-family: LXGW WenKai;
-    font-size: 1.35em;
-    font-weight: 500;
-    letter-spacing: -.01em;
-    line-height: 1.2;
-    margin: 1.2em 0 0.4em;
+  font-family: "LXGW WenKai";
+  font-size: 1.35em;
+  font-weight: 500;
+  letter-spacing: -0.01em; /* 设置字间距 */
+  line-height: 1.2;
+  margin: 1.2em 0 0.4em;
 }
 
 .md-typeset h4 {
-  font-family: LXGW WenKai;
+  font-family: "LXGW WenKai";
   font-weight: 600;
 }
 
+/* 段落样式设置 */
 .md-typeset p {
-    font-weight: 500;
-    font-style: normal;
-    font-size: 16.2px;
-    margin-block-start: 0.7em;
-    margin-block-end: 0.7em;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  margin-block-start: 0.7em; /* 设置段落上方外边距 */
+  margin-block-end: 0.7em;   /* 设置段落下方外边距 */
 }
 
+/* 列表项样式设置 */
 .md-typeset ul li {
-    margin-left: 1em;
-    margin-bottom: 0.4em;
+  margin-left: 1em; /* 设置左缩进 */
+  margin-bottom: 0.4em; /* 设置下方间距 */
 }
 
+/* 粗体文本样式设置 */
 .md-typeset strong {
-    font-weight: 600;
+  font-weight: 600; /* 设置字重 */
 }
 
-/******* 表格相关设置 *******/
+/*************** 表格相关设置 ******************/
+
+/* 修改表格整体样式 */
 .md-typeset__table {
   font-family: "Roboto", sans-serif;
-   min-width: 95%;
-   margin-bottom: 0.2em;
-   padding: 0.2rem 0.3rem;
+  min-width: 94%; /* 设置表格最小宽度 */
+  margin-bottom: 0.2em;
+  padding: 0.2rem 0.3rem; /* 设置内边距 */
 }
 
-.md-typeset table:not([class]) td {
-    border-top: 0.05rem solid var(--md-typeset-table-color);
-    padding: 0.3em 0.4em;
-}
-
+/* 设置未带类名的表格的样式 */
 .md-typeset table:not([class]) {
-    display: table;
-    font-size: px2rem(11px);
-    border-spacing:  px2em(1px);
+  display: table;
+  font-size: px2rem(11px); /* 设置字体大小 */
+  border-spacing: px2em(1px); /* 设置单元格间距 */
 }
 
+/* 设置单元格内容的上下居中和其他样式 */
+.md-typeset table:not([class]) td {
+  border-top: 0.05rem solid var(--md-typeset-table-color); /* 设置单元格顶部边框 */
+  padding: 0.3em 0.4em; /* 设置单元格内边距 */
+  vertical-align: middle; /* 设置内容上下居中 */
+}
 
-/******* 内嵌代码块相关设置 *******/
+/* 设置表头字体加粗和背景颜色 */
+.md-typeset__table th {
+  font-weight: bold; /* 设置字体加粗 */
+  background-color: #f0f0f0; /* 设置表头背景颜色 */
+  color: #333; /* 设置表头字体颜色 */
+  text-align: center; /* 设置水平居中 */
+  padding: 0.4em 0.6em; /* 设置表头内边距 */
+}
+
+/************* 内嵌代码块相关设置 *******************/
+
+/* 设置段落内的内联代码样式 */
 .md-typeset p > code {
-    color: #E33D70;
-    font-size: 15px;
-  }
+  color: #E33D70; /* 设置代码颜色 */
+  font-size: 15px; /* 设置字体大小 */
+}
 
+/* 设置其他元素内的内联代码样式 */
 .md-typeset strong > code,
 .md-typeset li > code,
 .md-typeset td > code,
@@ -135,13 +155,9 @@ pre, code {             /* 设置代码块的字体格式 */
 .md-typeset h3 > code,
 .md-typeset h4 > code,
 .md-typeset div > code {
-    color: #E33D70  /* 使用 !important */
+  color: #E33D70; /* 设置代码颜色 */
 }
 
-/******* Grid Cards *********/
-.md-typeset .grid.cards > ul > li {
-    border-radius: var(--base-border-radius);
-  }
 
 /* 渐变 */
 #grad1 {
@@ -150,250 +166,206 @@ pre, code {             /* 设置代码块的字体格式 */
     background-image: linear-gradient(to bottom right, red , yellow);
     }
 
-    :root {
+
+:root {
         --admonition-border-left-width: 0.2rem;
         --base-border-radius: 0.5rem;
-      }
-      
-      /* Change font family of filename present on top of code block. */
-      /* .highlight span.filename {
-        border-bottom: none;
-        border-radius: var(--base-border-radius);
-        display: inline;
-        font-family: var(--md-code-font-family);
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        margin-bottom: 5px;
-        text-align: center;
-      }
-      .highlight span.filename + pre > code {
-        border-radius: var(--base-border-radius);
-        border-top-left-radius: 0;
-      }
-      .md-typeset pre > code {
-        border-radius: var(--base-border-radius);
-      } */
-      
-      /* Customize admonition layout */
-      /* .md-typeset .admonition {
-        border-width: 0px;
-        border-left-width: var(--admonition-border-left-width);
-      }
-      
-      [dir="ltr"] .md-typeset blockquote {
-        border-radius: 0.2rem;
-        border-left-width: var(--admonition-border-left-width);
-      } */
-      
-      /* Grid Cards */
-      .md-typeset .grid.cards > ul > li {
-        border-radius: var(--base-border-radius);
-      }
-      .md-typeset .grid.cards > ul > li:hover {
-        box-shadow: 0 0 0.2rem #c23d6c80;
-      }
-      
-      /* Markdown Button */
-      .md-typeset .md-button {
-        border-radius: var(--base-border-radius);
-      }
-      
-      /* Footer: Social Links */
-      .md-social__link svg {
-        max-height: 1rem;
-      }
-      
-      
-      /* Forms */
-      .md-search__form {
-        border-radius: var(--base-border-radius);
-      }
-      
-      [data-md-toggle="search"]:checked ~ .md-header .md-search__form {
-        border-top-right-radius: var(--base-border-radius);
-        border-top-left-radius: var(--base-border-radius);
-      }
-      
-      [dir="ltr"] .md-search__output {
-        border-bottom-right-radius: var(--base-border-radius);
-        border-bottom-left-radius: var(--base-border-radius);
-      }
-      
-      /* Blog - index.md */
-      /* div.md-content header {
-        display: none;
-      }
-      
-      .md-post--excerpt {
-        background-color: var(--md-accent-fg-color--transparent);
-        box-shadow: 0 0 0 1rem var(--md-accent-fg-color--transparent);
-        border-radius: var(--base-border-radius);
-      }
-      
-      .md-post--excerpt .md-post__header {
-        justify-content: center;
-      }
-      
-      .md-post--excerpt .md-post__content > h2,
-      .md-post__action {
-        text-align: center;
-      } */
-      
-      /* Table */
-      .md-typeset table:not([class]) {
-        border-radius: var(--base-border-radius);
-      }
-      
-      
-      
-      
-      
-      .carousel {
-        width: 60%;
-        height: 100%;
-      
-        border-radius: 0.4rem;
-        overflow: hidden;
-        position: relative;
-      
-        /* 居中 */
-        margin-left: auto;
-        margin-right: auto;
-      
-        border: 0.075rem solid #7b7b7b7a;
-        box-shadow: var(--md-shadow-z1);
-      }
-      
-      .carousel-container {
-        width: 100%;
-        height: 100%;
-      
-        position: relative;
-        left: 0;
-      
-        display: flex;
-      
-        /* 过渡动画 1s */
-        transition: all 1s;
-      }
-      
-      .carousel-hover {
-        height: 100%;
-        width: 10%;
-        position: absolute;
-        top: 0;
-      
-        /* 子元素垂直居中 */
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        justify-content: center;
-      }
-      .carousel-hover.left {
-        left: 0;
-      }
-      .carousel-hover.right {
-        right: 0;
-      }
-      
-      .carousel-hover button {
-        background-color: var(--md-accent-fg-color);
-        border-radius: 50%;
-      
-        cursor: pointer;
-      
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .carousel-hover button::after {
-        display: block;
-        height: 1.5rem;
-        width: 1.5rem;
-      
-        background-color: white;
-        content: "";
-        mask-position: center;
-        -webkit-mask-position: center;
-      }
-      .carousel-hover.left button::after {
-        mask-image: var(--md-tabbed-icon--prev);
-        -webkit-mask-image: var(--md-tabbed-icon--prev);
-      }
-      .carousel-hover.right button::after {
-        mask-image: var(--md-tabbed-icon--next);
-        -webkit-mask-image: var(--md-tabbed-icon--next);
-      }
-      
-      /* hover 外层 */
-      .carousel-hover:hover button {
-        opacity: 0.5;
-        transition: opacity 0.3s;
-      }
-      /* hover 内层 */
-      .carousel-hover button:hover {
-        opacity: 0.8;
-        transition: opacity 0.3s;
-      }
-      
-      .carousel-container a {
-        width: 100%;
-        height: 100%;
-      
-        flex-shrink: 0;
-      }
-      
-      .carousel-container img {
-        width: 100%;
-        height: 100%;
-      
-        object-fit: cover;
-        display: block;
-      }
-      
-      .carousel-bottom {
-        position: absolute;
-        /* 宽度等同于内容宽度 */
-        width: 100%;
-        padding: 20px;
-      
-        bottom: 0;
-      
-        display: flex;
-        justify-content: center;
-        /* 指示器间距 */
-        gap: 10px;
-      
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .carousel-bottom:hover {
-        opacity: 0.8;
-        transition: opacity 0.3s;
-      }
-      
-      .carousel-bottom .indicator {
-        height: 5px;
-        width: 20px;
-      
-        background-color: var(--md-accent-fg-color);
-      
-        opacity: 0.5;
-        cursor: pointer;
-      }
-      
-      .carousel:hover .bottom .indicator {
-        opacity: 1;
-      }
-      .carousel:hover .shift .btn {
-        opacity: 1;
-      }
-      
-      @media screen and (max-width: 600px) {
-        .carousel {
-            width: 100%;
-        }
-      
-        .carousel-hover button {
-            opacity: 1;
-        }
-      }
+}     
+/* ========== Grid Cards 卡片布局 ========== */
+.md-typeset .grid.cards > ul > li {
+  border-radius: var(--base-border-radius); /* 设置卡片的圆角半径 */
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 0 0.2rem #c23d6c80; /* 鼠标悬停时的阴影效果 */
+}
+
+/* ========== Markdown Button 按钮样式 ========== */
+.md-typeset .md-button {
+  border-radius: var(--base-border-radius); /* 设置按钮的圆角半径 */
+}
+
+/* ========== Footer: Social Links 页脚社交链接 ========== */
+.md-social__link svg {
+  max-height: 1rem; /* 限制社交链接图标的最大高度 */
+}
+
+/* ========== Forms 表单样式 ========== */
+/* 搜索表单的圆角设置 */
+.md-search__form {
+  border-radius: var(--base-border-radius); /* 设置搜索表单的圆角半径 */
+}
+
+/* 搜索表单展开时，顶部圆角设置 */
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+  border-top-left-radius: var(--base-border-radius);  /* 左上角圆角 */
+  border-top-right-radius: var(--base-border-radius); /* 右上角圆角 */
+}
+
+/* 搜索输出区域的底部圆角设置 */
+[dir="ltr"] .md-search__output {
+  border-bottom-left-radius: var(--base-border-radius);  /* 左下角圆角 */
+  border-bottom-right-radius: var(--base-border-radius); /* 右下角圆角 */
+}
+
+/* ========== Table 表格样式 ========== */
+/* 设置表格的圆角和隐藏超出圆角的内容 */
+.md-typeset table:not([class]) {
+  border-radius: var(--base-border-radius); /* 设置表格的圆角半径 */
+  overflow: hidden; /* 隐藏超出圆角边界的内容 */
+}
+
+/* ========== Carousel 轮播图样式 ========== */
+/* 轮播容器 */
+.carousel {
+  width: 60%;
+  height: 100%;
+  margin-left: auto;  /* 水平居中 */
+  margin-right: auto;
+  position: relative;
+  border-radius: 0.4rem; /* 设置轮播容器的圆角半径 */
+  overflow: hidden; /* 隐藏超出容器的内容 */
+  border: 0.075rem solid rgba(123, 123, 123, 0.48); /* 边框样式 */
+  box-shadow: var(--md-shadow-z1); /* 阴影效果 */
+}
+
+/* 轮播内容容器 */
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  display: flex; /* 使用 Flex 布局 */
+  transition: all 1s; /* 添加过渡动画效果 */
+}
+
+/* 轮播导航按钮容器 */
+.carousel-hover {
+  position: absolute;
+  top: 0;
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center; /* 子元素垂直居中 */
+}
+
+/* 左右导航按钮位置 */
+.carousel-hover.left {
+  left: 0; /* 左侧按钮位置 */
+}
+
+.carousel-hover.right {
+  right: 0; /* 右侧按钮位置 */
+}
+
+/* 轮播导航按钮样式 */
+.carousel-hover button {
+  background-color: var(--md-accent-fg-color); /* 按钮背景颜色 */
+  border-radius: 50%; /* 按钮圆形 */
+  cursor: pointer;
+  opacity: 0; /* 初始透明度为 0，隐藏按钮 */
+  transition: opacity 0.3s; /* 透明度过渡效果 */
+}
+
+/* 导航按钮的图标设置 */
+.carousel-hover button::after {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: white;
+  content: "";
+  mask-position: center;
+  -webkit-mask-position: center; /* 兼容 WebKit 内核浏览器 */
+}
+
+/* 左侧按钮图标 */
+.carousel-hover.left button::after {
+  mask-image: var(--md-tabbed-icon--prev); /* 使用自定义的左箭头图标 */
+  -webkit-mask-image: var(--md-tabbed-icon--prev);
+}
+
+/* 右侧按钮图标 */
+.carousel-hover.right button::after {
+  mask-image: var(--md-tabbed-icon--next); /* 使用自定义的右箭头图标 */
+  -webkit-mask-image: var(--md-tabbed-icon--next);
+}
+
+/* 当鼠标悬停在导航按钮容器上时，显示按钮 */
+.carousel-hover:hover button {
+  opacity: 0.5; /* 将按钮透明度设置为 0.5 */
+  transition: opacity 0.3s;
+}
+
+/* 当鼠标悬停在按钮上时，增加透明度 */
+.carousel-hover button:hover {
+  opacity: 0.8; /* 增加按钮透明度 */
+  transition: opacity 0.3s;
+}
+
+/* 轮播项链接样式 */
+.carousel-container a {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0; /* 防止缩小 */
+}
+
+/* 轮播图片样式 */
+.carousel-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 保持图片比例，裁剪溢出部分 */
+  display: block;
+}
+
+/* 轮播底部指示器容器 */
+.carousel-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* 指示器间距 */
+  opacity: 0; /* 初始透明度为 0，隐藏指示器 */
+  transition: opacity 0.3s;
+}
+
+/* 当鼠标悬停在底部容器时，显示指示器 */
+.carousel-bottom:hover {
+  opacity: 0.8; /* 设置指示器透明度 */
+  transition: opacity 0.3s;
+}
+
+/* 指示器样式 */
+.carousel-bottom .indicator {
+  width: 20px;
+  height: 5px;
+  background-color: var(--md-accent-fg-color); /* 指示器颜色 */
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+/* 悬停在轮播图时，指示器的透明度变化 */
+.carousel:hover .carousel-bottom .indicator {
+  opacity: 1;
+}
+
+/* 轮播图悬停时，显示导航按钮 */
+.carousel:hover .carousel-hover button {
+  opacity: 1;
+}
+
+/* ========== 响应式布局 ========== */
+@media screen and (max-width: 600px) {
+  /* 小屏幕下轮播图宽度调整为 100% */
+  .carousel {
+      width: 100%;
+  }
+
+  /* 小屏幕下导航按钮始终可见 */
+  .carousel-hover button {
+      opacity: 1;
+  }
+}

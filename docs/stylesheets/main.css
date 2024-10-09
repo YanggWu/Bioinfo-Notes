@@ -124,7 +124,7 @@ pre, code {             /* 设置代码块的字体格式 */
 /******* 内嵌代码块相关设置 *******/
 .md-typeset p > code {
     color: #E33D70;
-    font-size: 15.5px;
+    font-size: 15px;
   }
 
 .md-typeset strong > code,

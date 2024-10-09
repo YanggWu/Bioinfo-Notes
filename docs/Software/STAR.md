@@ -30,18 +30,16 @@ gtf=genome.gtf
 # 生成基因组索引的一般选项
 STAR --runThreadN ${nt} \
      --runMode genomeGenerate \
-     --genomeDir ${dir} \
+     --genomeDir ${dir} \     # 如果不指定，则默认输出当前路径下的GenomeDir目录中
      --genomeFastaFiles ${fa} \
      --sjdbGTFfile ${gtf} \
      --sjdbOverhang 149	# ReadLength-1
 ```
 
 !!! warning "注意"
-
      ```txt
      !!!!! WARNING: --genomeSAindexNbases 14 is too large for the genome size=23207287, which may cause seg-fault at the mapping step. Re-run genome generation with recommended --genomeSAindexNbases 11
      ```
-
      当基因组较小时，默认的`--genomeSAindexNbases`值较大。可能会导致映射过程中出现问题，如内存访问错误。如果出现相关警告或错误，根据提示适当调整这个参数值。
 
 ## 比对
@@ -53,16 +51,16 @@ nt=2
 dir=./star_index
 fa=genome.fa
 gtf=genome.gtf
-fq1=sample_1.clean.fq.gz
-fq2=sample_2.clean.fq.gz
-out=~/test/mapping/star/sample_sorted
+fq1=~/test/data/sample_1.clean.fq.gz
+fq2=~/test/data/sample_2.clean.fq.gz
+out=~/test/1_mapping/sample
 
 STAR --runThreadN $nt \
      --genomeDir $dir \
      --readFilesIn $fq1 $fq2 \
-     --outFileNamePrefix ${out} \	# 指定输出路径，默认在当前路径
+     --outFileNamePrefix ${out} \  # 指定输出路径，默认在当前路径
      --readFilesCommand zcat \
-     --outSAMtype BAM SortedByCoordinate	# 可以直接输出排序后的BAM文件
+     --outSAMtype BAM SortedByCoordinate    # 可以直接输出排序后的BAM文件
 ```
 
 注意如果是压缩格式，需要指定参数：`--readFilesCommand zcat`

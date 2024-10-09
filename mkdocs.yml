@@ -11,6 +11,8 @@ copyright: Copyright © 2023 - 2024 YangWu
 # [Navigation]
 nav:
   - Home: index.md
+  - Overview: 
+    - 常见文件格式: Overview/bioinfo_file_format.md
 
   - Linux:
     - Linux/index.md
@@ -46,6 +48,7 @@ nav:
     - Fastq比对: Software/fastq_mapping.md
     - hisat2: Software/hisat2.md
     - STAR: Software/STAR.md
+    - BWA: Software/BWA.md
     - 测序数据下载: Software/download_data.md
     - gzip 文件读写: Software/read_write_gzip.md
     - 提取测试数据: Software/extract_test_data.md

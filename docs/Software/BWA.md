@@ -46,7 +46,40 @@ fq2=~/test/A-rep1_2.fq.gz
 
 ## BWA-MEM2
 
-**BWA 与 BWA-MEM2 的比较**
+`bwa-mem2 index` 建立索引
+
+```bash
+# 输入
+ref=~/data/ref/genome.fa
+
+bwa-mem2 index ${ref}
+
+# 默认在参考基因组目录输出如下，8个索引文件。
+.
+├── genome.fa.0123
+├── genome.fa.amb
+├── genome.fa.ann
+├── genome.fa.bwt
+├── genome.fa.bwt.2bit.64
+├── genome.fa.fai
+├── genome.fa.pac
+└── genome.fa.sa
+```
+
+`bwa-mem2 mem` 比对
+
+```bash
+# 输入
+index=~/data/ref/bwa-mem2_index/genome.fa  # 索引文件前缀
+fq1=~/test/sample_1.clean.fq.gz
+fq2=~/test/sample_1.clean.fq.gz
+# 输出
+sam=~/test/mapping/bwa-mem2/sample.sam
+
+bwa-mem2 mem -t 2 ${index} ${fq1} ${fq2} > ${sam}
+```
+
+## 两者比较
 
 - **适用场景**：
   - `BWA` 适用于短读段比对（如Illumina数据），在处理中等长度的读段时（<100bp）表现出色。

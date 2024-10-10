@@ -44,7 +44,7 @@ li.md-nav__item {                   /* 下方目录样式设置*/
 }
 
 
-/* 修改特定语言代码块的背景和字体颜色 */
+/* #######修改特定语言代码块的背景和字体颜色########## */
 /* 参数颜色 */
 .highlight .nv {
   color: #cd8468; /* 橙色 */
@@ -56,7 +56,7 @@ li.md-nav__item {                   /* 下方目录样式设置*/
 /* 注释 */
 .highlight .c, .highlight .cm, .highlight .c1 {
   /* color: #6a9955; 绿色 */
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 

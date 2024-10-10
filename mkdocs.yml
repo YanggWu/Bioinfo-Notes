@@ -124,63 +124,62 @@ extra:
     language: 'jp'
     suggest: true
 
-
-markdown_extensions:
-  - abbr
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - md_in_html
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.details
-  - pymdownx.highlight:  #代码高亮，对代码块（SuperFences）和行内代码块（InlineHilite）的语法突出显示
-      anchor_linenums: true  #代码块行号锚链接，默认false
-      use_pygments: true  #在构建期间使用Pygments或在浏览器中使用 JavaScript 语法高亮器进行高亮显示，默认true
-      auto_title: false  #自动为所有代码块添加标题，显示正在使用的语言的名称，默认false
-      linenums: true #向所有代码块添加行号，默认false
-      line_spans: __span
-      pygments_lang_class: true
-      linenums_style: pymdownx-inline #三种添加行号的方法，建议table或pymdownx-inline。默认table
-  - pymdownx.tabbed:  #内容选项卡
-      alternate_style: true  #启用内容选项卡替代样式，必须开启
-  - pymdownx.superfences # 代码块高亮
-  - pymdownx.inlinehilite  
-  - pymdownx.snippets
-  - pymdownx.keys
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-      emoji_index: !!python/name:material.extensions.emoji.twemoji  
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-
-  - toc:
-      toc_depth: 4 #目录深度，默认6，0则隐藏
-#      title: On this page  #默认值，自动获取
-      permalink: true   #每个标题的末尾添加段落符号锚链接，默认false
-#      permalink: ⚓︎  #每个标题的末尾添加自定义符号锚链接
-      permalink_title: Anchor link to this section for reference #在悬停时显示并由屏幕阅读器阅读的锚链接的标题
-
-# extra_javascript:
-#   - javascripts/mathjax.js
-#   - https://polyfill.io/v3/polyfill.min.js?features=es6
-#   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-#   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
-#   - javascripts/tablesort.js
-
-
 extra_css:
-  - stylesheets/highlight.js
   - stylesheets/main.css
   - stylesheets/extra.css
   - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap #自定义思源宋体
   - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体 2
   - https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap # 字体3
+
+extra_javascript:
+  - stylesheets/highlight.js
 plugins:
    - glightbox # 图片放大插件
    - search
+
+markdown_extensions:
+  # 基础扩展
+  - abbr                # 支持缩写语法，允许定义缩写及其全称
+  - attr_list           # 支持为 Markdown 元素添加属性列表
+  - def_list            # 支持定义列表的语法
+  - footnotes           # 支持脚注语法
+  - md_in_html          # 允许在 HTML 标签中使用 Markdown 语法
+
+  # 高级格式化
+  - admonition          # 支持提示块（注意、警告等）的语法
+  - pymdownx.betterem:
+      smart_enable: all # 改善强调（emphasis）处理，支持智能下划线、星号等
+  - pymdownx.caret      # 支持插入和删除文本的标记语法（插入 ^文本^，删除 ~文本~）
+  - pymdownx.tilde      # 支持删除线语法（~~文本~~）
+
+  # 代码高亮和处理
+  - pymdownx.highlight:
+      use_pygments: true          # 使用 Pygments 进行代码高亮，默认 true
+      linenums: true              # 为所有代码块添加行号，默认 false
+      linenums_style: pymdownx-inline # 行号样式，建议使用 'table' 或 'pymdownx-inline'，默认 'table'
+      anchor_linenums: true       # 代码块行号添加锚链接，默认 false
+      auto_title: false           # 自动为代码块添加标题，显示使用的语言名称，默认 false
+      line_spans: __span          # 为每行代码添加唯一的 span ID，便于引用
+      pygments_lang_class: true   # 为代码块添加语言类名，方便自定义样式
+  - pymdownx.superfences          # 增强的代码块处理，支持嵌套和多种语言的代码块
+  - pymdownx.inlinehilite         # 支持行内代码高亮
+  - pymdownx.snippets             # 支持在文档中插入外部文件内容
+  - pymdownx.details              # 支持折叠内容块（details）的语法
+
+  # 数学公式
+  - pymdownx.arithmatex:
+      generic: true               # 使用通用的数学公式渲染方式，支持 $$...$$ 和 \\(...\\) 语法
+
+  # 交互式内容
+  - pymdownx.tabbed:
+      alternate_style: true       # 启用内容选项卡的替代样式，必须开启
+  - pymdownx.tasklist:
+      custom_checkbox: true       # 支持自定义任务列表的复选框样式
+
+  # 表情符号和键盘按键
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+                                 # 使用 Material 的扩展，将 Emoji 转换为 SVG 图标
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+                                 # 使用 Twemoji 的 Emoji 索引
+  - pymdownx.keys                # 支持键盘按键的标记语法，如 ++Ctrl++、++Alt++

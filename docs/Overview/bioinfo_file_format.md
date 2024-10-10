@@ -38,9 +38,9 @@
     GCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGT
     GCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGTGCGT
     ```
-
+    
     蛋白质序列示例
-
+    
     ```
     >protein1 Example protein sequence
     MTEITAAMVKELRESTGAGMMDCKNALSETQHEFLDLFSKVGQCVKVLY
@@ -194,9 +194,10 @@ BAM格式是SAM格式的二进制版本，进行了压缩处理，与SAM文件�
 GTF 文件可以从对应的参考基因组数据库下载，或者通过 gffread 软件，将 gff 转换为 gtf。
 
 ```bash
-#gff2gtf
+# gff2gtf
 gffread my.gff3 -T -o my.gtf
-#gtf2gff
+
+# gtf2gff
 gffread merged.gtf -o- > merged.gff3
 ```
 

@@ -51,8 +51,11 @@ button.md-top {
 /* 设置代码块和内联代码的字体样式 */
 pre,
 code {
-  font-size: 15.3px; /* 设置字体大小 */
+  font-size: 15.5px; /* 设置字体大小 */
   font-weight: normal; /* 设置字重为 normal，避免过于粗重 */
+}
+code, pre, kbd, samp {
+  font-family: Roboto Mono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* 标题样式设置 */

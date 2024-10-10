@@ -5,7 +5,8 @@
 
 ## 原始数据
 
-大部分比对软件可直接使用fq.gz文件进行比对，因此无需解压fq.gz。原始数据从ncbi上下载的，sra文件转成fq.gz之后，需及时删除sra文件。
+!!! warning
+    大部分比对软件可直接使用`fq.gz` 压缩格式的fastq文件进行比对，因此无需解压fq.gz。
 
 部分不能直接使用fq.gz的程序，可以尝试使用类似下面的变通方式。
 
@@ -51,9 +52,18 @@ STAR --runThreadN 5 --genomeDir genome_dir/ \
 
 ### bowtie2
 
+```bash
+bowtie2 -p 8 \
+	-x genome.fa \
+	-1 sample_1.fq.gz \
+	-2 sample_2.fq.gz | samtools sort -@ 4 -o sample.bam
+```
+
+### tophat2
+
 比对输出bam后，使用samtool进行排序，之后删除未排序的bam
 
-```sh
+```bash
 tophat2 -p 5 -o map/ \
  data/sample_1.fa.gz data/sample_2.fa.gz
 samtools sort -@8 -o map/sample_sorted.bam map/sample.bam

@@ -13,6 +13,7 @@ nav:
   - Home: index.md
   - Overview: 
     - 常见文件格式: Overview/bioinfo_file_format.md
+    - 基因表达定量: Overview/gene_exp_quant.md
 
   - Linux:
     - Linux/index.md
@@ -50,6 +51,8 @@ nav:
     - STAR: Software/STAR.md
     - BWA: Software/BWA.md
     - Bowtie2: Software/Bowtie2.md
+    - HTSeq: Software/HTSeq.md
+    - featureCounts: Software/featureCounts.md
     - 测序数据下载: Software/download_data.md
     - gzip 文件读写: Software/read_write_gzip.md
     - 提取测试数据: Software/extract_test_data.md

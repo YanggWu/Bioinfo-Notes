@@ -129,7 +129,7 @@ code, pre, kbd, samp {
 .md-typeset table:not([class]) td {
   border-top: 0.05rem solid var(--md-typeset-table-color); /* 设置单元格顶部边框 */
   padding: 0.3em 0.4em; /* 设置单元格内边距 */
-  vertical-align: middle; /* 设置内容上下居中 */
+  /* vertical-align: middle; 设置内容上下居中 */
 }
 
 /* 设置表头字体加粗和背景颜色 */
@@ -137,6 +137,7 @@ code, pre, kbd, samp {
   font-weight: bold; /* 设置字体加粗 */
   background-color: #f0f0f0; /* 设置表头背景颜色 */
   color: #333; /* 设置表头字体颜色 */
+  font-size: 13.5px;
   text-align: center; /* 设置水平居中 */
   padding: 0.4em 0.6em; /* 设置表头内边距 */
 }

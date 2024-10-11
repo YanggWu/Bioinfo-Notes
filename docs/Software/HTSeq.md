@@ -17,7 +17,7 @@ htseq-count \
 	--type exon \
 	--idattr gene_id \
 	sample.bam \
-	genes.gtf > gene_counts.txt
+	${gtf} > gene_counts.txt
 ```
 
 ## 常用参数

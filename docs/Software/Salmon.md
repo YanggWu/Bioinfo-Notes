@@ -18,6 +18,24 @@ cdna=transcripts.fa	# 转录本参考序列，即cDNA序列。
 salmon index \
 	-t transcripts.fa \
 	-i salmon_index		# 索引输出目录（支持自动创建目录）
+
+# 将会在指定的目录中输出如下索引文件
+.
+├── complete_ref_lens.bin
+├── ctable.bin
+├── ctg_offsets.bin
+├── duplicate_clusters.tsv
+├── info.json
+├── mphf.bin
+├── pos.bin
+├── pre_indexing.log
+├── rank.bin
+├── refAccumLengths.bin
+├── ref_indexing.log
+├── reflengths.bin
+├── refseq.bin
+├── seq.bin
+└── versionInfo.json
 ```
 
 ### 2. 更高精度的索引
@@ -54,38 +72,25 @@ salmon index  \
 ## 二 转录本水平定量
 
 ```bash
-# 通过外部参数传递样本文件路径
-sample=$1
+# 输入
+salmon_index=~/reference/salmon_index	# 指定索引目录。
+fq1=~/test/sample_1.clean.fq.gz
+fq2=~/test/sample_2.clean.fq.gz
+# 输出
+output_dir=~/test/2_gene_exp/salmon		# 指定结果输出目录。
 
-# 获取文件路径变量的 index名称
-index=$(basename $sample | sed 's/_f1.fq.gz//')
-prefix=$(dirname $sample)
-fq1=${prefix}/${index}_f1.fq.gz
-fq2=${prefix}/${index}_r2.fq.gz
 
 # MSU 基因组和 miRNA 的索引
 salmon_index=~/1_reference/MSU/miRNA/salmon_index
 miRNA_index=~/1_reference/MSU/miRNA/miRNA_salmon_index
 workdir=~/res_rnaseq
 
-# 创建文件目录
-# mkdir ${workdir}/gene_salmon
-# mkdir ${workdir}/gene_salmon
-
-# 分别对MSU注释基因和miRNA基因进行 salmon 定量
-bsub -q q2680v2 -J Salmon -n 8 -o ${index}.out -e ${index}.err -R span[hosts=1] \
-"module purge
-module load salmon/1.4.0
-salmon quant -i ${salmon_index} -p 8  \
- -l A \
- -1 ${fq1} \
- -2 ${fq2} \
- -o  ${workdir}/gene_salmon/${index}_gene_quant
-salmon quant -i ${miRNA_index} -p 8  \
- -l A \
- -1 ${fq1} \
- -2 ${fq2} \
- -o  ${workdir}/miRNA_salmon/${index}_miRNA_quant"
+salmon quant -p 8 \
+	-i ${salmon_index} \
+	-l A \			# 自动检测文库类型
+	-1 ${fq1} \
+	-2 ${fq2} \
+	-o ${output_dir}
 ```
 
 ## 三 提取样品比对率

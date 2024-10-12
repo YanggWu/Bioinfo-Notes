@@ -26,6 +26,9 @@ cufflinks \
 
 - `-o` 指定结果输出目录，默认为`./`
 
+!!! warning
+    在使用 `-G`  指定GTF 文件时，Cufflinks 实际上并不是重新组装转录本，而是根据 GTF 文件的注释直接读取转录本信息并进行定量分析
+
 ### 输出文件
 
 Cufflinks 运行后，会生成一系列输出文件，其中主要包括
@@ -60,17 +63,17 @@ Cufflinks 运行后，会生成一系列输出文件，其中主要包括
 
 - `--library-type`：指定输入数据的文库类型（见下方支持的文库类型）。
 
-  - `ff-firststrand`：前向-前向配对，第一链特异性文库。
+    - `ff-firststrand`：前向-前向配对，第一链特异性文库。
 
-  - `ff-secondstrand`：前向-前向配对，第二链特异性文库。
+    - `ff-secondstrand`：前向-前向配对，第二链特异性文库。
 
-  - `ff-unstranded`：前向-前向配对，非链特异性文库。
+    - `ff-unstranded`：前向-前向配对，非链特异性文库。
 
-  - `fr-firststrand`：前向-反向配对，第一链特异性文库。
+    - `fr-firststrand`：前向-反向配对，第一链特异性文库。
 
-  - `fr-secondstrand`：前向-反向配对，第二链特异性文库。
+    - `fr-secondstrand`：前向-反向配对，第二链特异性文库。
 
-  - `fr-unstranded`：前向-反向配对，非链特异性文库（默认）。
+    - `fr-unstranded`：前向-反向配对，非链特异性文库（默认）。
 
 #### 丰度估算高级选项：
 

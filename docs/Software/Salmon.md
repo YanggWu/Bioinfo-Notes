@@ -1,25 +1,55 @@
 # salmon 定量
 
-salmon是一款不基于比对而直接对基因进行定量的工具
+**Salmon** 是一个用于 RNA-Seq 数据的转录本定量分析工具，它通过伪比对（pseudo-alignment）的方法来直接定量转录本的表达水平，而不需要常规的比对过程。Salmon 能够非常快速地处理原始 FASTQ 数据，并输出基因和转录本的表达量。
 
 ## 一 建立索引
 
-准备文件
+!!! warning
+    Salmon 提供了两种构建索引的方式。分别是：1. 简单的基于参考转录本序列的索引构建。2. 基因组信息增强的转录本索引构建。 推荐使用第二种更准确的索引构建。
 
-cDNA序列： MSU7.0_cdna.fa
+### 1. 简单索引
 
-基因组序列：MSU7.0_dna.fa
+基于转录本 FASTA 文件的直接索引构建方式。
 
 ```bash
-# 去掉基因ID空格后面的字符串注释，保证cDNA文件中fasta序列的名字简洁，不然后续会出错。
-cut  -f  1  -d  ' '  MSU7.0_cdna.fa > MSU7.0_cdna_brief.fa
-# 获取基因组序列的名字存储于decoy中。
-grep '^>' MSU7.0_dna.fa |sed 's/^>//g' > MSU.decoys.txt
-# 合并cDNA和基因组序列一起。注意cDNA在前，基因组在后。
-cat  MSU7.0_cdna_brief.fa MSU7.0_dna.fa  >  MSU_cDNA_genome.fa
-# 构建索引。
-salmon index  -p 10 -t MSU_cDNA_genome.fa  -d MSU.decoys.txt  -i salmon_index
+# 输入
+cdna=transcripts.fa	# 转录本参考序列，即cDNA序列。
+
+salmon index \
+	-t transcripts.fa \
+	-i salmon_index		# 索引输出目录（支持自动创建目录）
 ```
+
+### 2. 更高精度的索引
+
+这种方式结合了基因组序列（FASTA 文件），在精度上优于单纯的转录本索引构建。
+
+```bash
+# 输入
+cdna=cdna.fa
+ref=genome.fa
+
+# 1. 去掉基因ID空格后面的字符串注释，保证cDNA文件中fasta序列的名字简洁，不然后续可能会出错。
+cut  -f  1  -d  ' ' ${cdna} > cdna_brief.fa
+
+# 2. 获取基因组序列的名字。（即染色体名称，存在文本文件中，每行一个名称）
+grep '^>' ${ref} | sed 's/^>//g' > decoys.txt
+
+# 3. 合并cdna和基因组序列，注意cdna在前，基因组在后。
+cat cdna_brief.fa ${ref} > cdna_genome.fa
+
+# 4. 构建索引
+salmon index  \
+	-p 10 -t cdna_genome.fa  \
+	-d Mecoys.txt  -i salmon_index
+```
+
+- `-p`：线程数。
+- `-t`：输入转录本 FASTA 文件列。
+
+- `-i`：指定输出的索引目录。
+
+该方法结合了基因组序列的信息，有效提高了 RNA-Seq 数据分析的准确性，尤其在处理复杂基因组或假基因时具有显著优势。
 
 ## 二 转录本水平定量
 

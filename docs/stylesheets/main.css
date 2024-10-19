@@ -9,22 +9,22 @@ img {
 /* 调整带有类名 'twemoji' 的图片的垂直对齐和位置 */
 img.twemoji {
   vertical-align: middle;
-  transform: translateY(2px);
+  /* transform: translateY(2px); */
 }
 
 /* 调整带有类名 'twemoji' 的 span 元素的显示和位置 */
 span.twemoji {
   display: inline-block;
   vertical-align: middle;
-  transform: translateY(3px);
+  /* transform: translateY(3px); */
 }
 
 /**************** 字体、文字相关设置 ****************/
 
 /* 设置全局字体为 'Noto Serif SC'，系统默认字体作为备用 */
 body {
-  font-family: "Noto Serif SC", system-ui;
-  font-weight: 500; /* 设置字体基础字重 */
+  /* font-family: "Noto Serif SC", system-ui; */
+  /* font-weight: 400; 设置字体基础字重 */
 }
 
 /* 定义类名为 'font-2' 的字体样式 */
@@ -90,7 +90,7 @@ code, pre, kbd, samp {
 
 /* 段落样式设置 */
 .md-typeset p {
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
   font-size: 16px;
   margin-block-start: 0.7em; /* 设置段落上方外边距 */
@@ -105,7 +105,7 @@ code, pre, kbd, samp {
 
 /* 粗体文本样式设置 */
 .md-typeset strong {
-  font-weight: 600; /* 设置字重 */
+  font-weight: 500; /* 设置字重 */
 }
 
 /*************** 表格相关设置 ******************/

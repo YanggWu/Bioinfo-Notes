@@ -8,10 +8,12 @@
 
 .md-header__ellipsis .md-header__topic:nth-child(1) .md-ellipsis { /* 最上方标题的样式 */ 
     font-size: 18px;  /* 增大字体大小 */
+    font-family: "Noto Serif SC"
 }
 
 li.md-tabs__item  {             /* 最上面一级目录的样式 */       
   /* 修改字体 */
+  font-family: "Noto Serif SC", system-ui;
   font-weight: 600;
   color: whitesmoke;
 }
@@ -32,7 +34,7 @@ li.md-nav__item {                   /* 下方目录样式设置*/
 .tabbed-labels label {
   font-family: 'Lato', sans-serif;
   font-weight: 600; /* 粗体 */
-  font-size: 16.2px; /* 设置字体大小 */
+  font-size: 16.5px; /* 设置字体大小 */
 }
 
 /************* 警示部分样式设置 ********/ 

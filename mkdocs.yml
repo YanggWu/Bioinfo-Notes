@@ -66,6 +66,7 @@ nav:
     - Fastp: Software/Fastp.md
     - SAMtools: Software/SAMtools.md
     - GEMMA: Software/GEMMA.md
+    - Shovill: Software/Shovill.md
 
   - Workflow:
     - Fastq 文件质控: Workflow/dataQC.md

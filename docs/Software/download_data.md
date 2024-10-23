@@ -2,6 +2,14 @@
 
 ## SRA Toolkit
 
+安装sratoolkit
+
+```bash
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.7/sratoolkit.3.0.7-ubuntu64.tar.gz
+
+tar -zxvf sratoolkit.3.0.7-ubuntu64.tar.gz
+```
+
 NCBI 官方工具下载SRA数据
 
 **方法一**:

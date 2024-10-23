@@ -44,6 +44,12 @@
 
     清华大学为生物信息学课程教学设计的在线资源，适合作为学习生物信息学的入门指南
 
+- :octicons-video-16: 山东大学生物信息公开课 [:octicons-arrow-right-24: <a href="https://www.bilibili.com/video/BV1zW411L79R" target="_blank"> 传送门 </a>](#)
+
+    ---
+
+    山东大学的生物信息入门课程，，覆盖了生物信息学的基本概念和实践应用。
+
 </div>
 
 ### 🔗 链接

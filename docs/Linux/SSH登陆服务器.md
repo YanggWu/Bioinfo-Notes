@@ -2,6 +2,19 @@
 
 SSH 登录到远程服务器，可以有两种方法，一种是使用户名和用户密码，另外一种方式是SSH密钥，因为使用用户密码的登录方式相对密钥登录的方式容易被暴力破解，因为推荐使用密钥登录的方式登录到远程服务器。
 
+如果是个人本地服务器，通常是ubuntu系统。需要先配置SSH
+
+```bash
+sudo apt update
+sudo apt install openssh-server	# 安装完成后，SSH服务会自动启动
+
+# 检查SSH服务器的状态
+sudo systemctl status ssh
+
+# 确定机器 iP 地址。
+ip a
+```
+
 ## Xshell
 Xshell 是一款 Windows 下的流行老牌 SSH 客户端，正版软件为商业收费软件，一般用户可以使用免费版本。
 
@@ -48,7 +61,7 @@ Terminus 是一款跨平台的终端工具，支持 SSH、Telnet 等协议，具
 === "动态口令登陆"
 
     在config文件中添加 KbdInteractiveAuthentication yes 以使用动态口令登陆。
-
+    
     ```txt
     Host cluster
         HostName login_ip

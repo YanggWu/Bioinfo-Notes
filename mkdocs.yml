@@ -14,6 +14,7 @@ nav:
   - Overview: 
     - 常见文件格式: Overview/bioinfo_file_format.md
     - 基因表达定量: Overview/gene_exp_quant.md
+    - 比对: Overview/Align_Tools.md
 
   - Linux:
     - Linux/index.md

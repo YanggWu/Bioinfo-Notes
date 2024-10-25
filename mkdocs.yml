@@ -61,7 +61,6 @@ nav:
     - Salmon: Software/Salmon.md
     - Parabricks: Software/Parabricks.md
     - Lofreq: Software/LoFreq.md
-    - Snippy: Software/Snippy.md
     - VCFtools: Software/VCFtools.md
     - Aspera: Software/aspera.md
     - MultiQC: Software/Multiqc.md

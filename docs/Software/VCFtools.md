@@ -14,6 +14,25 @@ make
 make install
 ```
 
+## 基本使用
+
+对得到的VCF文件进行过滤。
+
+```bash
+vcftools --gzvcf marge_296_VCF.vcf.gz \
+    --not-chr ChrSy \
+    --not-chr ChrUn \
+    --recode-INFO-all \
+    --max-alleles 2 \
+    --min-alleles 2 \
+    --minDP 4 \
+    --minQ 30 \
+    --max-missing 0.2 \
+    --out RNA_296_raw_snp \
+    --recode \
+    --remove-indels
+```
+
 
 
 ## 常用参数

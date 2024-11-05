@@ -33,8 +33,7 @@ module load sratoolkit/3.0.7
 nohup prefetch -O . $(<SRR_Acc_List.txt) &
 
 # sra转化为fastq文件可以使用sratoolkit中的fastq-dump命令。
-fastq-dump --split-3 --gzip SRR20256064.sra
-nohup fasterq-dump --split-3 ./SRR6382584 &
+nohup fasterq-dump --split-files --threads 5  --outdir SRR*/*sra &
 ```
 
 ## Aspera

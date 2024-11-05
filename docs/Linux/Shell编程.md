@@ -47,6 +47,28 @@ echo ${path##*/}   # P1_1.fq.gz
 
 ## 常用符号
 
+### 花括号拓展-`{}`
+
+花括号扩展允许生成一系列字符串，适合用于批量操作或创建多个类似文件和目录。
+
+```bash
+echo file_{1,2,3}.txt	# 输出：file_1.txt file_2.txt file_3.txt
+echo {a,b,c}.txt		# a.txt b.txt c.txt
+
+# 使用范围生成数字或字母序列。
+echo {1..5}                 # 输出：1 2 3 4 5
+echo {a..e}                 # 输出：a b c d e
+
+# 可以用来创建多个文件或目录
+touch file_{A,B,C}.txt      # 创建 file_A.txt, file_B.txt, file_C.txt
+mkdir dir_{1,2,3}           # 创建 dir_1, dir_2, dir_3 目录
+
+# 可以指定步长。
+echo {0..10..2}             # 输出：0 2 4 6 8 10
+```
+
+
+
 ### 命令替换-`$()`
 
 **`$()`** 是 Linux Shell 中的**命令替换**语法，表示 Shell 会先执行括号中的命令，然后将命令的输出结果替换到当前位置。
@@ -114,7 +136,7 @@ AWK 内置变量在文本处理和数据操作中起着关键作用。下面是�
 
     - **解释**：表示当前记录（行）的全部文本内容。
     - **用法**：通常用于打印或处理整行数据。
-
+    
     ```bash
     awk '{ print $0 }' filename
     ```
@@ -258,7 +280,7 @@ AWK 内置变量在文本处理和数据操作中起着关键作用。下面是�
     awk 'BEGIN { FIELDWIDTHS = "5 10 15" } { print $1, $2, $3 }' filename
     # 根据指定的宽度读取和打印字段
     ```
- 
+
 ```bash
 # 计算文件 myfile 中第三列所有值的总和
 

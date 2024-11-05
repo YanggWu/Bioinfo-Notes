@@ -63,7 +63,9 @@ nav:
     - Parabricks: Software/Parabricks.md
     - Lofreq: Software/LoFreq.md
     - Snippy: Software/snippy.md
+    - GATK: Software/GATK.md
     - VCFtools: Software/VCFtools.md
+    - bcftools: Software/bcftools.md
     - Aspera: Software/aspera.md
     - MultiQC: Software/Multiqc.md
     - Fastp: Software/Fastp.md

@@ -90,3 +90,21 @@ fastp -w 3 \
     `-M, --cut_mean_quality`  设置滑动窗口的平均质量值阈值，低于这个阈值则被切除
 
     `-w / --thread`：线程数，默认为 3。
+
+## 示例
+
+```bash
+# 输入
+fq1
+fq2
+# 输出
+
+fastp  \
+	--thread {threads} \
+	--qualified_quality_phred 15 \
+	--unqualified_percent_limit 40 \
+	--n_base_limit 10 \
+	--length_required 50 \
+	--detect_adapter_for_pe
+```
+

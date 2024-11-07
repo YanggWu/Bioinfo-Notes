@@ -2,6 +2,24 @@
 
 `Qualimap` 是一个强大的生物信息学工具，用于评估比对结果（BAM 文件）或变异检测结果（VCF 文件）的质量。它可以帮助检测数据的覆盖度、比对的质量和其他统计信息，是 RNA-seq、DNA-seq 和 ChIP-seq 数据分析中常用的质量控制工具之一。
 
+!!! Bug
+
+    出现 `Unrecognized VM option 'MaxPermSize=1024m'` 错误的原因是Java 8 及以上版本不再支持 `MaxPermSize` 选项。Qualimap 的启动脚本可能包含不再兼容的 Java 选项。你需要修改这些选项。修改qualimap的启动脚本
+
+    ```bash
+    # 查找并移除 MaxPermSize 相关的行
+    vi qualimap
+
+    # 找到以下代码段
+    java_options="-Xms32m -Xmx$JAVA_MEM_SIZE -XX:MaxPermSize=1024m"
+
+    # 修改为
+    java_options="-Xms32m -Xmx$JAVA_MEM_SIZE"
+
+    # 重新运行 Qualimap
+    qualimap --version
+    ```
+
 ## 常用模块
 
 `Qualimap` 包含几个常用模块，主要包括：
@@ -24,7 +42,9 @@
 qualimap bamqc -bam sample.bam	# 如果不指定输出目录，默认以输入bam文件的前缀名为目录，在当前目录
 
 # 2. 指定输出目录，跟使用的内存资源
-qualimap bamqc --java-mem-size=8G -bam SRR21931770_sorted.bam --outdir SRR21931770
+qualimap bamqc --java-mem-size=8G \
+	-bam SRR21931770_sorted.bam \
+	-outdir SRR21931770
 ```
 
 === "主要参数"

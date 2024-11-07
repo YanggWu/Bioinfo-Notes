@@ -1,5 +1,30 @@
 # nvim
 
+安装 Nerd fonts 字体
+
+Python3 环境，
+
+`update-alternatives` 是一个用于管理系统中同一功能的多个软件版本的工具。例如，在同一系统中可以安装多个版本的 Python，而 `update-alternatives` 可以帮助选择默认的版本。
+
+**功能：**
+
+- 为某些命令（如 `python3`）管理多个候选路径（版本）。
+- 允许用户在多个版本中快速切换。
+
+```bash
+# update-alternatives 设置默认python版本
+update-alternatives --install <链接路径> <名字> <实际路径> <优先级>
+
+update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+update-alternatives --install /usr/bin/python python /usr/bin/python3.6 1
+```
+
+安装nvm 管理node.js 环境。
+
+安装 Neovim
+
+
+
 ## 安装
 
 ```
@@ -38,4 +63,24 @@ sudo apt install -y \
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
+
+安装 LazyVim
+
+```
+# 克隆 LazyVim 配置。
+```
+
+Leader + f t  浮动模式打开终端。
+
+Shift + h/l 切换缓冲区。
+
+预装插件的使用
+
+flash
+
+按 s 然后输入想搜索的内容。可以快速跳转。
+
+NeoTree
+
+leader + e 打开，然后输入问好显示 NeoTree支持的所有快捷键。
 

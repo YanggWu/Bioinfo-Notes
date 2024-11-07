@@ -116,3 +116,10 @@ $ mamba env remove -p pytorch # 无目录残留
 (base) $ mamba deactivate
 ```
 
+`conda run` 是 Conda 提供的一种机制，用于在指定环境中执行命令，而无需激活该环境。
+
+```bash
+conda run -n base python --version	# Python 3.12.7
+conda  run -n calling  python --version	# Python 3.13.0
+```
+

@@ -4,18 +4,18 @@
 
 !!! Bug
 
-    出现 `Unrecognized VM option 'MaxPermSize=1024m'` 错误的原因是Java 8 及以上版本不再支持 `MaxPermSize` 选项。Qualimap 的启动脚本可能包含不再兼容的 Java 选项。你需要修改这些选项。修改qualimap的启动脚本
-
+    出现 `Unrecognized VM option 'MaxPermSize=1024m'` 错误的原因是Java 8 及以上版本不再支持 `MaxPermSize` 选项。Qualimap 的启动脚本可能包含不再兼容的 Java 选项。需要修改这些选项。修改qualimap的启动脚本
+    
     ```bash
     # 查找并移除 MaxPermSize 相关的行
     vi qualimap
-
+    
     # 找到以下代码段
     java_options="-Xms32m -Xmx$JAVA_MEM_SIZE -XX:MaxPermSize=1024m"
-
+    
     # 修改为
     java_options="-Xms32m -Xmx$JAVA_MEM_SIZE"
-
+    
     # 重新运行 Qualimap
     qualimap --version
     ```

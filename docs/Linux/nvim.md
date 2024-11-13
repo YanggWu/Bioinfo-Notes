@@ -84,3 +84,9 @@ NeoTree
 
 leader + e 打开，然后输入问好显示 NeoTree支持的所有快捷键。
 
+:TSUninstall all
+
+**缓存问题**：
+
+- 删除 Neovim 的缓存，运行 `:TSUninstall all` 然后重新安装解析器。
+- 删除 `~/.cache/nvim` 目录，清除缓存文件。

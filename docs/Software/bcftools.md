@@ -85,8 +85,14 @@ bcftools mpileup -f $fa $bam ｜bcftools call -mv -Oz -o P1_raw.vcf.gz
 
 用于在 VCF 文件中根据用户定义的阈值条件对变异位点进行筛选和标记。
 
-```
+```bash
 bcftools filter [options] <in.vcf.gz>
+
+# 一般过滤参数
+bcftools filter \
+	--include 'INFO/DP>20 && QUAL>30' \
+	--SnpGap 5 --IndelGap 10 \
+	-o P1_filter3.vcf -O v all_raw.vcf 
 ```
 
 主要过滤参数

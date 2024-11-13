@@ -1,6 +1,22 @@
 # Git
 
-## 常见报错的解决方法
+为git配置相关账户
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+```
+
+## 基本使用
+
+```bash
+# 1. 初始化 Git 仓库
+git init
+```
+
+
+
+## 常见问题
 
 **Failed to connect to github.com port 443 解决方案**
 

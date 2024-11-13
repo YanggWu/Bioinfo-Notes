@@ -27,7 +27,7 @@
 <div class="grid cards" markdown>
 
 - :whale: **和鲸社区** [:octicons-arrow-right-24: <a href="https://www.heywhale.com/home" target="_blank"> 传送门 </a>](#)
-    
+  
     ---
 
     一个数据科学和人工智能领域的协作平台，提供了丰富的学习资源、项目分享。
@@ -64,4 +64,7 @@
 
 如果你有任何问题、建议或者希望交流的内容，欢迎与我联系。感谢你的访问，希望这里的内容能对你有所帮助！
 
-:e-mail: - <ywu.info@gmail.com>
+ :e-mail: - <ywu.info@gmail.com>
+
+
+

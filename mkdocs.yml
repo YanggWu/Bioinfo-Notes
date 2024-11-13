@@ -41,6 +41,8 @@ nav:
     - 提取KEGG注释: Python/extract_KEGG.md
     - 自定义VCF文件ID: Python/update_vcf_ids.md
     - 可视化: Python/py_visualization.md
+    - 机器学习:
+        - 机器学习简介: Python/MachineLearning/index.md
 
 
   - Software:
@@ -68,6 +70,7 @@ nav:
     - Lofreq: Software/LoFreq.md
     - Snippy: Software/snippy.md
     - GATK: Software/GATK.md
+    - Freebayes: Software/freebayes.md
     - VCFtools: Software/VCFtools.md
     - bcftools: Software/bcftools.md
     - Aspera: Software/aspera.md
@@ -139,12 +142,19 @@ extra:
 extra_css:
   - stylesheets/main.css
   - stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
   - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap #自定义思源宋体
   - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体 2
   - https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap # 字体3
 
 extra_javascript:
+  - javascripts/katex.js
   - stylesheets/highlight.js
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
 plugins:
    - glightbox # 图片放大插件
    - search

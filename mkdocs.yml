@@ -43,6 +43,8 @@ nav:
     - 可视化: Python/py_visualization.md
     - 机器学习:
         - 机器学习简介: Python/MachineLearning/index.md
+        - 统计学基础: Python/MachineLearning/statistics_basics.md
+        - 统计模型: Python/MachineLearning/statistical_models.md
 
 
   - Software:
@@ -115,6 +117,7 @@ theme:
   icon:
     previous: fontawesome/solid/angle-left
     next: fontawesome/solid/angle-right
+    annotation: material/arrow-right-circle
 
   logo: assets/images/favicon.svg    #左上角logo，可插入图片链接
   favicon: assets/images/favicon2.svg # 网页icon
@@ -166,6 +169,7 @@ markdown_extensions:
   - def_list            # 支持定义列表的语法
   - footnotes           # 支持脚注语法
   - md_in_html          # 允许在 HTML 标签中使用 Markdown 语法
+
 
   # 高级格式化
   - admonition          # 支持提示块（注意、警告等）的语法

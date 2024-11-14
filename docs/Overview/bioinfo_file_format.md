@@ -257,3 +257,113 @@ BED 文件格式提供了一种灵活的方式来定义的数据行，以用来�
     chr1    3000   4000    GeneA   800     +
     ```
 
+## VCF
+
+VCF（Variant Call Format）是一种广泛使用的文本文件格式，用于存储基因组变异信息，包括单核苷酸多态性（SNP）、插入缺失（Indel）、结构变异（SV）等。VCF 文件通常由变异检测工具（如 GATK、bcftools）生成，并用于下游分析。
+
+------
+
+### 1. 基本结构
+
+VCF 文件由两部分组成：
+
+**头部（Header）**
+包括文件的元信息，描述文件的格式和内容。通常以 `##` 开头。
+
+```
+##fileformat=VCFv4.2
+##FILTER=<ID=LowQual,Description="Low quality">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths for the ref and alt alleles in the order listed">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Approximate read depth (reads with MQ=255 or with bad mates are filtered)">
+##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##source=HaplotypeCaller
+```
+
+**列名行（Column header line）**：
+以 `#CHROM` 开头，定义数据部分的字段。
+
+```
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO    FORMAT  SAMPLE1  SAMPLE2
+```
+
+**数据部分（Body）**
+包含变异信息的具体记录。数据部分的每一列含义如下：
+
+| 列名        | 含义                                                         |
+| ----------- | ------------------------------------------------------------ |
+| **CHROM**   | 染色体编号或名称（如 `chr1`、`chrX`）。                      |
+| **POS**     | 变异位点在染色体中的起始位置（1 基于 1 的坐标）。            |
+| **ID**      | 变异的标识符（如 rsID，若无可用信息则为 `.`）。              |
+| **REF**     | 参考等位基因（Reference allele）。                           |
+| **ALT**     | 替代等位基因（Alternate allele），可以有多个，以逗号分隔。   |
+| **QUAL**    | 变异的质量分值（Phred-scaled），值越高越可靠。               |
+| **FILTER**  | 过滤状态：`PASS` 表示通过过滤，或自定义过滤标记，如 `LowQual`。 |
+| **INFO**    | 变异的附加信息（键值对形式），描述变异的属性（如深度、频率）。 |
+| **FORMAT**  | 样本信息字段的格式说明，用于解释每个样本列的值。             |
+| **SAMPLES** | 每个样本的具体基因型信息，根据 FORMAT 字段定义的格式进行解析。 |
+
+### 2. 关键字段解释
+
+`INFO` 字段存储每个变异的附加信息，以键值对形式表示，多个键值对用分号分隔。
+
+=== "INFO字段结构说明"
+
+    | 字段名          | 说明                                                         |
+    | --------------- | ------------------------------------------------------------ |
+    | **ID**          | 信息标签的名称，用于标识该字段的含义。                       |
+    | **Number**      | 值的个数，表示该字段可能包含的值数量：                       |
+    |                 | - `0`：无值，仅表示布尔标记。                                |
+    |                 | - `1`：单个值。                                              |
+    |                 | - `A`：每个替代等位基因一个值。                              |
+    |                 | - `R`：参考等位基因和所有替代等位基因各一个值。              |
+    |                 | - `G`：每种基因型一个值。                                    |
+    |                 | - `.`：不定数量。                                            |
+    | **Type**        | 数据类型：`Integer`（整数）、`Float`（浮点数）、`Flag`（布尔值）、`Character`（单字符）、`String`（字符串）。 |
+    | **Description** | 对该字段的详细描述，说明其具体含义。                         |
+
+=== "INFO字段介绍"
+
+    | 字段名              | Number | Type    | 说明                                                         |
+    | ------------------- | :------: | :-------: | ------------------------------------------------------------ |
+    | **AC**              | A      | Integer | 基因型中每个替代等位基因的计数。                   |
+    | **AF**              | A      | Float   | 替代等位基因频率，每个替代等位基因一个值。                   |
+    | **AN**              | 1      | Integer | 已调用基因型中所有等位基因的总数。                           |
+    | **DP**              | 1      | Integer | 近似测序深度，覆盖该位点的总读段数。                         |
+    | **FS**              | 1      | Float   | 使用 Fisher’s exact test 计算的链偏倚的 Phred 值。           |
+    | **QD**              | 1      | Float   | 变异质量与深度的比值（Quality by Depth）。                   |
+    | **MQ**              | 1      | Float   | 比对质量的均方根值（RMS Mapping Quality）。                  |
+    | **BaseQRankSum**    | 1      | Float   | Wilcoxon 秩和检验的 Z 值，用于比较替代和参考等位基因的碱基质量。 |
+    | **InbreedingCoeff** | 1      | Float   | 基于 Hardy-Weinberg 平衡的近交系数。                         |
+    | **MLEAC**           | A      | Integer | 替代等位基因的最大似然计数，每个替代等位基因一个值。         |
+    | **MLEAF**           | A      | Float   | 替代等位基因的最大似然频率，每个替代等位基因一个值。         |
+    | **ReadPosRankSum**  | 1      | Float   | Wilcoxon 秩和检验的 Z 值，用于评估读段位置偏倚（参考 vs 替代等位基因）。 |
+    | **RAW_MQandDP**     | 2      | Integer | 改进 RMS Mapping Quality 计算的原始数据（平方和 MQ 和总深度）。 |
+    | **ExcessHet**       | 1      | Float   | 过度杂合性检验的 Phred 值，表示杂合率偏离预期的显著性。      |
+    | **MQRankSum**       | 1      | Float   | Wilcoxon 秩和检验的 Z 值，用于比较替代和参考等位基因的比对质量。 |
+    | **END**             | 1      | Integer | 区间的结束位置，用于表示区间变异（如结构变异、缺失等）。     |
+
+2.2 **FORMAT 字段**
+
+`FORMAT` 字段定义了样本数据的格式，通常包括以下常见标签：
+
+| 键     | 含义                                                        |
+| ------ | ----------------------------------------------------------- |
+| **GT** | 基因型（Genotype），如 `0/1` 表示杂合，`1/1` 表示纯合替代。 |
+| **GQ** | 基因型质量（Genotype Quality）。                            |
+| **DP** | 样本的测序深度。                                            |
+| **AD** | 等位基因深度（Allele Depth），如 `AD=10,5`。                |
+| **PL** | 基因型似然值（Phred-scaled Likelihoods）。                  |
+
+示例（数据部分）：
+
+```
+#CHROM  POS     ID  REF  ALT  QUAL  FILTER  INFO                   FORMAT      SAMPLE1        SAMPLE2
+chr1    12345   .   G    A    50    PASS    DP=100;AF=0.5;MQ=60    GT:AD:DP    0/1:10,5:15    1/1:2,8:10
+```
+
+解释：
+
+- **SAMPLE1** 的基因型是 `0/1`（杂合），参考等位基因深度 10，替代等位基因深度 5，总深度 15。
+- **SAMPLE2** 的基因型是 `1/1`（纯合替代），参考等位基因深度 2，替代等位基因深度 8，总深度 10。
+

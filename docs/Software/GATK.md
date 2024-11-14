@@ -139,3 +139,7 @@ gatk GenotypeGVCFs \
 | `--tmp-dir`                   | 指定临时文件存储目录，以提高大数据量处理时的性能。           | `--tmp-dir /path/to/tmp`                      |
 | `--max-alternate-alleles`     | 指定每个位点的最大替代等位基因数，默认值为 6。               | `--max-alternate-alleles 10`                  |
 | `--verbosity`                 | 设置日志输出的详细级别（`INFO`、`DEBUG`）。                  | `--verbosity INFO`                            |
+
+## VariantFiltration
+
+对 VCF 文件中的变异进行过滤。它可以基于用户定义的过滤条件（表达式）对 SNP 和 Indel 变异进行标记，从而将低质量或不符合标准的变异标记为 "Filtered"。

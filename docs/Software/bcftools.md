@@ -64,6 +64,9 @@ Usage: bcftools mpileup [options] in1.bam [in2.bam [...]]
 bcftools call -mv -Oz -o P1_raw.vcf.gz P1_mpileup.vcf.gz 
 ```
 
+!!! warning
+    未指定样本文件和倍性时，默认分析所有样本并假设样本为二倍体。`--ploidy` 用于设置样本的倍性，比如二倍体（diploid）或多倍体（polyploid）。
+
 - `-m`：启用多态性调用模式，以处理可能的多等位基因变异。
 
 - `-v`：只输出变异位点，避免非变异位点输出。

@@ -161,6 +161,7 @@ extra_javascript:
 plugins:
    - glightbox # 图片放大插件
    - search
+   - blog
 
 markdown_extensions:
   # 基础扩展

@@ -56,10 +56,10 @@
     ```bash
     # 基本语法
     wget [OPTION]... [URL]...
-
+    
     # 下载单个文件
     wget http://example.com/file.iso
-
+    
     # 下载并保存为不同的文件名：
     wget -O newfilename.iso http://example.com/file.iso
     ```
@@ -80,13 +80,13 @@
     
     # 从本地复制文件到远程服务器
     scp localfile.txt username@remotehost:/path/to/destination/
-
+    
     # 从远程服务器复制文件到本地
     scp username@remotehost:/path/to/remotefile.txt /local/destination/
     ```
-
+    
     `user@` 表示远程系统的用户名。
-
+    
     `SRC_HOST` 或 `DEST_HOST` 表示源或目标主机的主机名或IP地址。
     
     `file1` 和 `file2` 是源文件和目标文件的路径。
@@ -96,19 +96,19 @@
 === "工具比较"
 
     不同的压缩工具有不同的性能特点，包括压缩率、速度和功能。以下是几种常见压缩工具的比较。
-
+    
     !!! example "相同参数比较"
         ```bash title="压缩时间"
         # gzip
         time gzip -k -6 sample_1.fq    # real    0m14.175s
-
+    
         time bzip2 -k -6 sample_1.fq   # real    0m9.505s
-
+    
         time xz -k -6  sample_1.fq     # real    1m24.181s
         ```
         ```bash title="压缩率"
         ll -S sample_1* |awk 'BEGIN{OFS="\t\t"}{print $9, $5}'
-
+    
         # sample_1.fq             118M
         # sample_1.fq.gz          24M
         # sample_1.fq.bz2         18M
@@ -121,11 +121,11 @@
     **`gzip`**
 
     只能压缩单个文件，不支持目录。使用 DEFLATE 算法，提供良好的压缩率和速度。
-
+    
     ```bash
     gzip -6 -T 4 file
     ```
-
+    
     - `-6`: 默认的压缩级别为 6（在 1 到 9 的范围内），级别越高，压缩效果越好但压缩速度越慢。
     - `-T`: 使用多线程压缩。
     - `-d`: 解压缩，或使 `gunzip`
@@ -136,15 +136,15 @@
     **`pigz`**
 
     它是 `gzip` 的并行版本，可以充分利用多核 CPU 来加速压缩过程。
-
+    
     支持压缩多个文件
-
+    
     ```bash
     pigz file1 file2 file3
     ```
-
+    
     参数：
-
+    
     - `-k` 选项可以保留原始文件。
     - `-p` 选项指定使用的线程数量。
     - `-d` 解压缩，或使用 `unpigz`
@@ -152,9 +152,9 @@
 === "bzip2"
 
     `bzip2` 使用 Burrows-Wheeler 块排序文本压缩算法和 Huffman 编码，通常提供比 gzip 更好的压缩率，但速度较慢。
-
+    
     参数：
-
+    
     - `-d`: 解压缩文件。
     - `-k`: 保留原始文件。
     - `-z`: 强制压缩。
@@ -165,7 +165,7 @@
     `xz` 是一个使用 LZMA 压缩算法的压缩工具，通常提供比 gzip 和 bzip2 更高的压缩率，特别适合用于压缩大文件。
     
     常用参数：
-
+    
     - `-d`：解压缩文件。
     - `-k`：压缩时保留原始文件。
     - `-z`：强制压缩。
@@ -219,21 +219,21 @@ ls -la | grep "sample"
     ```bash
     # 默认使用空白字符（包括空格、tab、换行符）作为输入分隔符
     echo "one two three" | xargs mkdir # 这将创建三个目录：one、two、three。
-
+    
     # 如果输入包含特殊字符或特定格式（如 CSV 文件），可以使用 -d 选项指定分隔符。
     echo "one,two,three" | xargs -d ',' echo
-
+    
     # 限制参数数量：xargs 可以通过 -n 选项限制每次命令调用的参数数量。
     echo "one two three" | xargs -n 2  # xargs 默认使用 echo 命令
-
+    
     # 查找包含"pattern"的文件并删除
     grep -l "pattern" *.txt | xargs rm
-
+    
     echo "file1 file2 file3" | xargs -n 1 -I {} mv {} /path/to/destination/
-
+    
     ```
 
-##### 结合实例
+**结合实例**
 
 假设你有一个包含多个文件的目录，你想要找到这些文件中包含特定字符串的文件，并将这些文件移动到一个新的目录中。可以使用以下组合命令：
 
@@ -242,3 +242,6 @@ grep -l "pattern" *.txt | xargs -I {} mv {} /path/to/destination/
 ```
 
 这个命令首先使用`grep`找到包含指定字符串的文件列表，然后通过`xargs`将这些文件传递给`mv`命令，最后将它们移动到指定的目录。
+
+## 条件判断
+

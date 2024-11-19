@@ -1,6 +1,6 @@
 # [Info]
 site_name: Bioinformatics Notes
-site_description: A documentation for my project
+site_description: A documentation for Bioinformatics
 docs_dir: "docs"
 site_dir: "site"
 site_url: https://yanggwu.github.io/Bioinfo-Notes/
@@ -152,7 +152,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/katex.js
-  - stylesheets/highlight.js
+  - javascripts/highlight.js
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - https://unpkg.com/katex@0/dist/katex.min.js

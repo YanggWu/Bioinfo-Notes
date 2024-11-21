@@ -171,22 +171,82 @@ snakemake --cores 4 --set-resources myrule:partition="foo"
 snakemake --dag | dot -Tpdf > dag.pdf
 ```
 
--c, --cores 设置需要使用的核心数，省略数字则表示使用可用的全部核心数。
+`-c, --cores` 设置需要使用的核心数，省略数字则表示使用可用的全部核心数。
 
--n, --dry-run 试运行，对于测试工作流是否定义正确以及估计所需的计算量很有用。
+`-n, --dry-run` 试运行，对于测试工作流是否定义正确以及估计所需的计算量很有用。
 
---set-threads, --set-resources 覆盖默认值，为特定的rule 设置使用的资源。
+`--set-threads`, --set-resources 覆盖默认值，为特定的rule 设置使用的资源。
 
--d, --directory 指定工作目录（snakefile 中的相对路径将使用此目录作为其原点）。
+`-d, --directory` 指定工作目录（snakefile 中的相对路径将使用此目录作为其原点）。
 
-## 二. 其他用法
+## 三. 其他用法
 
-### 输入
+### 多种输入方式
 
-在前面的示例中都是使用的静态路径模式。也就是说，文件路径格式是预先确定的，文件名和目录结构是基于统一模式生成的。我们通过占位符来指定了多个输入文件，不通文件之间这是 Snakemake 中的常见用法之一，适用于简单的文件路径结构。
+在前面的示例中都是使用的静态路径模式。也就是说，文件路径格式是预先确定的，文件名和目录结构是基于统一模式生成的。我们通过占位符来指定了多个输入文件，这是 Snakemake 中的常见用法之一，适用于简单的文件路径结构。
 
 对于样品比较多，命令复杂的情况，可以基于配置文件中的值或动态需要选择不同的路径。也可以将样本信息写入单独的文件中，编写python函数读取样本信息传递给input。
+!!! tip
+    可以通过`units.txt`样本信息文件，使用 lambda 函数跟 snakemake 的通配符对象动态的获取每个样品的信息。Snakemake 在解析规则时，通过 wildcards 对象动态生成输入、输出等信息。
 
+=== "Snakefile"
+    ```py
+    # config file
+    configfile: "config/config.yaml"
+
+    # Load the required modules
+    import pandas as pd
+    import os
+
+    # Load the units sheet
+    units = pd.read_csv(config["units"], sep="\t", index_col=0).sort_index()
+
+    # get the list of samples name
+    SAMPLES = units.index.tolist()
+
+    # define the Function to get the input files
+    def get_fq(wildcards, fq):
+        """
+        wildcards: class 'snakemake.io.Wildcards'
+            The wildcards of the rule
+        fq: str
+            The file type to get. Either "fq1" or "fq2"
+        """
+        return units.loc[wildcards.sample, fq]
+
+    # fastp rule for cleaning the fastq files
+    rule fastp:
+        input:
+            fq1 = lambda wildcards: get_fq(wildcards, "fq1"),
+            fq2 = lambda wildcards: get_fq(wildcards, "fq2")
+        output:
+            fq1 = "1_fastQc/{sample}_1.clean.fq.gz",
+            fq2 = "1_fastQc/{sample}_2.clean.fq.gz",
+            html = "1_fastQc/{sample}_fastp.html",
+            json = "1_fastQc/{sample}_fastp.json",
+        threads: 4
+        conda: "envs/Qc.yaml"
+        log: "00_logs/fastp/{sample}.log"
+        shell:
+            """
+            fastp \
+                --thread {threads} \
+                --qualified_quality_phred 15 \
+                --unqualified_percent_limit 40 \
+                --n_base_limit 10 \
+                --length_required 50 \
+                --detect_adapter_for_pe \
+                -i {input.fq1} -I {input.fq2} \
+                -o {output.fq1} -O {output.fq2} \
+                -h {output.html} -j {output.json} 2> {log}
+            """
+    ```
+=== "units.txt"
+    ```
+    sample  fq1     fq2
+    P1      /home/ywu/fast/data/P1_1.fq.gz  /home/ywu/fast/data/P1_2.fq.gz
+    P2      /home/ywu/fast/data/P2_1.fq.gz  /home/ywu/fast/data/P2_2.fq.gz
+    ```
 ### benchmarking
 
 **基准测试** 通过 `benchmark` 指令，Snakemake 可以被指示去测量一个作业的墙上时间（wall clock time，即实际的执行时间）。我们在规则 `bwa_map` 中启用了基准测试：
@@ -268,7 +328,7 @@ configfile: "path/to/config.yaml"
 
 
 
-## 三. 在集群中使用
+## 四. 在集群中使用
 
 LSF是常见的高性能计算批处理系统，在LSF集群中使用Snakemake，需要借助执行器插件。
 
@@ -324,7 +384,7 @@ rule a:
         lsf_extra="-R a100 -gpu num=2"
 ```
 
-##  四. Wrapper的基本使用
+##  五. Wrapper的基本使用
 
 :material-contain: [The Snakemake Wrappers repository | Snakemake wrappers](https://snakemake-wrappers.readthedocs.io/en/stable/)
 

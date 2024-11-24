@@ -137,6 +137,15 @@ rule all:
 ### **expand函数**
 
 可以方便地利用一些简单的列表和基本模板，得到文件列表。一般用在需要多个输入或输出文件的场合。
+```py
+samples = ["sample1", "sample2", "sample3"]
+
+files = expand("data/{sample}.fastq", sample=samples)
+print(files)
+
+# ['data/sample1.fastq', 'data/sample2.fastq', 'data/sample3.fastq']
+
+```
 
 ### glob_wildcards
 

@@ -112,4 +112,3 @@ samtools view -h -b -f sample_sorted.bam Chr10 > sample_Chr10_sorted.bam
 # bam to fastq, -N 将 1/2 追加到 read name
 samtools fastq -1 sample_chr10_1.fq -2 sample_chr10_2.fq -N sample_Chr10_sorted.bam
 ```
-

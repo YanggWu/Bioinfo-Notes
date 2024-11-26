@@ -335,7 +335,10 @@ Snakemake 直接支持工作流程的配置，配置以 JSON 或 YAML 文件的�
 configfile: "path/to/config.yaml"
 ```
 
+### 一些注意事项
 
+!!! warning
+    当在 Snakemake 的 shell 命令中需要使用大括号 `{}`（例如利用 bash 的大括号扩展）而不希望它们被 Snakemake 解析时，应通过 重复大括号 `{{}}`来转义。这确保了 Snakemake 在格式化时保留大括号，使得 shell 能够正确地执行包含大括号的命令
 
 ## 四. 在集群中使用
 

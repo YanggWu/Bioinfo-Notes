@@ -1,6 +1,11 @@
 # BWA
 
 BWA（Burrows-Wheeler Aligner） 是一种高效的序列比对工具，专为将短读段（如Illumina测序数据）比对到参考基因组而设计。它采用了Burrows-Wheeler变换（BWT）和FM-index进行基因组索引和比对，因此能够在保证比对准确性的前提下显著提高比对速度和内存利用率。
+<div class="grid cards" markdown>
+
+- :octicons-book-16: <a href="https://bio-bwa.sourceforge.net/bwa.shtml" target="_blank">Manual Reference Pages  - bwa</a>
+
+</div>
 
 
 ### BWA 常用模块

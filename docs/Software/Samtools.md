@@ -94,10 +94,12 @@ samtools view -F sample_sorted.bam
 ### 统计和汇总
 
 ```bash
-# 提供BAM文件的比对统计信息。
+# 1. 提供BAM文件的简单比对统计信息。
 samtools flagstat sample_sorted.bam
 
-# 显示每个参考序列的比对读段数。
+# 3. samtools stats 从 BAM 文件中提取详细的统计信息
+
+# 2. 显示每个参考序列的比对读段数。
 samtools idxstats sample_sorted.bam
 ```
 

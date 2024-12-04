@@ -2,6 +2,8 @@
 
 **Snippy** 是一个用于从细菌 NGS（高通量测序）数据中快速调用变异的工具。它将配对端（或单端）读段比对到参考基因组，然后调用 SNP（单核苷酸多态性）和 indel 变异。
 
+:material-store:官方仓库： <https://github.com/tseemann/snippy>
+
 ## 基本使用
 
  Snippy支持多种数据输入，具体取决于你手上的数据类型（配对端读段、单端读段、contigs 或 BAM 文件）。

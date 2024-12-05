@@ -1,0 +1,64 @@
+/* 自定义主题颜色 */
+:root>* {
+    --md-primary-fg-color: #4482b4;
+    --md-primary-fg-color--light: #4482b4;
+    --md-primary-fg-color--dark: #0d314f;
+  
+}
+
+.md-header__ellipsis .md-header__topic:nth-child(1) .md-ellipsis { /* 最上方标题的样式 */ 
+    font-size: 18px;  /* 增大字体大小 */
+    font-family: "Noto Serif SC"
+}
+
+li.md-tabs__item  {             /* 最上面一级目录的样式 */       
+  /* 修改字体 */
+  font-family: "Noto Serif SC", system-ui;
+  font-weight: 600;
+  color: whitesmoke;
+}
+
+/************ 总体下方目录样式设置***********/ 
+span.md-ellipsis  {                 
+  font-size: 16px; 
+}
+li.md-nav__item {                   /* 下方目录样式设置*/       
+  /* 修改字体 */
+  font-family: LXGW WenKai;
+  font-size: 11.5px;
+  font-weight: 500;
+
+}
+
+/************* 折叠块标题 *************/ 
+.tabbed-labels label {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600; /* 粗体 */
+  font-size: 16.5px; /* 设置字体大小 */
+}
+
+/************* 警示部分样式设置 ********/ 
+.admonition p > code{
+  font-size: 13px; /* 较小的字体大小，相对于全局设置 */
+}
+.admonition p {
+  font-size: 13.2px; /* 较小的字体大小，相对于全局设置 */
+}
+
+
+/* #######修改特定语言代码块的背景和字体颜色########## */
+/* 参数颜色 */
+.highlight .nv {
+  color: #cd8468; /* 橙色 */
+}
+/* 文件名和路径 */
+.highlight .fm {
+  color: #dcdcaa; /* 黄色 */
+}
+/* 注释 */
+.highlight .c, .highlight .cm, .highlight .c1 {
+  /* color: #6a9955; 绿色 */
+  /* font-style: italic; */
+}
+
+

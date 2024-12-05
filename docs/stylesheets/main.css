@@ -115,6 +115,8 @@ code, pre, kbd, samp {
   font-family: "Roboto", sans-serif;
   min-width: 94%; /* 设置表格最小宽度 */
   margin-bottom: 0.2em;
+  margin-left: 10px; /* 表格整体向右移动20px */
+  margin-right: 5px; /* 表格整体向左移动5px */
   padding: 0.2rem 0.3rem; /* 设置内边距 */
 }
 
@@ -123,6 +125,7 @@ code, pre, kbd, samp {
   display: table;
   font-size: px2rem(11px); /* 设置字体大小 */
   border-spacing: px2em(1px); /* 设置单元格间距 */
+  min-width: 0.5rem;
 }
 
 /* 设置单元格内容的上下居中和其他样式 */
@@ -140,7 +143,11 @@ code, pre, kbd, samp {
   font-size: 13.5px;
   text-align: center; /* 设置水平居中 */
   padding: 0.4em 0.6em; /* 设置表头内边距 */
+  min-width: 0.5rem;
 }
+/* .md-typeset table:not([class]) th {
+  min-width: 3rem;
+} */
 
 /************* 内嵌代码块相关设置 *******************/
 

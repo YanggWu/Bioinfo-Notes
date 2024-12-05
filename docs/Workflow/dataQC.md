@@ -2,17 +2,15 @@
 
 FASTQ 文件是存储高通量测序数据的标准格式，包含了每个测序读取（read）的序列信息和对应的质量评分。原始数据会包含一些低质量reads和测序接头，因此对数据进行质控，去除低质量数据、检测测序偏差、确保数据完整性等质量控制是生信分析的关键步骤，它确保下游分析的准确性和可靠性。
 
-常用的质控工具
+**常用的质控工具**
 
-FastQC: 生成详细的质量报告，包括每个碱基的质量分布、GC 含量分布、序列长度分布等。
-
-fastp：集成质量控制和过滤功能，并且能直接生成质量报告。
-
-MultiQC：整合多个质控报告，生成一个综合报告。
-
-Trimmomatic：专注于序列的质量剪切和接头去除，提供多种剪切模式和灵活的参数设置。
-
-Cutadapt：专门用于去除接头序列，支持各种复杂的接头结构。
+| 工具名称        | 功能特点                                          |
+| --------------- | ------------------------------------------------- |
+| **FastQC**      | 生成详细质量报告，包括碱基质量分布、GC 含量分布等 |
+| **fastp**       | 集成质量控制和过滤功能，能直接生成质量报告        |
+| **MultiQC**     | 整合多个工具的质控报告，生成一个综合性的质控报告  |
+| **Trimmomatic** | 专注于质量剪切和接头去除，提供多种模式与灵活参数  |
+| **Cutadapt**    | 专门用于去除接头序列，支持各种复杂接头结构的处理  |
 
 ## 一般的质控流程
 
@@ -37,11 +35,11 @@ fastqc -t 2 test_data/*.gz  -o 1.fastQC/
 
 **重点关注**
 
-**Per base sequence quality**：检查每个碱基位置的质量分布，关注是否有低质量区域（通常 Q20 或 Q30 以下）。
+1. **`Per base sequence quality`**：检查每个碱基位置的质量分布，关注是否有低质量区域（通常 Q20 或 Q30 以下）。
 
-**Per sequence GC content**：评估 GC 含量分布是否符合预期，异常的 GC 分布可能提示样品污染或测序偏差。
+2. **`Per sequence GC content`**：评估 GC 含量分布是否符合预期，异常的 GC 分布可能提示样品污染或测序偏差。
 
-**Adapter Content**：检查是否存在接头序列残留，需要在剪切时去除。
+3. **`Adapter Content`**：检查是否存在接头序列残留，需要在剪切时去除。
 
 ### 3. 质量剪切和过滤
 
@@ -113,7 +111,7 @@ multiqc 1.fastQc/ --filename multiqc_report --outdir 1.fastQc/
     ```bash
     # 试运行
     snakemake -np -s qc.smk
-
+    
     ## Building DAG of jobs...
     ## Using shell: /usr/bin/bash
     ## Provided cores: 2
@@ -126,7 +124,7 @@ multiqc 1.fastQc/ --filename multiqc_report --outdir 1.fastQc/
     ## fastqc         2
     ## multiqc        1
     ## total          6
-
+    
     # 运行
     snakemake -p -s qc.smk
     ```
@@ -145,15 +143,15 @@ multiqc 1.fastQc/ --filename multiqc_report --outdir 1.fastQc/
     ```py
     # configfile
     configfile: "config.yaml"
-
+    
     import pandas as pd
-
+    
     # Load units from config file. Note: the first column must be the sample name
     units = pd.read_csv(config["units"], sep="\t", index_col=0).sort_index()
-
+    
     # get the list of samples
     SAMPLES = units.index.tolist()
-
+    
     # define the Function to get the input files
     def get_fq(wildcards, fq):
         """
@@ -163,7 +161,7 @@ multiqc 1.fastQc/ --filename multiqc_report --outdir 1.fastQc/
             The file type to get. Either "fq1" or "fq2"
         """
         return units.loc[wildcards.sample, fq]
-
+    
     # Define the rule all
     rule all:
         input:
@@ -187,7 +185,7 @@ multiqc 1.fastQc/ --filename multiqc_report --outdir 1.fastQc/
                 {input.fq1} {input.fq2} \
                 -o 1.fastQc 2> {log}
             """
-
+    
     # fastp rule for paired-end reads
     rule fastp:
         input:
@@ -216,7 +214,7 @@ multiqc 1.fastQc/ --filename multiqc_report --outdir 1.fastQc/
                 -O {output.fq2} \
                 -h {output.html} -j {output.json} 2> {log}
             """
-
+    
     # 规则 multiqc 使用 MultiQC 汇总 FastQC 和 Fastp质控的结果
     rule multiqc:
         input:

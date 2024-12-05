@@ -2,7 +2,7 @@
 
 **Mamba** 是 **Conda** 的一个更快、更轻量级的替代品，专注于提供更快的包管理体验。Conda 是一个流行的包管理器和环境管理器，特别适用于科学计算和数据科学。**Mamba** 使用与 Conda 相同的包格式和仓库，但通过 C++ 实现的核心算法，大大提高了包解析和依赖管理的速度，特别是在处理复杂环境和大规模依赖时性能优势明显。
 
-## 安装 Mamba
+## 一. 安装 Mamba
 
 可以通过以下几种方式安装 Mamba。
 
@@ -75,7 +75,7 @@ custom_channels:
   simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
 ```
 
-## 基本使用
+## 二. 基本使用
 
 ```bash
 # 激活mamba环境
@@ -116,10 +116,49 @@ $ mamba env remove -p pytorch # 无目录残留
 (base) $ mamba deactivate
 ```
 
-`conda run` 是 Conda 提供的一种机制，用于在指定环境中执行命令，而无需激活该环境。
+!!! note
+    `conda run` 是 Conda 提供的一种机制，用于在指定环境中执行命令，而无需激活该环境。
+
+    ```bash
+    conda run -n base python --version	# Python 3.12.7
+    conda  run -n calling  python --version	# Python 3.13.0
+    ```
+
+## 三. Conda 通道
+
+Conda 通道是包仓库的集合，包含了一系列软件包及其依赖项。通道可以是官方的（如 `defaults`）、社区维护的（如 `conda-forge` 和 `bioconda`）、或用户自定义的。
+
+1. **提供软件包源**：下载和安装所需的软件包。
+
+2. **控制优先级**：为不同来源的包设置优先级，以确保稳定性和兼容性。
+
+3. **加速安装**：通过镜像站（如清华源）提高下载速度。
 
 ```bash
-conda run -n base python --version	# Python 3.12.7
-conda  run -n calling  python --version	# Python 3.13.0
+# 1. 查看现有通道配置
+conda config --show channels
+
+# 2. 添加通道
+conda config --add channels conda-forge
+conda config --add channels bioconda
+
+# 3. 删除通道
+conda config --remove channels conda-forge
+
+# 4. 重置默认通道
+conda config --remove-key channels
+
+```
+
+### 通道优先级
+
+Conda 安装和解决包依赖时，会根据通道的优先级来决定从哪个通道下载软件包。如果通道优先级没有正确设置，可能会导致不兼容的软件包被安装，进而引发问题。
+
+```
+# 1. 设置为严格优先级
+conda config --set channel_priority strict
+
+# 2. 灵活优先级
+conda config --set channel_priority flexible
 ```
 

@@ -94,7 +94,7 @@ snippy \
 
 ## 报错处理
 
-### 一. samtools 版本问题
+### 1. samtools 版本问题
 
 **问题描述**：使用双端 `fastq` 文件作为输入时，运行 `snippy` 过程中报错。通过查看 `snps.log` 文件，发现报错信息为：
 
@@ -125,7 +125,7 @@ samtools markdup: error, no ms score tag
 
 降级 `samtools` 后，问题成功解决，`snippy` 在使用 `fastq` 文件作为输入时可以正常运行，不再出现 `ms score tag` 相关报错。
 
-### 二. vt 版本问题
+### 2. vt 版本问题
 
 **问题描述**：通过 `freebayes-parallel` 生成的原始 VCF 文件包含变异信息，但最终过滤后的 VCF 文件不含变异信息。
 
@@ -157,3 +157,46 @@ samtools markdup: error, no ms score tag
       ```bash
       mamba insatll -c bioconda snippy samtools=1.15 vt=0.57721
       ```
+
+## snippy-core
+
+`snippy-core` 是 Snippy 的辅助工具，用于从多个 Snippy 结果目录中提取核心基因组 SNP 和生成适合构建系统发育树的文件。它特别适用于细菌基因组分析，能够快速提取共享的 SNP，并生成用于系统发育分析的标准格式文件。
+
+### 基本使用
+
+```bash
+snippy-core --ref reference.fa snippy1 snippy2 snippy3 ...
+
+# 示例
+snippy-core --ref ~/00_data/bacterial_reseq/genome.fa 2_snippy/*
+```
+
+**`Snippy-core` 参数解析**
+
+1. **`--help`** 显示帮助信息并退出。
+2. **`--version`** 显示版本信息并退出。
+3. **`--ref <file>`** 指定参考基因组文件（FASTA 或 GenBank 格式）。
+4. **`--prefix <string>`** 设置输出文件前缀，默认值为 `core`。
+5. **`--maxhap <int>`** 指定最大多倍体长度，默认值为 `100`。
+6. **`--mask <file>`** 提供 BED 文件，用于屏蔽特定区域。
+7. **`--gap-char <char>`** 设置缺失位点的字符表示，默认值为 `-`。
+8. **`--mask-char <char>`** 设置屏蔽区域的字符表示，默认值为 `X`。
+9. **`--inprefix <string>`** 指定 Snippy 输出文件的前缀，默认值为 `snps`。
+10. **`--debug`** 输出调试信息，默认值为关闭。
+11. **`--check`** 检查依赖是否满足并退出。
+
+### **输出文件说明**
+
+运行 `snippy-core` 后，会生成以下文件（假设前缀为 `core`）：
+
+| 文件名          | 描述                                                         |
+| --------------- | ------------------------------------------------------------ |
+| `core.aln`      | 核心 SNP 的多序列对齐文件，适合用于构建系统发育树（只包含所有样本共享的 SNP）。 |
+| `core.full.aln` | 全基因组对齐文件，包括核心 SNP 和非核心区域（插入、缺失和不变区域）。 |
+| `core.ref.fa`   | 提取的参考基因组序列（包含核心 SNP 的注释）。                |
+| `core.tab`      | 核心 SNP 的详细表格，包含变异位点、参考碱基、变异碱基、位置等信息。 |
+| `core.txt`      | 核心 SNP 的摘要信息，包括变异数量和样本统计。                |
+| `core.vcf`      | 核心 SNP 的 VCF 格式文件。                                   |
+
+ ### 文件内容示例
+

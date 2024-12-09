@@ -2,7 +2,7 @@
 
 VCFtools是一款常用的生物信息软件，用于处理和分析VCF（Variant Call Format）文件，这些文件包含了基因组变异数据。VCFtools提供了一系列命令和参数，用于过滤、统计、转换和注释VCF文件
 
-官方文档：<https://vcftools.github.io/man_latest.html>
+:material-file-document: 官方文档：<https://vcftools.github.io/man_latest.html>
 
 ## 安装
 
@@ -16,9 +16,8 @@ make install
 
 ## 基本使用
 
-对得到的VCF文件进行过滤。
-
 ```bash
+# 1.对得到的VCF文件进行过滤
 vcftools --gzvcf marge_296_VCF.vcf.gz \
     --not-chr ChrSy \
     --not-chr ChrUn \
@@ -31,6 +30,11 @@ vcftools --gzvcf marge_296_VCF.vcf.gz \
     --out RNA_296_raw_snp \
     --recode \
     --remove-indels
+
+# 2.计算每个样品的缺失率
+vcftools --vcf Last_101.vcf \
+	--missing-indv \
+	--out Last_101_miss
 ```
 
 

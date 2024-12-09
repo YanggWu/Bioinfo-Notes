@@ -14,7 +14,7 @@ nav:
   - Overview: 
     - 常见文件格式: Overview/bioinfo_file_format.md
     - 基因表达定量: Overview/gene_exp_quant.md
-    - 比对: Overview/Align_Tools.md
+    - 序列比对: Overview/Align_Tools.md
 
   - Linux:
     - Linux/index.md
@@ -76,6 +76,7 @@ nav:
     - Freebayes: Software/freebayes.md
     - VCFtools: Software/VCFtools.md
     - bcftools: Software/bcftools.md
+    - IQ-TREE: Software/iqtree.md
     - Aspera: Software/aspera.md
     - GEMMA: Software/GEMMA.md
     - Shovill: Software/Shovill.md

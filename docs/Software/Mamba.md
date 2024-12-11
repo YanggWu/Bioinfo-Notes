@@ -124,7 +124,91 @@ $ mamba env remove -p pytorch # 无目录残留
     conda  run -n calling  python --version	# Python 3.13.0
     ```
 
-## 三. Conda 通道
+## 三. Conda env
+
+以下是关于 Conda 环境的一些常用操作和内容的详细介绍：
+
+### 环境基础操作
+
+```bash
+# 查看 Conda 环境
+conda env list
+
+# 常见环境
+conda create --name <env_name> python=3.9
+
+# 激活环境
+conda activate <env_name>
+# 退出当前环境
+conda deactivate
+
+# 更新环境
+conda update --name <env_name> <package_name>	# 更新现有环境中的包
+
+# 删除指定环境
+conda remove --name <env_name> --all
+# 删除指定路径的环境
+conda remove --prefix /path/to/env --all
+```
+
+!!! tip
+    使用环境配置文件创建 Conda 环境，创建一个 `.yaml` 文件（例如 `env.yaml`），内容如下
+
+    ```yaml
+    name: pop
+    channels:
+      - bioconda
+      - conda-forge
+      - defaults
+    dependencies:
+      - plink =1.90
+      - iqtree =2.3.6
+    ```
+
+    **从配置文件创建环境**
+
+    ```bash
+    conda env create --file env.yaml
+    ```
+
+    **更新环境**: 如果需要修改环境（例如添加新包），编辑 `env.yaml`，然后运行：
+
+    ```bash
+    conda env update --file env.yaml --prune
+    ```
+
+### 环境目录自定义
+
+默认情况下，Conda 环境会存储在 `~/miniconda3/envs/` 或 `~/anaconda3/envs/` 目录下。可以自定义环境的存储位置：
+
+```bash
+# 自定义存储路径
+conda create --prefix /custom/path/to/env python=3.9 numpy
+```
+
+激活环境时需使用路径：
+
+```bash
+conda activate /custom/path/to/env
+```
+
+指定全局 Conda 环境存储目录通过 `conda config` 配置：
+
+```
+
+conda config --set envs_dirs /path/to/envs_dir
+```
+
+### 导出与共享环境
+
+将环境导出为 `.yaml` 文件
+
+```bash
+conda env export --name <env_name> --file environment.yaml
+
+```
+
+## 四. Conda 通道
 
 Conda 通道是包仓库的集合，包含了一系列软件包及其依赖项。通道可以是官方的（如 `defaults`）、社区维护的（如 `conda-forge` 和 `bioconda`）、或用户自定义的。
 
@@ -162,3 +246,4 @@ conda config --set channel_priority strict
 conda config --set channel_priority flexible
 ```
 
+## 

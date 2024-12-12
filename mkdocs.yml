@@ -80,6 +80,7 @@ nav:
     - Aspera: Software/aspera.md
     - GEMMA: Software/GEMMA.md
     - Shovill: Software/Shovill.md
+    - Quast: Software/quast.md
 
   - Workflow:
     - Fastq 文件质控: Workflow/dataQC.md

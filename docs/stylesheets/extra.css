@@ -19,6 +19,13 @@ li.md-tabs__item  {             /* 最上面一级目录的样式 */
 }
 
 /************ 总体下方目录样式设置***********/ 
+/* 左侧目录 小标题样式 */
+div>a>span.md-ellipsis {
+  font-size: 17.5px;
+  font-weight: bold;
+  margin-bottom: 1px;
+}
+
 span.md-ellipsis  {                 
   font-size: 16px; 
 }
@@ -61,4 +68,14 @@ li.md-nav__item {                   /* 下方目录样式设置*/
   /* font-style: italic; */
 }
 
+
+/************** 自定义的一些字体样式 ************/
+/* 定义一个类，用于设置样式 */
+.ct {
+  font-size: 20px;      /* 字体大小 */
+  font-family: "LXGW WenKai", sans-serif; /* 字体类型 */
+  font-weight: bold;    /* 字体加粗 */
+  /* text-transform: uppercase; 字母大写 */
+  text-align: center;   /* 居中对齐 */
+}
 

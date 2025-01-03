@@ -87,3 +87,15 @@ git config --global https.proxy socks5 127.0.0.1:7890
 推送冲突的原因一般是远程仓库发生改变，提交者的版本库小于远程仓库。
 
 可以先 git pull 实现同步之后，在 git push 推送到远程仓库。
+
+## Gitee 使用示例
+
+### 初次运行 Git 前的配置
+
+```bash
+# 用户信息配置
+git config --global user.name "Wu Yang"
+git config --global user.email ywu.info@gmail.com
+```
+
+如果用了 --global 选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的仓库都会默认使用这里配置的用户信息。如果要在某个特定的仓库中使用其他名字或者电邮，只要去掉 --global 选项重新配置即可，新的设定保存在当前仓库的 .git/config 文件里。

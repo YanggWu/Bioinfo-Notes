@@ -18,7 +18,7 @@ bcftools mpileup \
 
     `bcftools mpileup` 生成的 VCF 文件和常规 VCF 文件有一些关键区别。主要包含每个位点的碱基堆叠深度、质量等信息，并未进行真正的变异调用和过滤。因此它可能包含更多的低置信度变异位点。并不是最终的已筛选和注释的变异信息。
 
-### mpileup 参数解析
+**mpileup 参数解析**
 
 ```bash
 Usage: bcftools mpileup [options] in1.bam [in2.bam [...]]
@@ -101,3 +101,25 @@ bcftools filter \
 主要过滤参数
 
 `-e, --exclude EXPR`：排除符合给定条件（`EXPR`）的变异位点。仅在表达式为真时排除位点。例如，要排除质量小于20的变异位点：
+
+## bcftools view
+
+## bcftools +setGT
+
+使用 `bcftools +setGT` 插件来将单倍体的 `0` , `1` 改成 `0/0` / `1/1`。
+
+```bash
+# 替换基因型 0 为 0/0
+bcftools +setGT yourdata.vcf -Oz -o fixed.vcf.gz -- \
+  -t q \
+  -i 'GT="0"' \
+  -n "0/0"
+  
+# 替换基因型 1 为 1/1
+bcftools +setGT fixed.vcf.gz -Oz -o fixed.vcf.gz -- \
+  -t q \
+  -i 'GT="1"' \
+  -n "1/1"
+```
+
+完成后，`fixed.vcf.gz` 中所有原先的单倍体表达将被修复为二倍体格式。

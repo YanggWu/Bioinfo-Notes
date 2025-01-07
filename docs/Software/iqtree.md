@@ -12,6 +12,11 @@ IQ-TREE2 是一个高效且灵活的系统发育分析软件，用于构建进�
 **最大似然法构建进化树**
 
 ```bash
+# vcf文件格式转换成Phylip格式，用于后续构建进化树
+run_pipeline.pl -Xmx5G \
+ -importGuess all_clean.sorted.vcf.gz \
+ -ExportPlugin -saveAs supergene.phy -format Phylip_Inter
+
 # 1. 简单使用
 iqtree -s core.aln -st DNA -T 2 -mem 8G
 

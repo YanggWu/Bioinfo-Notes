@@ -206,13 +206,13 @@ snakemake --dag | dot -Tpdf > dag.pdf
     # Load the required modules
     import pandas as pd
     import os
-
+    
     # Load the units sheet
     units = pd.read_csv(config["units"], sep="\t", index_col=0).sort_index()
-
+    
     # get the list of samples name
     SAMPLES = units.index.tolist()
-
+    
     # define the Function to get the input files
     def get_fq(wildcards, fq):
         """
@@ -222,7 +222,7 @@ snakemake --dag | dot -Tpdf > dag.pdf
             The file type to get. Either "fq1" or "fq2"
         """
         return units.loc[wildcards.sample, fq]
-
+    
     # fastp rule for cleaning the fastq files
     rule fastp:
         input:
@@ -533,4 +533,36 @@ wrapper:
 ```
 
 这样，Snakemake 应该能够正确找到并使用本地的 wrapper 文件。如果问题仍然存在，请检查路径拼写和文件权限。
+
+## 六. 分布和可重复性
+
+官网建议将每个工作流储存在以下结构的专用 git 存储库中。
+
+```
+├── .gitignore
+├── README.md
+├── LICENSE.md
+├── workflow
+│   ├── rules
+|   │   ├── module1.smk
+|   │   └── module2.smk
+│   ├── envs
+|   │   ├── tool1.yaml
+|   │   └── tool2.yaml
+│   ├── scripts
+|   │   ├── script1.py
+|   │   └── script2.R
+│   ├── notebooks
+|   │   ├── notebook1.py.ipynb
+|   │   └── notebook2.r.ipynb
+│   ├── report
+|   │   ├── plot1.rst
+|   │   └── plot2.rst
+|   └── Snakefile
+├── config
+│   ├── config.yaml
+│   └── some-sheet.tsv
+├── results
+└── resources
+```
 

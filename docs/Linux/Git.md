@@ -88,9 +88,7 @@ git config --global https.proxy socks5 127.0.0.1:7890
 
 可以先 git pull 实现同步之后，在 git push 推送到远程仓库。
 
-## Gitee 使用示例
-
-### 初次运行 Git 前的配置
+## 初次运行 Git 前的配置
 
 ```bash
 # 用户信息配置
@@ -100,3 +98,68 @@ git config --global user.email ywu.info@gmail.com
 
 !!! note
     如果用了 `--global` 选项，那么更改的配置文件就是位于你用户主目录下的那个，以后你所有的仓库都会默认使用这里配置的用户信息。如果要在某个特定的仓库中使用其他名字或者电邮，只要去掉 --global 选项重新配置即可，新的设定保存在当前仓库的 .git/config 文件里。
+
+### 配置密钥对
+
+如果是新的服务器上，需要生成 SSH 密钥对
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "ywu.info@gmail.com"
+```
+
+`-t rsa`：指定使用 RSA 算法生成密钥。
+
+`-b 4096`：设置密钥的长度为 4096 位。
+
+`-C` 后面是用于标识密钥的注释，可以设置为你的邮箱或其他标识信息。
+
+然后会提示你设置密钥文件的保存位置（默认是 `~/.ssh/id_rsa`），以及设置一个 passphrase（密码短语）。你可以选择不设置 passphrase，直接按回车。
+
+**1. 为代码仓库配置SSH密钥:**
+
+生成密钥后，需要将公钥添加到代码仓库 。(`GitHub`, `Gitee`)
+
+```
+# 查看公钥：
+cat ~/.ssh/id_rsa.pub
+```
+!!! tips
+    登录到你的 GitHub 账户，进入 **Settings** -> **SSH and GPG keys** -> **New SSH key**。
+
+    在 "Title" 中填写一个名称，然后将 `id_rsa.pub` 文件中的内容粘贴到 "Key" 栏中。
+
+**2. 测试 SSH 连接**
+
+```bash
+# 1.测试 GitHub
+ssh -T git@github.com
+
+# 2.测试 Gitee
+ssh -T git@gitee.com
+```
+
+### 配置 SSH 客户端
+
+在服务器上配置 SSH 客户端，让它能正确区分使用 GitHub 还是 Gitee 的密钥。
+
+- 编辑 `~/.ssh/config` 文件，如果没有这个文件，可以创建一个。
+
+```bash
+vim ~/.ssh/config
+```
+
+- 添加以下内容：
+
+```
+# GitHub 配置
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa
+
+# Gitee 配置
+Host gitee.com
+  HostName gitee.com
+  User git
+  IdentityFile ~/.ssh/id_rsa
+```

@@ -83,6 +83,7 @@ nav:
     - Quast: Software/quast.md
 
   - Workflow:
+    - 测序数据下载: Workflow/down_fq.md
     - Fastq 文件质控: Workflow/dataQC.md
     - 构建常用 index: Workflow/build_index.md
     - 基因组重测序: Workflow/基因组重测序.md

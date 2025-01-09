@@ -566,3 +566,26 @@ wrapper:
 └── resources
 ```
 
+### 在容器中运行
+
+作为使用 Conda 的替代方法，可以为每个规则定义要使用的（docker）容器，例如
+
+```bash
+rule NAME:
+    input:
+        "table.txt"
+    output:
+        "plots/myplot.pdf"
+    container:
+        "docker://joseespinosa/docker-r-ggplot2:1.0"
+    script:
+        "scripts/plot-stuff.R"
+```
+
+使用以下方式执行 Snakemake
+
+```
+snakemake --software-deployment-method apptainer
+# or the shorthand version
+snakemake --sdm apptainer
+```

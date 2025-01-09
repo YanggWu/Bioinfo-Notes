@@ -57,7 +57,27 @@ git remote set-url origin https://github.com/yanggwu/Record.git
 
 ```
 
+### 分支
 
+```bash
+# 克隆特定分支
+git clone --branch <branch_name> <repository-url>
+
+# 查看远程分支
+git branch -r
+
+# 切换到远程分支（本地次无分支时）
+git checkout -b feature origin/feature
+
+# 切换到本地已有的分支
+git checkout develop
+
+设置本地分支的远程跟踪分支
+git branch --set-upstream-to=origin/feature
+
+# 拉取当前分支关联的远程分支更新
+git pull
+```
 
 ## 常见问题
 

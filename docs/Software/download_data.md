@@ -38,13 +38,13 @@ nohup fasterq-dump --split-files --threads 5  --outdir SRR*/*sra &
 
 ## Aspera
 
-Aspera 软件高速数据传输的工具，在各大数据库批量下载数据。
+**Aspera** 是一种用于高速传输大规模数据的工具，广泛应用于从各大数据库批量下载数据。
 
-1. **EBI**
+从 EBI 数据库下载 Fastq 文件
 
-[ENA Browser](https://www.ebi.ac.uk/ena/browser/search)
+**ENA Browser**: 用于查询和浏览测序数据 [ENA Browser](https://www.ebi.ac.uk/ena/browser/search)
 
-从EBI数据库中根据ProjectID，获取Fastq files 下载路径。
+通过 ProjectID 从 EBI 数据库中获取 Fastq 文件的下载路径。
 
 ```bash
 module load aspera-connect/3.9.9.177872
@@ -64,8 +64,6 @@ do
   sleep 3
 done
 ```
-
-1. **国家生物信息中心(GSA)**
 
 ## RSeQC
 

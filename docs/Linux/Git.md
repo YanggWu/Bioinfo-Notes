@@ -104,9 +104,28 @@ git config --global https.proxy socks5 127.0.0.1:7890
 ```
 
 **push 冲突**
+
 推送冲突的原因一般是远程仓库发生改变，提交者的版本库小于远程仓库。
 
 可以先 git pull 实现同步之后，在 git push 推送到远程仓库。
+
+**pull 冲突**
+
+Git 不允许在有未提交修改的情况下直接进行 pull/merge，必须先处理本地修改。处理方式主要有两种：
+
+将需要保留的本地修改提交到本地分支，再执行 `git pull`
+
+```bash
+git add config/config.json workflow/Snakefile
+git commit -m "your commit message"
+
+git pull 
+
+# 硬性重置当前分支到远程分支
+git reset --hard origin/workflow
+```
+
+这样本地 `workflow` 分支会直接回到和 `origin/workflow` 一模一样的状态，所有本地未提交的更改将被丢弃，无法恢复。
 
 ## 初次运行 Git 前的配置
 

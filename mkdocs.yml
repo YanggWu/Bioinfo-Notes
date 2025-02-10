@@ -11,90 +11,88 @@ copyright: Copyright © 2023 - 2024 YangWu
 # [Navigation]
 nav:
   - Home: index.md
-  - Overview: 
-    - 常见文件格式: Overview/bioinfo_file_format.md
-    - 基因表达定量: Overview/gene_exp_quant.md
-    - 序列比对: Overview/Align_Tools.md
+  - Overview:
+      - 常见文件格式: Overview/bioinfo_file_format.md
+      - 基因表达定量: Overview/gene_exp_quant.md
+      - 序列比对: Overview/Align_Tools.md
 
   - Linux:
-    - Linux/index.md
-    - Linux 基础: Linux/Linux_basic.md
-    - Shell 编程: Linux/Shell编程.md
-    - Linux 小技巧: Linux/Linux小技巧.md
-    - 服务器环境搭建: Linux/云服务器环境搭建.md
-    - SSH 登陆服务器: Linux/SSH登陆服务器.md
-    - Git 使用: Linux/Git.md
+      - Linux/index.md
+      - Linux 基础: Linux/Linux_basic.md
+      - Shell 编程: Linux/Shell编程.md
+      - Linux 小技巧: Linux/Linux小技巧.md
+      - 服务器环境搭建: Linux/云服务器环境搭建.md
+      - SSH 登陆服务器: Linux/SSH登陆服务器.md
+      - Git 使用: Linux/Git.md
 
   - R:
-    - R/index.md
-    - base-R: R/base-R.md
-    - 可视化案例: R/可视化案例.md
-    - 富集分析可视化: R/enrichment_plot.md
-    - lme4包-BLUP值: R/BLUP.md
-    - BSA 可视化: R/BSA可视化.md
+      - R/index.md
+      - base-R: R/base-R.md
+      - 可视化案例: R/可视化案例.md
+      - 富集分析可视化: R/enrichment_plot.md
+      - lme4包-BLUP值: R/BLUP.md
+      - BSA 可视化: R/BSA可视化.md
 
   - Python:
-    - Python/index.md
-    - Python基础: Python/Python基础.md
-    - 正则表达式: Python/regularexpression.md
-    - 常见标准库: Python/standard_library.md
-    - Pandas: Python/pandas.md
-    - 提取KEGG注释: Python/extract_KEGG.md
-    - 自定义VCF文件ID: Python/update_vcf_ids.md
-    - 可视化: Python/py_visualization.md
-    - 机器学习:
-        - 机器学习简介: Python/MachineLearning/index.md
-        - 统计学基础: Python/MachineLearning/statistics_basics.md
-        - 统计模型: Python/MachineLearning/statistical_models.md
-
+      - Python/index.md
+      - Python基础: Python/Python基础.md
+      - 正则表达式: Python/regularexpression.md
+      - 常见标准库: Python/standard_library.md
+      - Pandas: Python/pandas.md
+      - 提取KEGG注释: Python/extract_KEGG.md
+      - 自定义VCF文件ID: Python/update_vcf_ids.md
+      - 可视化: Python/py_visualization.md
+      - 机器学习:
+          - 机器学习简介: Python/MachineLearning/index.md
+          - 统计学基础: Python/MachineLearning/statistics_basics.md
+          - 统计模型: Python/MachineLearning/statistical_models.md
 
   - Software:
-    - Software/index.md
-    - Mamba: Software/Mamba.md
-    - Singularity: Software/Singularity.md
-    - Fastq比对建议: Software/fastq_mapping.md
-    - Fastp: Software/Fastp.md
-    - MultiQC: Software/Multiqc.md
-    - hisat2: Software/hisat2.md
-    - STAR: Software/STAR.md
-    - BWA: Software/BWA.md
-    - Bowtie2: Software/Bowtie2.md
-    - SAMtools: Software/Samtools.md
-    - Qualimap: Software/Qualimap.md
-    - HTSeq: Software/HTSeq.md
-    - Cufflinks: Software/Cufflinks.md
-    - featureCounts: Software/featureCounts.md
-    - 测序数据下载: Software/download_data.md
-    - gzip 文件读写: Software/read_write_gzip.md
-    - 提取测试数据: Software/extract_test_data.md
-    - Snakemake 🎯: Software/snakemake.md
-    - Salmon: Software/Salmon.md
-    - Parabricks: Software/Parabricks.md
-    - Lofreq: Software/LoFreq.md
-    - Snippy: Software/snippy.md
-    - GATK: Software/GATK.md
-    - Freebayes: Software/freebayes.md
-    - VCFtools: Software/VCFtools.md
-    - bcftools: Software/bcftools.md
-    - IQ-TREE: Software/iqtree.md
-    - Aspera: Software/aspera.md
-    - GEMMA: Software/GEMMA.md
-    - Shovill: Software/Shovill.md
-    - Quast: Software/quast.md
+      - Software/index.md
+      - Mamba: Software/Mamba.md
+      - Singularity: Software/Singularity.md
+      - Fastq比对建议: Software/fastq_mapping.md
+      - Fastp: Software/Fastp.md
+      - MultiQC: Software/Multiqc.md
+      - hisat2: Software/hisat2.md
+      - STAR: Software/STAR.md
+      - BWA: Software/BWA.md
+      - Bowtie2: Software/Bowtie2.md
+      - SAMtools: Software/Samtools.md
+      - Qualimap: Software/Qualimap.md
+      - HTSeq: Software/HTSeq.md
+      - Cufflinks: Software/Cufflinks.md
+      - featureCounts: Software/featureCounts.md
+      - 测序数据下载: Software/download_data.md
+      - gzip 文件读写: Software/read_write_gzip.md
+      - 提取测试数据: Software/extract_test_data.md
+      - Snakemake 🎯: Software/snakemake.md
+      - Salmon: Software/Salmon.md
+      - Parabricks: Software/Parabricks.md
+      - Lofreq: Software/LoFreq.md
+      - Snippy: Software/snippy.md
+      - GATK: Software/GATK.md
+      - Freebayes: Software/freebayes.md
+      - VCFtools: Software/VCFtools.md
+      - bcftools: Software/bcftools.md
+      - IQ-TREE: Software/iqtree.md
+      - Aspera: Software/aspera.md
+      - GEMMA: Software/GEMMA.md
+      - Shovill: Software/Shovill.md
+      - Quast: Software/quast.md
 
   - Workflow:
-    - 测序数据下载: Workflow/down_fq.md
-    - Fastq 文件质控: Workflow/dataQC.md
-    - 构建常用 index: Workflow/build_index.md
-    - 基因组重测序: Workflow/基因组重测序.md
-    - GWAS 分析: Workflow/GWAS.md
-    - BSA 混池定位: Workflow/BSA_Analysis.md
-
+      - 测序数据下载: Workflow/down_fq.md
+      - Fastq 文件质控: Workflow/dataQC.md
+      - 构建常用 index: Workflow/build_index.md
+      - 基因组重测序: Workflow/基因组重测序.md
+      - GWAS 分析: Workflow/GWAS.md
+      - BSA 混池定位: Workflow/BSA_Analysis.md
 
 # [UI]
 theme:
   name: material
-  language: 'zh'
+  language: "zh"
   # font: #谷歌字体，自行搜索
   #   text: Bitter  #文本字体
   #   code: Roboto Mono  #代码字体
@@ -103,7 +101,7 @@ theme:
     # Palette toggle for light mode
     - scheme: default
       toggle:
-        icon: material/brightness-7 
+        icon: material/brightness-7
         name: 切换至夜间模式
       accent: deep orange
       primary: custom
@@ -123,27 +121,26 @@ theme:
     next: fontawesome/solid/angle-right
     annotation: material/arrow-right-circle
 
-  logo: assets/images/favicon.svg    #左上角logo，可插入图片链接
+  logo: assets/images/favicon.svg #左上角logo，可插入图片链接
   favicon: assets/images/favicon2.svg # 网页icon
 
   features:
-    - navigation.instant  #即时加载
+    - navigation.instant #即时加载
     - navigation.instant.prefetch
     - navigation.instant.progress
-    - navigation.tracking  #锚点跟踪
+    - navigation.tracking #锚点跟踪
     - navigation.sections
     - content.code.copy
     - content.code.select
     - navigation.indexes
-    - navigation.tabs  #导航选项卡
-#    - navigation.tabs.sticky  #粘性导航选项卡
-    - navigation.top  #全宽导航选项卡
+    - navigation.tabs #导航选项卡
+    #    - navigation.tabs.sticky  #粘性导航选项卡
+    - navigation.top #全宽导航选项卡
     - content.code.annotate
-
 
 extra:
   search:
-    language: 'jp'
+    language: "jp"
     suggest: true
 
 extra_css:
@@ -151,7 +148,7 @@ extra_css:
   - stylesheets/extra.css
   - https://unpkg.com/katex@0/dist/katex.min.css
   - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap #自定义思源宋体
-  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css  #字体 2
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css #字体 2
   - https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap # 字体3
 
 extra_javascript:
@@ -163,54 +160,55 @@ extra_javascript:
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 
 plugins:
-   - glightbox # 图片放大插件
-   - search
-   - blog
+  - glightbox # 图片放大插件
+  - search
+  - blog
 
 markdown_extensions:
   # 基础扩展
-  - abbr                # 支持缩写语法，允许定义缩写及其全称
-  - attr_list           # 支持为 Markdown 元素添加属性列表
-  - def_list            # 支持定义列表的语法
-  - footnotes           # 支持脚注语法
-  - md_in_html          # 允许在 HTML 标签中使用 Markdown 语法
-
+  - abbr # 支持缩写语法，允许定义缩写及其全称
+  - attr_list # 支持为 Markdown 元素添加属性列表
+  - def_list # 支持定义列表的语法
+  - footnotes # 支持脚注语法
+  - md_in_html # 允许在 HTML 标签中使用 Markdown 语法
 
   # 高级格式化
-  - admonition          # 支持提示块（注意、警告等）的语法
+  - admonition # 支持提示块（注意、警告等）的语法
   - pymdownx.betterem:
       smart_enable: all # 改善强调（emphasis）处理，支持智能下划线、星号等
-  - pymdownx.caret      # 支持插入和删除文本的标记语法（插入 ^文本^，删除 ~文本~）
-  - pymdownx.tilde      # 支持删除线语法（~~文本~~）
+  - pymdownx.caret # 支持插入和删除文本的标记语法（插入 ^文本^，删除 ~文本~）
+  - pymdownx.tilde # 支持删除线语法（~~文本~~）
 
   # 代码高亮和处理
   - pymdownx.highlight:
-      use_pygments: true          # 使用 Pygments 进行代码高亮，默认 true
-      linenums: true              # 为所有代码块添加行号，默认 false
+      use_pygments: true # 使用 Pygments 进行代码高亮，默认 true
+      linenums: true # 为所有代码块添加行号，默认 false
       linenums_style: pymdownx-inline # 行号样式，建议使用 'table' 或 'pymdownx-inline'，默认 'table'
-      anchor_linenums: true       # 代码块行号添加锚链接，默认 false
-      auto_title: false           # 自动为代码块添加标题，显示使用的语言名称，默认 false
-      line_spans: __span          # 为每行代码添加唯一的 span ID，便于引用
-      pygments_lang_class: true   # 为代码块添加语言类名，方便自定义样式
-  - pymdownx.superfences          # 增强的代码块处理，支持嵌套和多种语言的代码块
-  - pymdownx.inlinehilite         # 支持行内代码高亮
-  - pymdownx.snippets             # 支持在文档中插入外部文件内容
-  - pymdownx.details              # 支持折叠内容块（details）的语法
+      anchor_linenums: true # 代码块行号添加锚链接，默认 false
+      auto_title: false # 自动为代码块添加标题，显示使用的语言名称，默认 false
+      line_spans: __span # 为每行代码添加唯一的 span ID，便于引用
+      pygments_lang_class: true # 为代码块添加语言类名，方便自定义样式
+  - pymdownx.superfences # 增强的代码块处理，支持嵌套和多种语言的代码块
+  - pymdownx.inlinehilite # 支持行内代码高亮
+  - pymdownx.snippets # 支持在文档中插入外部文件内容
+  - pymdownx.details # 支持折叠内容块（details）的语法
 
   # 数学公式
   - pymdownx.arithmatex:
-      generic: true               # 使用通用的数学公式渲染方式，支持 $$...$$ 和 \\(...\\) 语法
+      generic: true # 使用通用的数学公式渲染方式，支持 $$...$$ 和 \\(...\\) 语法
 
   # 交互式内容
   - pymdownx.tabbed:
-      alternate_style: true       # 启用内容选项卡的替代样式，必须开启
+      alternate_style: true # 启用内容选项卡的替代样式，必须开启
   - pymdownx.tasklist:
-      custom_checkbox: true       # 支持自定义任务列表的复选框样式
+      custom_checkbox: true # 支持自定义任务列表的复选框样式
 
   # 表情符号和键盘按键
   - pymdownx.emoji:
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-                                 # 使用 Material 的扩展，将 Emoji 转换为 SVG 图标
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-                                 # 使用 Twemoji 的 Emoji 索引
-  - pymdownx.keys                # 支持键盘按键的标记语法，如 ++Ctrl++、++Alt++
+      emoji_generator:
+        !!python/name:material.extensions.emoji.to_svg # 使用 Material 的扩展，将 Emoji 转换为 SVG 图标
+
+      emoji_index:
+        !!python/name:material.extensions.emoji.twemoji # 使用 Twemoji 的 Emoji 索引
+
+  - pymdownx.keys # 支持键盘按键的标记语法，如 ++Ctrl++、++Alt++

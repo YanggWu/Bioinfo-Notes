@@ -227,7 +227,15 @@ bcftools filter \
     12. **`-W, --write-index[=FMT]`**
         自动为输出文件创建索引。`FMT` 可以指定索引的格式，通常用于生成 `.csi` 或 `.tbi` 索引。
 
-## bcftools +setGT
+## bcftools插件
+
+ **更新 VCF 文件** 假设你已经删除了某些样品，或者修改了 VCF 文件中的样本信息。接下来，我们需要重新计算和更新 `INFO` 字段。
+
+```bash
+bcftools +fill-tags input.vcf --output updated_output.vcf
+```
+
+### bcftools +setGT
 
 使用 `bcftools +setGT` 插件来将单倍体的 `0` , `1` 改成 `0/0` / `1/1`。
 

@@ -49,6 +49,7 @@ df = pd.read_csv('file.tsv', sep='\t')
 === "df[ ]"
 	df[ ] 使用 `[]` 来选取 DataFrame 中的一列或多列，也可以通过切片和条件表达式过滤行。
 	
+
 	```py
 	df[:4] # 切片的方式选取前四行
 	df[df.value > 80] # 布尔型数组（过滤行）
@@ -96,14 +97,46 @@ df[(df['A'] > 2) & (df['B'] < 5)]
 df[(df['A'] < 2) | (df['B'] > 5)]
 ```
 
+### 行筛选
 
+`.query()` 使用查询语法过滤 DataFrame，类似 SQL 语句：
 
-### `.query()`
-
-使用查询语法过滤 DataFrame，类似 SQL 语句。
-
-```
+```py
 df.query('A > 2 and B < 5')  # 选取 'A'列 大于 2 且 'B'列 小于 5 的行
+
+snp_list = ["vg0100002827", "vg0100002988"]
+cultivated_df.query('SNP in @snp_list')		# 使用列表内的元素进行过滤
+```
+
+## 列相关操作
+
+**重命名列**
+
+可以通过 `rename()` 函数只修改特定的列名：
+
+```py
+# 创建一个示例 DataFrame
+data = {'A': [1, 2, 3], 'B': [4, 5, 6], 'C': [7, 8, 9]}
+df = pd.DataFrame(data)
+
+# 使用 rename 修改特定列名
+df.rename(columns={'A': 'Alpha', 'B': 'Beta'}, inplace=True)
+
+print(df)
+```
+
+- `columns={'A': 'Alpha', 'B': 'Beta'}` 指定了要修改的列及其对应的新名称。
+
+- `inplace=True` 会直接在原 `DataFrame` 上修改。
+
+如果你只知道列的位置（索引）而不想列出所有列名，可以使用列索引来修改列名：
+
+```py
+df.columns.values[0] = 'Alpha'  # 修改第一列
+df.columns.values[1] = 'Beta'   # 修改第二列
+df.columns.values[2] = 'Gamma'  # 修改第三列
+
+print(df)
 ```
 
 
@@ -112,9 +145,24 @@ df.query('A > 2 and B < 5')  # 选取 'A'列 大于 2 且 'B'列 小于 5 的行
 
 ### apply函数
 
-用于在 DataFrame 或 Series 上应用自定义函数或内置函数，以对数据进行元素级或向量级的操作。
+用于对 DataFrame 或 Series 进行逐元素操作，或应用一个函数来进行行或列级别的计算。它能够将用户定义的函数应用到 DataFrame 或 Series 的每一行或每一列，或者每个元素，灵活性非常高。
 
-- **参数**：
-  - func：要应用于每个元素的函数。可以是自定义函数、内置函数或 lambda 函数。
-  - axis：指定应用函数的轴方向。默认为0，表示沿着每列应用函数；1 表示沿着每行应用函数。
-  - args 和 kwargs：可选参数，用于传递给函数的额外参数和关键字参数。
+- func：要应用于每个元素的函数。可以是自定义函数、内置函数或 lambda 函数。
+- axis：指定应用函数的轴方向。默认为0，表示沿着每列应用函数；1 表示沿着每行应用函数。
+- args 和 kwargs：可选参数，用于传递给函数的额外参数和关键字参数。
+
+Series 的 `apply` 函数:
+
+```py
+# 创建 Series
+s = pd.Series([1, 2, 3, 4, 5])
+
+# 使用 apply 对每个元素进行平方操作
+squared = s.apply(lambda x: x ** 2)
+
+# 应用自定义函数
+def custom_function(x):
+	return x + 10
+result = s.apply(custom_function)
+```
+

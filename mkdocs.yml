@@ -35,7 +35,7 @@ nav:
 
   - Python:
       - Python/index.md
-      - Python基础: Python/Python基础.md
+      - Python基础: Python/Python_basics.md
       - 正则表达式: Python/regularexpression.md
       - 常见标准库: Python/standard_library.md
       - Pandas: Python/pandas.md

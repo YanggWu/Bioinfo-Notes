@@ -139,7 +139,48 @@ df.columns.values[2] = 'Gamma'  # 修改第三列
 print(df)
 ```
 
+**筛选列**
 
+可以通过列名筛选你需要的列和调整列顺序：
+
+```py
+import seaborn as sns
+import pandas as pd
+df = sns.load_dataset('iris')
+
+# 选择列
+df_filtered = df[['sepal_length', 'species']]
+
+# 调整列顺序，只需重新指定列顺序即可。
+df_filtered = df_filtered[['species', 'sepal_length']]
+
+# 使用 loc 和 iloc 也可以选择列
+df = df.loc[:, ['sepal_length', 'species']]
+df = df.iloc[:, [0, 4]]
+```
+
+根据列索引排序调整列顺序:
+
+```py
+df.sort_index(axis=1, ascending=False)
+```
+
+根据条件来筛选列， 比如，选择数据类型为数值类型的列：
+
+```py
+# 筛选出数值类型的列
+df_numeric = df.select_dtypes(include=['number'])
+
+# 筛选出字符型列
+df_string = df.select_dtypes(include=['object'])
+```
+
+根据列名包含某些特定字符进行筛选:
+
+```py
+# 筛选列名中包含"gene"的列
+df_filtered = df.loc[:, df.columns.str.contains('gene')]
+```
 
 ## 常用函数
 

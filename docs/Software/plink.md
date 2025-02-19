@@ -64,8 +64,6 @@ plink --bfile input_data \
       --snps-only \
       --make-bed \
       --out filtered_data
-      
-  
 ```
 
 #### **LD 剪枝（LD Pruning）**

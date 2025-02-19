@@ -70,8 +70,8 @@ code, pre, kbd, samp {
   font-family: "LXGW WenKai";
   font-weight: 400; /* 设置字重 */
   font-size: 1.5em;
-  line-height: 1.3;
-  margin: 1.4em 0 0.5em;
+  line-height: 1.1;
+  margin: 1em 0 0.4em;
 }
 
 .md-typeset h3 {
@@ -79,8 +79,8 @@ code, pre, kbd, samp {
   font-size: 1.35em;
   font-weight: 500;
   letter-spacing: -0.01em; /* 设置字间距 */
-  line-height: 1.2;
-  margin: 1.2em 0 0.4em;
+  line-height: 1;
+  margin: 0.8em 0 0.3em;
 }
 
 .md-typeset h4 {
@@ -109,6 +109,10 @@ code, pre, kbd, samp {
 }
 
 /*************** 表格相关设置 ******************/
+.md-typeset__scrollwrap {
+  margin-bottom: 0; /* 去除 div 下方的空隙 */
+  padding-bottom: 0; /* 去除 div 下方的内边距 */
+}
 
 /* 修改表格整体样式 */
 .md-typeset__table {

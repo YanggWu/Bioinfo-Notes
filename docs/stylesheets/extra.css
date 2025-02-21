@@ -53,12 +53,17 @@ li.md-nav__item {
 
 /************* 警示部分样式设置 ********/
 .admonition p>code {
-  font-size: 13px;
+  font-size: 14px;
   /* 较小的字体大小，相对于全局设置 */
 }
 
 .admonition p {
-  font-size: 13.2px;
+  font-size: 14.5px;
+  /* 较小的字体大小，相对于全局设置 */
+}
+
+.admonition li {
+  font-size: 14px;
   /* 较小的字体大小，相对于全局设置 */
 }
 

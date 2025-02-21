@@ -80,6 +80,7 @@ nav:
       - GEMMA: Software/GEMMA.md
       - Shovill: Software/Shovill.md
       - Quast: Software/quast.md
+      - Antismash: Software/AntiSMASH.md
 
   - Workflow:
       - 测序数据下载: Workflow/down_fq.md

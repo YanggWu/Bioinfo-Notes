@@ -1,0 +1,3097 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A documentation for Bioinformatics">
+      
+      
+        <meta name="author" content="YangWu">
+      
+      
+        <link rel="canonical" href="https://yanggwu.github.io/Bioinfo-Notes/Linux/Vim/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon2.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>VIM 编辑器 - Bioinformatics Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M22%2012a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010M6%2013h8l-3.5%203.5%201.42%201.42L17.84%2012l-5.92-5.92L10.5%207.5%2014%2011H6z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/main.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&display=swap">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vim" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Bioinformatics Notes" class="md-header__button md-logo" aria-label="Bioinformatics Notes" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bioinformatics Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VIM 编辑器
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="deep-orange"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/YanggWu/Bioinfo-Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Overview/bioinfo_file_format/" class="md-tabs__link">
+          
+  
+    
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../R/" class="md-tabs__link">
+          
+  
+    
+  
+  R
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Python/" class="md-tabs__link">
+          
+  
+    
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Software/" class="md-tabs__link">
+          
+  
+    
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Workflow/down_fq/" class="md-tabs__link">
+          
+  
+    
+  
+  Workflow
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bioinformatics Notes" class="md-nav__button md-logo" aria-label="Bioinformatics Notes" data-md-component="logo">
+      
+  <img src="../../assets/images/favicon.svg" alt="logo">
+
+    </a>
+    Bioinformatics Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/YanggWu/Bioinfo-Notes" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/bioinfo_file_format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    常见文件格式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/gene_exp_quant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基因表达定量
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/Align_Tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    序列比对
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux_basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux 基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shell%E7%BC%96%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell 编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linux%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux 小技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    服务器环境搭建
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SSH%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH 登陆服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git 使用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../R/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    R
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            R
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../R/base-R/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base-R
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../R/%E5%8F%AF%E8%A7%86%E5%8C%96%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    可视化案例
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../R/enrichment_plot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    富集分析可视化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../R/BLUP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lme4包-BLUP值
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../R/BSA%E5%8F%AF%E8%A7%86%E5%8C%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BSA 可视化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Python/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/Python_basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/python_advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python进阶
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/regularexpression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    正则表达式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/standard_library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    常见标准库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/extract_KEGG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    提取KEGG注释
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/update_vcf_ids/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    自定义VCF文件ID
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/py_visualization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    可视化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Python/MachineLearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    机器学习
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/MachineLearning/statistics_basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    统计学基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/MachineLearning/statistical_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    统计模型
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Software/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Mamba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mamba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Singularity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Singularity
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/fastq_mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastq比对建议
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Fastp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastp
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Multiqc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MultiQC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/hisat2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hisat2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/STAR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    STAR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/BWA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BWA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Bowtie2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bowtie2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Samtools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SAMtools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Qualimap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qualimap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/HTSeq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTSeq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Cufflinks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cufflinks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/featureCounts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    featureCounts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/download_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测序数据下载
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/read_write_gzip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gzip 文件读写
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/extract_test_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    提取测试数据
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/snakemake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snakemake 🎯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Salmon/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Salmon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Parabricks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parabricks
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/LoFreq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lofreq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/snippy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snippy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/GATK/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GATK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/freebayes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Freebayes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/VCFtools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VCFtools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/bcftools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bcftools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/iqtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IQ-TREE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/aspera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aspera
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/GEMMA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GEMMA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/Shovill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shovill
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/quast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quast
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Software/AntiSMASH/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Antismash
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Workflow
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Workflow
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Workflow/down_fq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    测序数据下载
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Workflow/dataQC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastq 文件质控
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Workflow/build_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建常用 index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Workflow/%E5%9F%BA%E5%9B%A0%E7%BB%84%E9%87%8D%E6%B5%8B%E5%BA%8F/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基因组重测序
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Workflow/GWAS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GWAS 分析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Workflow/BSA_Analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BSA 混池定位
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nvim" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装 nvim
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装插件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码补全
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代码补全">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smk" class="md-nav__link">
+    <span class="md-ellipsis">
+      smk 代码补全
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="smk 代码补全">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-coc-settingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 修改 coc-settings.json
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snippets" class="md-nav__link">
+    <span class="md-ellipsis">
+      补充 Snippets 补全
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="补充 Snippets 补全">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coc-snippets" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置 coc-snippets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置文件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配置文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-snakemake-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 将 Snakemake 文件类型设置为 Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cocnvim-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 安装并配置 coc.nvim 的 Python 扩展
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 安装并配置 coc.nvim 的 Python 扩展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-coc-pyright" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 安装 coc-pyright 扩展
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-coc-pyright" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 配置 coc-pyright
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-snippets-snakemake" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 使用 Snippets（代码片段）实现 Snakemake 语法的补全
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 使用 Snippets（代码片段）实现 Snakemake 语法的补全">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-coc-snippets" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 安装 coc-snippets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-snakemake-snippets" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 创建 Snakemake 的 Snippets 文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-snippets" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 配置 Snippets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-snakemake" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 在 Snakemake 文件中启用代码补全
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 在 Snakemake 文件中启用代码补全">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-snippets" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 使用 Snippets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-snakemake" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 保留 Snakemake 的语法高亮
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 保留 Snakemake 的语法高亮">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-vim-snakemake" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 安装 vim-snakemake 插件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 自定义语法高亮
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 其他提示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="vim">VIM 编辑器</h1>
+<h2 id="nvim">安装 nvim</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1"># macOS</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos=" 2 "></span></a>brew<span class="w"> </span>update
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos=" 3 "></span></a>brew<span class="w"> </span>install<span class="w"> </span>neovim
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><a href="#__codelineno-0-4"><span class="linenos" data-linenos=" 4 "></span></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><a href="#__codelineno-0-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># CentOs</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><a href="#__codelineno-0-6"><span class="linenos" data-linenos=" 6 "></span></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>epel-release<span class="w">   </span><span class="c1"># 启用 EPEL 仓库</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><a href="#__codelineno-0-7"><span class="linenos" data-linenos=" 7 "></span></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>neovim
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><a href="#__codelineno-0-8"><span class="linenos" data-linenos=" 8 "></span></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><a href="#__codelineno-0-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1"># Unbuntu</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><a href="#__codelineno-0-10"><span class="linenos" data-linenos="10 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><a href="#__codelineno-0-11"><span class="linenos" data-linenos="11 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>neovim
+</span></code></pre></div>
+<h2 id="_1">安装插件</h2>
+<p>为了管理 Neovim 的插件，我们需要安装一个插件管理器，例如 <strong>vim-plug</strong>。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a>curl<span class="w"> </span>-fLo<span class="w"> </span>~/.local/share/nvim/site/autoload/plug.vim<span class="w"> </span>--create-dirs<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">       </span>https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+</span></code></pre></div>
+<p>一些 Neovim 的插件（例如 <code>coc.nvim</code>）依赖于 <strong>Node.js</strong>。请根据您的系统类型安装 Node.js。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="c1">######## macOS ###</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos=" 2 "></span></a>brew<span class="w"> </span>install<span class="w"> </span>node
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos=" 3 "></span></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="c1">######## CentOS ###</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="c1"># 使用 NodeSource 提供的脚本安装 Node.js 14.x</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos=" 6 "></span></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://rpm.nodesource.com/setup_14.x<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash<span class="w"> </span>-
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos=" 7 "></span></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nodejs
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos=" 8 "></span></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="c1">######## Ubuntu ###</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><a href="#__codelineno-2-10"><span class="linenos" data-linenos="10 "></span></a><span class="c1"># 安装 Node.js 和 npm</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><a href="#__codelineno-2-11"><span class="linenos" data-linenos="11 "></span></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nodejs<span class="w"> </span>npm
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><a href="#__codelineno-2-12"><span class="linenos" data-linenos="12 "></span></a><span class="c1"># 或者使用 NodeSource 脚本安装最新版本</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><a href="#__codelineno-2-13"><span class="linenos" data-linenos="13 "></span></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://deb.nodesource.com/setup_14.x<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash<span class="w"> </span>-
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><a href="#__codelineno-2-14"><span class="linenos" data-linenos="14 "></span></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nodejs
+</span></code></pre></div>
+<h2 id="_2">代码补全</h2>
+<p>使用coc.nvim 代码补全</p>
+<p><code>coc-pyright</code> 需要 <code>pyright</code> 语言服务器来提供 Python 补全支持。可以通过 <code>npm</code> 安装 <code>pyright</code>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a>Plug &#39;neoclide/coc.nvim&#39;, {&#39;branch&#39;: &#39;release&#39;} 
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><a href="#__codelineno-3-3"><span class="linenos" data-linenos="3 "></span></a>sudo  npm install -g pyright  --registry=https://registry.npmmirror.com
+</span></code></pre></div>
+<h3 id="smk">smk 代码补全</h3>
+<p>为了让 <code>coc.nvim</code> 在 Snakemake 文件（例如 <code>Snakefile</code> 和 <code>.smk</code>）中支持 Python 代码的自动补全，需要进行进行配置，以便在这些文件中启用 Python 补全功能。</p>
+<h4 id="1-coc-settingsjson">1. 修改 <code>coc-settings.json</code></h4>
+<p>在 <code>~/.config/nvim/coc-settings.json</code> 中，添加以下配置：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">  </span><span class="nt">&quot;languageserver&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">    </span><span class="nt">&quot;pyright&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pyright-langserver&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><a href="#__codelineno-4-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--stdio&quot;</span><span class="p">],</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><a href="#__codelineno-4-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">      </span><span class="nt">&quot;filetypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;snakemake&quot;</span><span class="p">],</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><a href="#__codelineno-4-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">      </span><span class="nt">&quot;rootPatterns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pyproject.toml&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;setup.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;setup.cfg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;requirements.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.git&quot;</span><span class="p">]</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><a href="#__codelineno-4-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><a href="#__codelineno-4-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><a href="#__codelineno-4-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">  </span><span class="nt">&quot;coc.source.snakefiles.enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><a href="#__codelineno-4-11"><span class="linenos" data-linenos="11 "></span></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p><strong><code>filetypes</code></strong>：这里我们将 <code>snakemake</code> 文件类型也添加到 <code>pyright</code> 的支持列表中。</p>
+</li>
+<li>
+<p><strong><code>rootPatterns</code></strong>：确保 <code>coc.nvim</code> 可以找到项目的根目录，以便 <code>pyright</code> 正确工作。</p>
+</li>
+</ul>
+<h3 id="snippets">补充 Snippets 补全</h3>
+<p>上述配置可以在 Snakemake 文件中实现 Python 补全，但 Snakemake 特定的语法结构（例如 <code>rule</code>、<code>input</code>、<code>output</code> 等）不会自动补全。可以使用 <code>coc-snippets</code> 来创建 Snakemake 的片段，从而提高编写 Snakemake 代码的效率。</p>
+<p>在 <code>~/.config/nvim/UltiSnips/</code> 目录下，创建 <code>snakemake.snippets</code> 文件：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos=" 1 "></span></a>snippet rule &quot;Define a Snakemake rule&quot;
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos=" 2 "></span></a>rule ${1:rule_name}:
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos=" 3 "></span></a>    input:
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos=" 4 "></span></a>        ${2:input_files}
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos=" 5 "></span></a>    output:
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos=" 6 "></span></a>        ${3:output_files}
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><a href="#__codelineno-5-7"><span class="linenos" data-linenos=" 7 "></span></a>    params:
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><a href="#__codelineno-5-8"><span class="linenos" data-linenos=" 8 "></span></a>        ${4:params}
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><a href="#__codelineno-5-9"><span class="linenos" data-linenos=" 9 "></span></a>    threads: ${5:threads}
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><a href="#__codelineno-5-10"><span class="linenos" data-linenos="10 "></span></a>    resources:
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><a href="#__codelineno-5-11"><span class="linenos" data-linenos="11 "></span></a>        ${6:resources}
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a><a href="#__codelineno-5-12"><span class="linenos" data-linenos="12 "></span></a>    shell:
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><a href="#__codelineno-5-13"><span class="linenos" data-linenos="13 "></span></a>        &quot;&quot;&quot;
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a><a href="#__codelineno-5-14"><span class="linenos" data-linenos="14 "></span></a>        ${7:shell_command}
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a><a href="#__codelineno-5-15"><span class="linenos" data-linenos="15 "></span></a>        &quot;&quot;&quot;
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a><a href="#__codelineno-5-16"><span class="linenos" data-linenos="16 "></span></a>endsnippet
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a><a href="#__codelineno-5-17"><span class="linenos" data-linenos="17 "></span></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a><a href="#__codelineno-5-18"><span class="linenos" data-linenos="18 "></span></a>snippet shell &quot;Shell command in Snakemake&quot;
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a><a href="#__codelineno-5-19"><span class="linenos" data-linenos="19 "></span></a>shell:
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a><a href="#__codelineno-5-20"><span class="linenos" data-linenos="20 "></span></a>    &quot;&quot;&quot;
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a><a href="#__codelineno-5-21"><span class="linenos" data-linenos="21 "></span></a>    ${1:command}
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22"></a><a href="#__codelineno-5-22"><span class="linenos" data-linenos="22 "></span></a>    &quot;&quot;&quot;
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23"></a><a href="#__codelineno-5-23"><span class="linenos" data-linenos="23 "></span></a>endsnippet
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24"></a><a href="#__codelineno-5-24"><span class="linenos" data-linenos="24 "></span></a>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25"></a><a href="#__codelineno-5-25"><span class="linenos" data-linenos="25 "></span></a>snippet script &quot;Script directive in Snakemake&quot;
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26"></a><a href="#__codelineno-5-26"><span class="linenos" data-linenos="26 "></span></a>script:
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27"></a><a href="#__codelineno-5-27"><span class="linenos" data-linenos="27 "></span></a>    &quot;${1:script.py}&quot;
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28"></a><a href="#__codelineno-5-28"><span class="linenos" data-linenos="28 "></span></a>endsnippet
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29"></a><a href="#__codelineno-5-29"><span class="linenos" data-linenos="29 "></span></a>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30"></a><a href="#__codelineno-5-30"><span class="linenos" data-linenos="30 "></span></a>snippet include &quot;Include another Snakemake file&quot;
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31"></a><a href="#__codelineno-5-31"><span class="linenos" data-linenos="31 "></span></a>include: &quot;${1:other_snakefile}&quot;
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32"></a><a href="#__codelineno-5-32"><span class="linenos" data-linenos="32 "></span></a>endsnippet
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33"></a><a href="#__codelineno-5-33"><span class="linenos" data-linenos="33 "></span></a>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34"></a><a href="#__codelineno-5-34"><span class="linenos" data-linenos="34 "></span></a>snippet configfile &quot;Configfile directive&quot;
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35"></a><a href="#__codelineno-5-35"><span class="linenos" data-linenos="35 "></span></a>configfile: &quot;${1:config.yaml}&quot;
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36"></a><a href="#__codelineno-5-36"><span class="linenos" data-linenos="36 "></span></a>endsnippet
+</span></code></pre></div>
+<h4 id="coc-snippets"><strong>配置 <code>coc-snippets</code></strong></h4>
+<p>在 <code>coc-settings.json</code> 中，添加以下配置，确保 <code>coc-snippets</code> 能找到您的代码片段：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><a href="#__codelineno-6-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">  </span><span class="nt">&quot;snippets.ultisnips.directories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;UltiSnips&quot;</span><span class="p">]</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><a href="#__codelineno-6-3"><span class="linenos" data-linenos="3 "></span></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="_3">配置文件</h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="  1 "></span></a>&quot; ==================== 基本设置 ====================
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="  2 "></span></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos="  3 "></span></a>&quot; 快捷键映射
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><a href="#__codelineno-7-4"><span class="linenos" data-linenos="  4 "></span></a>imap jk &lt;Esc&gt;              &quot; 在插入模式下，快速返回正常模式
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><a href="#__codelineno-7-5"><span class="linenos" data-linenos="  5 "></span></a>nmap &lt;space&gt; :             &quot; 将空格键映射为命令模式的冒号
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><a href="#__codelineno-7-6"><span class="linenos" data-linenos="  6 "></span></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><a href="#__codelineno-7-7"><span class="linenos" data-linenos="  7 "></span></a>&quot; 启用语法高亮
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><a href="#__codelineno-7-8"><span class="linenos" data-linenos="  8 "></span></a>syntax on
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><a href="#__codelineno-7-9"><span class="linenos" data-linenos="  9 "></span></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><a href="#__codelineno-7-10"><span class="linenos" data-linenos=" 10 "></span></a>&quot; 显示行号
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><a href="#__codelineno-7-11"><span class="linenos" data-linenos=" 11 "></span></a>set number                 &quot; 显示绝对行号
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><a href="#__codelineno-7-12"><span class="linenos" data-linenos=" 12 "></span></a>set relativenumber         &quot; 同时显示相对行号，便于跳转
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><a href="#__codelineno-7-13"><span class="linenos" data-linenos=" 13 "></span></a>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><a href="#__codelineno-7-14"><span class="linenos" data-linenos=" 14 "></span></a>&quot; 缩进设置
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a><a href="#__codelineno-7-15"><span class="linenos" data-linenos=" 15 "></span></a>set autoindent             &quot; 自动缩进
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><a href="#__codelineno-7-16"><span class="linenos" data-linenos=" 16 "></span></a>set smartindent            &quot; 智能缩进
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><a href="#__codelineno-7-17"><span class="linenos" data-linenos=" 17 "></span></a>set tabstop=4              &quot; Tab 显示为 4 个空格
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a><a href="#__codelineno-7-18"><span class="linenos" data-linenos=" 18 "></span></a>set shiftwidth=4           &quot; 自动缩进时使用 4 个空格
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a><a href="#__codelineno-7-19"><span class="linenos" data-linenos=" 19 "></span></a>set expandtab              &quot; 将 Tab 键转换为空格
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a><a href="#__codelineno-7-20"><span class="linenos" data-linenos=" 20 "></span></a>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a><a href="#__codelineno-7-21"><span class="linenos" data-linenos=" 21 "></span></a>&quot; 鼠标和光标设置
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a><a href="#__codelineno-7-22"><span class="linenos" data-linenos=" 22 "></span></a>set mouse=a                &quot; 启用鼠标支持
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a><a href="#__codelineno-7-23"><span class="linenos" data-linenos=" 23 "></span></a>set cursorline             &quot; 高亮当前行
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24"></a><a href="#__codelineno-7-24"><span class="linenos" data-linenos=" 24 "></span></a>&quot; set cursorcolumn         &quot; 高亮当前列（如果需要，可以取消注释）
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25"></a><a href="#__codelineno-7-25"><span class="linenos" data-linenos=" 25 "></span></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26"></a><a href="#__codelineno-7-26"><span class="linenos" data-linenos=" 26 "></span></a>&quot; 状态栏
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27"></a><a href="#__codelineno-7-27"><span class="linenos" data-linenos=" 27 "></span></a>set laststatus=2           &quot; 始终显示状态栏
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28"></a><a href="#__codelineno-7-28"><span class="linenos" data-linenos=" 28 "></span></a>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29"></a><a href="#__codelineno-7-29"><span class="linenos" data-linenos=" 29 "></span></a>&quot; 搜索设置
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30"></a><a href="#__codelineno-7-30"><span class="linenos" data-linenos=" 30 "></span></a>set ignorecase             &quot; 搜索时忽略大小写
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31"></a><a href="#__codelineno-7-31"><span class="linenos" data-linenos=" 31 "></span></a>set smartcase              &quot; 搜索时智能区分大小写
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32"></a><a href="#__codelineno-7-32"><span class="linenos" data-linenos=" 32 "></span></a>set incsearch              &quot; 增量搜索
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33"></a><a href="#__codelineno-7-33"><span class="linenos" data-linenos=" 33 "></span></a>set hlsearch               &quot; 高亮搜索结果
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34"></a><a href="#__codelineno-7-34"><span class="linenos" data-linenos=" 34 "></span></a>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35"></a><a href="#__codelineno-7-35"><span class="linenos" data-linenos=" 35 "></span></a>&quot; 括号匹配
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36"></a><a href="#__codelineno-7-36"><span class="linenos" data-linenos=" 36 "></span></a>set showmatch              &quot; 高亮匹配的括号
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37"></a><a href="#__codelineno-7-37"><span class="linenos" data-linenos=" 37 "></span></a>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38"></a><a href="#__codelineno-7-38"><span class="linenos" data-linenos=" 38 "></span></a>&quot; ==================== 插件管理 ====================
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39"></a><a href="#__codelineno-7-39"><span class="linenos" data-linenos=" 39 "></span></a>
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40"></a><a href="#__codelineno-7-40"><span class="linenos" data-linenos=" 40 "></span></a>&quot; 使用 Vim-Plug 进行插件管理
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41"></a><a href="#__codelineno-7-41"><span class="linenos" data-linenos=" 41 "></span></a>call plug#begin(&#39;~/.vim/plugged&#39;)
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42"></a><a href="#__codelineno-7-42"><span class="linenos" data-linenos=" 42 "></span></a>
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43"></a><a href="#__codelineno-7-43"><span class="linenos" data-linenos=" 43 "></span></a>&quot; === 常用插件 ===
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44"></a><a href="#__codelineno-7-44"><span class="linenos" data-linenos=" 44 "></span></a>Plug &#39;preservim/nerdtree&#39;         &quot; 文件浏览器
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45"></a><a href="#__codelineno-7-45"><span class="linenos" data-linenos=" 45 "></span></a>Plug &#39;vim-airline/vim-airline&#39;    &quot; 状态栏增强
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46"></a><a href="#__codelineno-7-46"><span class="linenos" data-linenos=" 46 "></span></a>
+</span><span id="__span-7-47"><a id="__codelineno-7-47" name="__codelineno-7-47"></a><a href="#__codelineno-7-47"><span class="linenos" data-linenos=" 47 "></span></a>&quot; === 配色方案 ===
+</span><span id="__span-7-48"><a id="__codelineno-7-48" name="__codelineno-7-48"></a><a href="#__codelineno-7-48"><span class="linenos" data-linenos=" 48 "></span></a>Plug &#39;morhetz/gruvbox&#39;            &quot; &#39;gruvbox&#39; 配色方案
+</span><span id="__span-7-49"><a id="__codelineno-7-49" name="__codelineno-7-49"></a><a href="#__codelineno-7-49"><span class="linenos" data-linenos=" 49 "></span></a>Plug &#39;w0ng/vim-hybrid&#39;            &quot; &#39;hybrid&#39; 配色方案
+</span><span id="__span-7-50"><a id="__codelineno-7-50" name="__codelineno-7-50"></a><a href="#__codelineno-7-50"><span class="linenos" data-linenos=" 50 "></span></a>Plug &#39;theniceboy/nvim-deus&#39;       &quot; &#39;deus&#39; 配色方案
+</span><span id="__span-7-51"><a id="__codelineno-7-51" name="__codelineno-7-51"></a><a href="#__codelineno-7-51"><span class="linenos" data-linenos=" 51 "></span></a>
+</span><span id="__span-7-52"><a id="__codelineno-7-52" name="__codelineno-7-52"></a><a href="#__codelineno-7-52"><span class="linenos" data-linenos=" 52 "></span></a>&quot; === 语法高亮和代码解析 ===
+</span><span id="__span-7-53"><a id="__codelineno-7-53" name="__codelineno-7-53"></a><a href="#__codelineno-7-53"><span class="linenos" data-linenos=" 53 "></span></a>Plug &#39;nvim-treesitter/nvim-treesitter&#39;, {&#39;do&#39;: &#39;:TSUpdate&#39;}  &quot; Treesitter 增强语法高亮
+</span><span id="__span-7-54"><a id="__codelineno-7-54" name="__codelineno-7-54"></a><a href="#__codelineno-7-54"><span class="linenos" data-linenos=" 54 "></span></a>
+</span><span id="__span-7-55"><a id="__codelineno-7-55" name="__codelineno-7-55"></a><a href="#__codelineno-7-55"><span class="linenos" data-linenos=" 55 "></span></a>&quot; === 开发辅助插件 ===
+</span><span id="__span-7-56"><a id="__codelineno-7-56" name="__codelineno-7-56"></a><a href="#__codelineno-7-56"><span class="linenos" data-linenos=" 56 "></span></a>Plug &#39;scrooloose/nerdcommenter&#39;   &quot; 代码快速注释
+</span><span id="__span-7-57"><a id="__codelineno-7-57" name="__codelineno-7-57"></a><a href="#__codelineno-7-57"><span class="linenos" data-linenos=" 57 "></span></a>Plug &#39;tpope/vim-fugitive&#39;         &quot; Git 集成
+</span><span id="__span-7-58"><a id="__codelineno-7-58" name="__codelineno-7-58"></a><a href="#__codelineno-7-58"><span class="linenos" data-linenos=" 58 "></span></a>Plug &#39;jiangmiao/auto-pairs&#39;       &quot; 自动补全括号
+</span><span id="__span-7-59"><a id="__codelineno-7-59" name="__codelineno-7-59"></a><a href="#__codelineno-7-59"><span class="linenos" data-linenos=" 59 "></span></a>Plug &#39;neoclide/coc.nvim&#39;, {&#39;branch&#39;: &#39;release&#39;}  &quot; 代码补全
+</span><span id="__span-7-60"><a id="__codelineno-7-60" name="__codelineno-7-60"></a><a href="#__codelineno-7-60"><span class="linenos" data-linenos=" 60 "></span></a>Plug &#39;Yggdroot/indentLine&#39;        &quot; 显示缩进线
+</span><span id="__span-7-61"><a id="__codelineno-7-61" name="__codelineno-7-61"></a><a href="#__codelineno-7-61"><span class="linenos" data-linenos=" 61 "></span></a>
+</span><span id="__span-7-62"><a id="__codelineno-7-62" name="__codelineno-7-62"></a><a href="#__codelineno-7-62"><span class="linenos" data-linenos=" 62 "></span></a>&quot; === Snakemake 支持 ===
+</span><span id="__span-7-63"><a id="__codelineno-7-63" name="__codelineno-7-63"></a><a href="#__codelineno-7-63"><span class="linenos" data-linenos=" 63 "></span></a>Plug &#39;snakemake/snakemake&#39;        &quot; Snakemake 支持
+</span><span id="__span-7-64"><a id="__codelineno-7-64" name="__codelineno-7-64"></a><a href="#__codelineno-7-64"><span class="linenos" data-linenos=" 64 "></span></a>Plug &#39;ibab/vim-snakemake&#39;         &quot; Snakemake 语法高亮
+</span><span id="__span-7-65"><a id="__codelineno-7-65" name="__codelineno-7-65"></a><a href="#__codelineno-7-65"><span class="linenos" data-linenos=" 65 "></span></a>
+</span><span id="__span-7-66"><a id="__codelineno-7-66" name="__codelineno-7-66"></a><a href="#__codelineno-7-66"><span class="linenos" data-linenos=" 66 "></span></a>call plug#end()
+</span><span id="__span-7-67"><a id="__codelineno-7-67" name="__codelineno-7-67"></a><a href="#__codelineno-7-67"><span class="linenos" data-linenos=" 67 "></span></a>
+</span><span id="__span-7-68"><a id="__codelineno-7-68" name="__codelineno-7-68"></a><a href="#__codelineno-7-68"><span class="linenos" data-linenos=" 68 "></span></a>&quot; ==================== 配色方案和高亮 ====================
+</span><span id="__span-7-69"><a id="__codelineno-7-69" name="__codelineno-7-69"></a><a href="#__codelineno-7-69"><span class="linenos" data-linenos=" 69 "></span></a>
+</span><span id="__span-7-70"><a id="__codelineno-7-70" name="__codelineno-7-70"></a><a href="#__codelineno-7-70"><span class="linenos" data-linenos=" 70 "></span></a>&quot; 启用真彩色支持
+</span><span id="__span-7-71"><a id="__codelineno-7-71" name="__codelineno-7-71"></a><a href="#__codelineno-7-71"><span class="linenos" data-linenos=" 71 "></span></a>set termguicolors
+</span><span id="__span-7-72"><a id="__codelineno-7-72" name="__codelineno-7-72"></a><a href="#__codelineno-7-72"><span class="linenos" data-linenos=" 72 "></span></a>let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+</span><span id="__span-7-73"><a id="__codelineno-7-73" name="__codelineno-7-73"></a><a href="#__codelineno-7-73"><span class="linenos" data-linenos=" 73 "></span></a>
+</span><span id="__span-7-74"><a id="__codelineno-7-74" name="__codelineno-7-74"></a><a href="#__codelineno-7-74"><span class="linenos" data-linenos=" 74 "></span></a>&quot; 设置配色方案
+</span><span id="__span-7-75"><a id="__codelineno-7-75" name="__codelineno-7-75"></a><a href="#__codelineno-7-75"><span class="linenos" data-linenos=" 75 "></span></a>colorscheme deus           &quot; 使用 &#39;deus&#39; 配色方案
+</span><span id="__span-7-76"><a id="__codelineno-7-76" name="__codelineno-7-76"></a><a href="#__codelineno-7-76"><span class="linenos" data-linenos=" 76 "></span></a>
+</span><span id="__span-7-77"><a id="__codelineno-7-77" name="__codelineno-7-77"></a><a href="#__codelineno-7-77"><span class="linenos" data-linenos=" 77 "></span></a>&quot; 自定义高亮
+</span><span id="__span-7-78"><a id="__codelineno-7-78" name="__codelineno-7-78"></a><a href="#__codelineno-7-78"><span class="linenos" data-linenos=" 78 "></span></a>hi NonText ctermfg=gray guifg=grey10
+</span><span id="__span-7-79"><a id="__codelineno-7-79" name="__codelineno-7-79"></a><a href="#__codelineno-7-79"><span class="linenos" data-linenos=" 79 "></span></a>
+</span><span id="__span-7-80"><a id="__codelineno-7-80" name="__codelineno-7-80"></a><a href="#__codelineno-7-80"><span class="linenos" data-linenos=" 80 "></span></a>&quot; 终端颜色设置
+</span><span id="__span-7-81"><a id="__codelineno-7-81" name="__codelineno-7-81"></a><a href="#__codelineno-7-81"><span class="linenos" data-linenos=" 81 "></span></a>let g:terminal_color_0  = &#39;#000000&#39;
+</span><span id="__span-7-82"><a id="__codelineno-7-82" name="__codelineno-7-82"></a><a href="#__codelineno-7-82"><span class="linenos" data-linenos=" 82 "></span></a>let g:terminal_color_1  = &#39;#FF5555&#39;
+</span><span id="__span-7-83"><a id="__codelineno-7-83" name="__codelineno-7-83"></a><a href="#__codelineno-7-83"><span class="linenos" data-linenos=" 83 "></span></a>let g:terminal_color_2  = &#39;#50FA7B&#39;
+</span><span id="__span-7-84"><a id="__codelineno-7-84" name="__codelineno-7-84"></a><a href="#__codelineno-7-84"><span class="linenos" data-linenos=" 84 "></span></a>let g:terminal_color_3  = &#39;#F1FA8C&#39;
+</span><span id="__span-7-85"><a id="__codelineno-7-85" name="__codelineno-7-85"></a><a href="#__codelineno-7-85"><span class="linenos" data-linenos=" 85 "></span></a>let g:terminal_color_4  = &#39;#BD93F9&#39;
+</span><span id="__span-7-86"><a id="__codelineno-7-86" name="__codelineno-7-86"></a><a href="#__codelineno-7-86"><span class="linenos" data-linenos=" 86 "></span></a>let g:terminal_color_5  = &#39;#FF79C6&#39;
+</span><span id="__span-7-87"><a id="__codelineno-7-87" name="__codelineno-7-87"></a><a href="#__codelineno-7-87"><span class="linenos" data-linenos=" 87 "></span></a>let g:terminal_color_6  = &#39;#8BE9FD&#39;
+</span><span id="__span-7-88"><a id="__codelineno-7-88" name="__codelineno-7-88"></a><a href="#__codelineno-7-88"><span class="linenos" data-linenos=" 88 "></span></a>let g:terminal_color_7  = &#39;#BFBFBF&#39;
+</span><span id="__span-7-89"><a id="__codelineno-7-89" name="__codelineno-7-89"></a><a href="#__codelineno-7-89"><span class="linenos" data-linenos=" 89 "></span></a>let g:terminal_color_8  = &#39;#4D4D4D&#39;
+</span><span id="__span-7-90"><a id="__codelineno-7-90" name="__codelineno-7-90"></a><a href="#__codelineno-7-90"><span class="linenos" data-linenos=" 90 "></span></a>let g:terminal_color_9  = &#39;#FF6E67&#39;
+</span><span id="__span-7-91"><a id="__codelineno-7-91" name="__codelineno-7-91"></a><a href="#__codelineno-7-91"><span class="linenos" data-linenos=" 91 "></span></a>let g:terminal_color_10 = &#39;#5AF78E&#39;
+</span><span id="__span-7-92"><a id="__codelineno-7-92" name="__codelineno-7-92"></a><a href="#__codelineno-7-92"><span class="linenos" data-linenos=" 92 "></span></a>let g:terminal_color_11 = &#39;#F4F99D&#39;
+</span><span id="__span-7-93"><a id="__codelineno-7-93" name="__codelineno-7-93"></a><a href="#__codelineno-7-93"><span class="linenos" data-linenos=" 93 "></span></a>let g:terminal_color_12 = &#39;#CAA9FA&#39;
+</span><span id="__span-7-94"><a id="__codelineno-7-94" name="__codelineno-7-94"></a><a href="#__codelineno-7-94"><span class="linenos" data-linenos=" 94 "></span></a>let g:terminal_color_13 = &#39;#FF92D0&#39;
+</span><span id="__span-7-95"><a id="__codelineno-7-95" name="__codelineno-7-95"></a><a href="#__codelineno-7-95"><span class="linenos" data-linenos=" 95 "></span></a>let g:terminal_color_14 = &#39;#9AEDFE&#39;
+</span><span id="__span-7-96"><a id="__codelineno-7-96" name="__codelineno-7-96"></a><a href="#__codelineno-7-96"><span class="linenos" data-linenos=" 96 "></span></a>
+</span><span id="__span-7-97"><a id="__codelineno-7-97" name="__codelineno-7-97"></a><a href="#__codelineno-7-97"><span class="linenos" data-linenos=" 97 "></span></a>&quot; ==================== Coc.nvim 配置 ====================
+</span><span id="__span-7-98"><a id="__codelineno-7-98" name="__codelineno-7-98"></a><a href="#__codelineno-7-98"><span class="linenos" data-linenos=" 98 "></span></a>
+</span><span id="__span-7-99"><a id="__codelineno-7-99" name="__codelineno-7-99"></a><a href="#__codelineno-7-99"><span class="linenos" data-linenos=" 99 "></span></a>&quot; Coc.nvim 回车确认补全
+</span><span id="__span-7-100"><a id="__codelineno-7-100" name="__codelineno-7-100"></a><a href="#__codelineno-7-100"><span class="linenos" data-linenos="100 "></span></a>inoremap &lt;expr&gt; &lt;CR&gt; coc#pum#visible() ? coc#pum#confirm() : &quot;\&lt;CR&gt;&quot;
+</span><span id="__span-7-101"><a id="__codelineno-7-101" name="__codelineno-7-101"></a><a href="#__codelineno-7-101"><span class="linenos" data-linenos="101 "></span></a>
+</span><span id="__span-7-102"><a id="__codelineno-7-102" name="__codelineno-7-102"></a><a href="#__codelineno-7-102"><span class="linenos" data-linenos="102 "></span></a>&quot; ==================== 快捷键设置 ====================
+</span><span id="__span-7-103"><a id="__codelineno-7-103" name="__codelineno-7-103"></a><a href="#__codelineno-7-103"><span class="linenos" data-linenos="103 "></span></a>
+</span><span id="__span-7-104"><a id="__codelineno-7-104" name="__codelineno-7-104"></a><a href="#__codelineno-7-104"><span class="linenos" data-linenos="104 "></span></a>&quot; 设置 Leader 键
+</span><span id="__span-7-105"><a id="__codelineno-7-105" name="__codelineno-7-105"></a><a href="#__codelineno-7-105"><span class="linenos" data-linenos="105 "></span></a>let mapleader = &quot;;&quot;               &quot; 将 &#39;;&#39; 设置为 Leader 键
+</span><span id="__span-7-106"><a id="__codelineno-7-106" name="__codelineno-7-106"></a><a href="#__codelineno-7-106"><span class="linenos" data-linenos="106 "></span></a>
+</span><span id="__span-7-107"><a id="__codelineno-7-107" name="__codelineno-7-107"></a><a href="#__codelineno-7-107"><span class="linenos" data-linenos="107 "></span></a>&quot; NERDTree 快捷键
+</span><span id="__span-7-108"><a id="__codelineno-7-108" name="__codelineno-7-108"></a><a href="#__codelineno-7-108"><span class="linenos" data-linenos="108 "></span></a>nnoremap &lt;C-n&gt; :NERDTreeToggle&lt;CR&gt;    &quot; Ctrl + n 打开/关闭 NERDTree
+</span><span id="__span-7-109"><a id="__codelineno-7-109" name="__codelineno-7-109"></a><a href="#__codelineno-7-109"><span class="linenos" data-linenos="109 "></span></a>
+</span><span id="__span-7-110"><a id="__codelineno-7-110" name="__codelineno-7-110"></a><a href="#__codelineno-7-110"><span class="linenos" data-linenos="110 "></span></a>&quot; NERDCommenter 快捷键（可根据需要配置）
+</span><span id="__span-7-111"><a id="__codelineno-7-111" name="__codelineno-7-111"></a><a href="#__codelineno-7-111"><span class="linenos" data-linenos="111 "></span></a>&quot; 例如，使用 &lt;Leader&gt;c 来切换注释
+</span><span id="__span-7-112"><a id="__codelineno-7-112" name="__codelineno-7-112"></a><a href="#__codelineno-7-112"><span class="linenos" data-linenos="112 "></span></a>nmap &lt;Leader&gt;c &lt;Plug&gt;NERDCommenterToggle
+</span><span id="__span-7-113"><a id="__codelineno-7-113" name="__codelineno-7-113"></a><a href="#__codelineno-7-113"><span class="linenos" data-linenos="113 "></span></a>
+</span><span id="__span-7-114"><a id="__codelineno-7-114" name="__codelineno-7-114"></a><a href="#__codelineno-7-114"><span class="linenos" data-linenos="114 "></span></a>&quot; 其他快捷键映射可以在此添加
+</span><span id="__span-7-115"><a id="__codelineno-7-115" name="__codelineno-7-115"></a><a href="#__codelineno-7-115"><span class="linenos" data-linenos="115 "></span></a>
+</span><span id="__span-7-116"><a id="__codelineno-7-116" name="__codelineno-7-116"></a><a href="#__codelineno-7-116"><span class="linenos" data-linenos="116 "></span></a>&quot; ==================== 其他设置 ====================
+</span><span id="__span-7-117"><a id="__codelineno-7-117" name="__codelineno-7-117"></a><a href="#__codelineno-7-117"><span class="linenos" data-linenos="117 "></span></a>
+</span><span id="__span-7-118"><a id="__codelineno-7-118" name="__codelineno-7-118"></a><a href="#__codelineno-7-118"><span class="linenos" data-linenos="118 "></span></a>&quot; 在此添加您可能需要的其他配置或插件设置
+</span></code></pre></div>
+<p>好的，既然 <code>snakemake-language-server</code> 包无法安装，我们可以采用其他方法在 Snakemake 文件中实现代码补全和 Python 代码补全。以下是详细的步骤：</p>
+<hr />
+<h3 id="1-snakemake-python"><strong>1. 将 Snakemake 文件类型设置为 Python</strong></h3>
+<p>由于 Snakemake 语法与 Python 密切相关，并且 Snakemake 文件通常包含大量的 Python 代码，我们可以将 Snakemake 文件的文件类型设置为 Python，以启用 Python 的代码补全功能。</p>
+<p>在您的 <code>init.vim</code> 配置文件中，添加以下内容：</p>
+<div class="language-vim highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="c">&quot; 将 Snakemake 文件识别为 Python 文件类型</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a>autocmd <span class="nb">BufRead</span><span class="p">,</span><span class="nb">BufNewFile</span> Snakefile <span class="k">set</span> <span class="k">filetype</span><span class="p">=</span>python
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos="3 "></span></a>autocmd <span class="nb">BufRead</span><span class="p">,</span><span class="nb">BufNewFile</span> *.smk <span class="k">set</span> <span class="k">filetype</span><span class="p">=</span>python
+</span></code></pre></div>
+<p>这样，Neovim 会将所有 <code>Snakefile</code> 和 <code>.smk</code> 文件识别为 Python 文件，代码补全引擎将会在这些文件中启用。</p>
+<hr />
+<h3 id="2-cocnvim-python"><strong>2. 安装并配置 <code>coc.nvim</code> 的 Python 扩展</strong></h3>
+<p>使用 <code>coc.nvim</code> 来提供强大的代码补全功能。</p>
+<h4 id="21-coc-pyright"><strong>2.1 安装 <code>coc-pyright</code> 扩展</strong></h4>
+<p><code>coc-pyright</code> 是一个用于 Python 的语言服务器扩展，提供代码补全、类型检查等功能。</p>
+<p>在 Neovim 中运行以下命令安装：</p>
+<div class="language-vim highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a><span class="p">:</span>CocInstall coc<span class="p">-</span>pyright
+</span></code></pre></div>
+<h4 id="22-coc-pyright"><strong>2.2 配置 <code>coc-pyright</code></strong></h4>
+<p>在您的 <code>coc-settings.json</code> 文件（通常位于 <code>~/.config/nvim/coc-settings.json</code>）中，添加或确保以下配置：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">  </span><span class="nt">&quot;python.pythonPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/python3&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// 请根据您的 Python 路径进行调整</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">  </span><span class="nt">&quot;python.analysis.autoSearchPaths&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos="4 "></span></a><span class="w">  </span><span class="nt">&quot;python.analysis.useLibraryCodeForTypes&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><a href="#__codelineno-10-5"><span class="linenos" data-linenos="5 "></span></a><span class="p">}</span>
+</span></code></pre></div>
+<p>这将确保 <code>coc.nvim</code> 正确调用 Python 解释器，并提供最佳的代码分析和补全。</p>
+<hr />
+<h3 id="3-snippets-snakemake"><strong>3. 使用 Snippets（代码片段）实现 Snakemake 语法的补全</strong></h3>
+<p>由于 Snakemake 有自己特定的语法和关键字，您可以使用 <code>coc.nvim</code> 的 Snippets 功能，为常用的 Snakemake 结构创建代码片段。</p>
+<h4 id="31-coc-snippets"><strong>3.1 安装 <code>coc-snippets</code></strong></h4>
+<p>在 Neovim 中运行：</p>
+<div class="language-vim highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="p">:</span>CocInstall coc<span class="p">-</span>snippets
+</span></code></pre></div>
+<h4 id="32-snakemake-snippets"><strong>3.2 创建 Snakemake 的 Snippets 文件</strong></h4>
+<p>在您的 <code>coc-snippets</code> 目录中，创建一个名为 <code>python.snippets</code> 的文件（因为我们将 Snakemake 文件类型设置为 Python）。</p>
+<p>文件路径通常为：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a>~/.config/coc/ultisnips/python.snippets
+</span></code></pre></div>
+<p>或者：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos="1 "></span></a>~/.config/nvim/UltiSnips/python.snippets
+</span></code></pre></div>
+<p>在该文件中，添加 Snakemake 常用语法的代码片段，例如：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos=" 1 "></span></a>snippet rule &quot;Snakemake rule&quot;
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos=" 2 "></span></a>rule ${1:rule_name}:
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><a href="#__codelineno-14-3"><span class="linenos" data-linenos=" 3 "></span></a>    input:
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><a href="#__codelineno-14-4"><span class="linenos" data-linenos=" 4 "></span></a>        ${2:input_files}
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><a href="#__codelineno-14-5"><span class="linenos" data-linenos=" 5 "></span></a>    output:
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><a href="#__codelineno-14-6"><span class="linenos" data-linenos=" 6 "></span></a>        ${3:output_files}
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><a href="#__codelineno-14-7"><span class="linenos" data-linenos=" 7 "></span></a>    params:
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><a href="#__codelineno-14-8"><span class="linenos" data-linenos=" 8 "></span></a>        ${4:params}
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><a href="#__codelineno-14-9"><span class="linenos" data-linenos=" 9 "></span></a>    threads: ${5:threads}
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><a href="#__codelineno-14-10"><span class="linenos" data-linenos="10 "></span></a>    resources:
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><a href="#__codelineno-14-11"><span class="linenos" data-linenos="11 "></span></a>        ${6:resources}
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><a href="#__codelineno-14-12"><span class="linenos" data-linenos="12 "></span></a>    shell:
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><a href="#__codelineno-14-13"><span class="linenos" data-linenos="13 "></span></a>        &quot;&quot;&quot;
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><a href="#__codelineno-14-14"><span class="linenos" data-linenos="14 "></span></a>        ${7:shell_command}
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><a href="#__codelineno-14-15"><span class="linenos" data-linenos="15 "></span></a>        &quot;&quot;&quot;
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a><a href="#__codelineno-14-16"><span class="linenos" data-linenos="16 "></span></a>endsnippet
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17"></a><a href="#__codelineno-14-17"><span class="linenos" data-linenos="17 "></span></a>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18"></a><a href="#__codelineno-14-18"><span class="linenos" data-linenos="18 "></span></a>snippet shell &quot;Snakemake shell command&quot;
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19"></a><a href="#__codelineno-14-19"><span class="linenos" data-linenos="19 "></span></a>shell:
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20"></a><a href="#__codelineno-14-20"><span class="linenos" data-linenos="20 "></span></a>    &quot;&quot;&quot;
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21"></a><a href="#__codelineno-14-21"><span class="linenos" data-linenos="21 "></span></a>    ${1:command}
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22"></a><a href="#__codelineno-14-22"><span class="linenos" data-linenos="22 "></span></a>    &quot;&quot;&quot;
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23"></a><a href="#__codelineno-14-23"><span class="linenos" data-linenos="23 "></span></a>endsnippet
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24"></a><a href="#__codelineno-14-24"><span class="linenos" data-linenos="24 "></span></a>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25"></a><a href="#__codelineno-14-25"><span class="linenos" data-linenos="25 "></span></a>snippet script &quot;Snakemake script directive&quot;
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26"></a><a href="#__codelineno-14-26"><span class="linenos" data-linenos="26 "></span></a>script:
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27"></a><a href="#__codelineno-14-27"><span class="linenos" data-linenos="27 "></span></a>    &quot;${1:script.py}&quot;
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28"></a><a href="#__codelineno-14-28"><span class="linenos" data-linenos="28 "></span></a>endsnippet
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29"></a><a href="#__codelineno-14-29"><span class="linenos" data-linenos="29 "></span></a>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30"></a><a href="#__codelineno-14-30"><span class="linenos" data-linenos="30 "></span></a>snippet params &quot;Snakemake params&quot;
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31"></a><a href="#__codelineno-14-31"><span class="linenos" data-linenos="31 "></span></a>params:
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32"></a><a href="#__codelineno-14-32"><span class="linenos" data-linenos="32 "></span></a>    ${1:params}
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33"></a><a href="#__codelineno-14-33"><span class="linenos" data-linenos="33 "></span></a>endsnippet
+</span></code></pre></div>
+<p>您可以根据需要添加更多的片段。</p>
+<h4 id="33-snippets"><strong>3.3 配置 Snippets</strong></h4>
+<p>在 <code>coc-settings.json</code> 中，添加：</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">  </span><span class="nt">&quot;snippets.ultisnips.directories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;~/.config/coc/ultisnips&quot;</span><span class="p">]</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos="3 "></span></a><span class="p">}</span>
+</span></code></pre></div>
+<p>确保 <code>coc.nvim</code> 能够找到您创建的 Snippets 目录。</p>
+<hr />
+<h3 id="4-snakemake"><strong>4. 在 Snakemake 文件中启用代码补全</strong></h3>
+<p>完成上述配置后，重新启动 Neovim。当您在 Snakemake 文件中编写代码时，应该能够：</p>
+<ul>
+<li>获得 Python 代码的自动补全（变量、函数、模块等）。</li>
+<li>使用您定义的 Snippets 快速插入 Snakemake 的语法结构。</li>
+</ul>
+<h4 id="41-snippets"><strong>4.1 使用 Snippets</strong></h4>
+<p>在插入模式下，输入片段的触发关键字（如 <code>rule</code>），然后按下 <code>Tab</code> 键，片段将展开为预定义的代码结构，您可以按 <code>Tab</code> 键在占位符之间切换。</p>
+<hr />
+<h3 id="5-snakemake"><strong>5. 保留 Snakemake 的语法高亮</strong></h3>
+<p>尽管我们将文件类型设置为 Python，但您可能希望保留 Snakemake 特有的语法高亮。为此，我们可以：</p>
+<h4 id="51-vim-snakemake"><strong>5.1 安装 <code>vim-snakemake</code> 插件</strong></h4>
+<p>您的配置中已经安装了 <code>ibab/vim-snakemake</code> 插件，用于提供 Snakemake 的语法高亮。</p>
+<p>确保插件已安装并正确配置：</p>
+<div class="language-vim highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a>Plug <span class="s1">&#39;ibab/vim-snakemake&#39;</span>  <span class="c">&quot; Snakemake 语法高亮插件</span>
+</span></code></pre></div>
+<h4 id="52"><strong>5.2 自定义语法高亮</strong></h4>
+<p>由于文件类型被设置为 Python，您需要在 <code>after/syntax/python.vim</code> 中加载 Snakemake 的语法规则。</p>
+<p>创建目录和文件（如果不存在）：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/nvim/after/syntax
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><a href="#__codelineno-17-2"><span class="linenos" data-linenos="2 "></span></a>touch<span class="w"> </span>~/.config/nvim/after/syntax/python.vim
+</span></code></pre></div>
+<p>在 <code>python.vim</code> 文件中，添加：</p>
+<div class="language-vim highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos="1 "></span></a><span class="c">&quot; 加载 Snakemake 的语法高亮</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos="2 "></span></a>runtime <span class="nb">syntax</span>/snakemake.<span class="k">vim</span>
+</span></code></pre></div>
+<p>这样，Python 文件类型也会应用 Snakemake 的语法高亮。</p>
+<hr />
+<h3 id="6"><strong>6. 其他提示</strong></h3>
+<ul>
+<li><strong>自动触发补全</strong>：确保在 <code>coc-settings.json</code> 中启用了自动补全：</li>
+</ul>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="p">{</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">  </span><span class="nt">&quot;suggest.autoTrigger&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;always&quot;</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos="3 "></span></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p><strong>检查 Python 解释器路径</strong>：如果您使用的是虚拟环境，请确保 <code>python.pythonPath</code> 指向虚拟环境中的 Python 解释器。</p>
+</li>
+<li>
+<p><strong>更新插件</strong>：定期运行 <code>:PlugUpdate</code> 更新插件，确保获得最新的功能和修复。</p>
+</li>
+</ul>
+<hr />
+<h3 id="7"><strong>7. 总结</strong></h3>
+<p>通过将 Snakemake 文件类型设置为 Python，并结合 <code>coc.nvim</code> 的 Python 补全和 Snippets 功能，您可以在 Snakemake 文件中实现代码补全和高效的编码体验。</p>
+<p>如果您在配置过程中遇到任何问题，或者需要进一步的帮助，请告诉我！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2023 - 2024 YangWu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "navigation.sections", "content.code.copy", "content.code.select", "navigation.indexes", "navigation.tabs", "navigation.top", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="../../javascripts/highlight.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

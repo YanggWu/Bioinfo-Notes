@@ -110,6 +110,10 @@ say_hello()
 
 ## 深入类和对象
 
+## 抽象基类
+
+抽象基类（Abstract Base Class，简称 ABC）是 Python 中的一种特殊类，用于定义抽象类（不能实例化的类），它可以作为其他类的基类。抽象基类用于强制要求子类实现某些特定方法，从而提供一种规范化的接口设计。抽象基类通过 `abc` 模块实现
+
 **类中的方法：**
 
 1. 实例方法（Instance Method）最常见的 Python 方法类型。第一个参数是self，它是定义在类中的普通方法，通常访问实例的属性和方法。
@@ -133,5 +137,65 @@ class Person:
 # 在外部无法使用私有属性
 p = Person('张三', 100)
 p.get_money()
+```
+
+**try 语句的使用**
+
+```py
+# try 语句的使用
+
+try:
+    print("程序运行。。。")
+except KeyError:
+    print("程序出现异常。。。")
+else:
+    print("程序未产生异常时则运行当前代码块。。。")
+finally:
+    print("程序无论是否出现异常都执行。。。")
+```
+
+函数中使用 try 语句注意 return返回的位置：如果finally中出现return，则优先返回finally中的值。
+
+```py
+# 在函数中使用try语句
+def func_try_except():
+    try:
+        print("程序运行。。。")
+        # raise KeyError
+        return 1
+    except KeyError:
+        print("程序出现异常。。。")
+        return 2
+    else:
+        print("程序未产生异常时则运行当前代码块。。。")
+        return 3
+    finally:
+        print("程序无论是否出现异常都执行。。。")
+        return 4
+
+
+res = func_try_except()
+print(res)
+```
+
+**上下文管理协议**
+
+```py
+# 上下文管理协议 - 魔术方法
+class Sample:
+    def __enter__(self):
+        print("进入上下文管理器。。。")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("退出上下文管理器。。。")
+
+    @staticmethod
+    def run():
+        print("程序运行。。。")
+
+
+with Sample() as sample:
+    sample.run()
 ```
 

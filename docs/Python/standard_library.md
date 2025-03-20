@@ -233,6 +233,62 @@ print(output)
 
 `os`模块是Python标准库中功能非常强大的一个模块，它提供了对操作系统功能的访问，适用于需要进行文件操作、路径处理和执行系统命令的场景。
 
+## pathlib
+
+`pathlib` 是 Python 的标准库，提供了面向对象的方式进行路径操作，能够替代 `os.path` 进行文件和目录的管理，代码更简洁、可读性更强。
+
+**创建路径对象：**
+
+`Path` 是 `pathlib` 的核心类，用于表示和操作文件路径。
+
+```py
+from pathlib import Path
+
+# 当前目录
+p = Path(".")
+print(p.resolve())  # 获取当前目录的绝对路径
+
+# 指定路径
+p = Path("/home/user/documents")
+print(p)
+```
+
+### 获取路径信息
+
+- `resolve()`: 返回路径的绝对路径，并去掉 `.` 和 `..`：
+
+```py
+p = Path(".")
+print(p.resolve())  # /home/user/current_directory
+```
+
+- `name`：获取文件名（包括扩展名）
+
+```py
+p = Path("/home/user/file.txt")
+print(p.name)  # file.txt
+```
+
+- `stem`：获取文件名（不包括扩展名）：
+
+```py
+print(p.stem)  # file
+```
+
+- `suffix`：获取文件扩展名：
+
+```py
+print(p.suffix)  # .txt
+```
+
+- `parent`：获取父目录：
+
+```py
+print(p.parent)  # /home/user
+```
+
+
+
 ## sys
 
 `sys`模块是Python标准库的一部分，提供了一些与Python解释器进行交互的函数和变量。这个模块常用于处理运行时环境配置、管理输入输出、操作Python运行时环境以及访问传递给脚本的命令行参数。

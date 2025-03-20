@@ -227,6 +227,32 @@ bcftools filter \
     12. **`-W, --write-index[=FMT]`**
         自动为输出文件创建索引。`FMT` 可以指定索引的格式，通常用于生成 `.csi` 或 `.tbi` 索引。
 
+## bcftools isec
+
+`bcftools isec` 是一个用于创建 VCF 文件的交集（intersection）、并集（union）和补集（complement）工具。它可以比较多个 VCF 文件，并根据不同的需求输出合并后的结果。
+
+1. **`-c, --collapse`** 该选项用于将变异记录处理为相同的记录，可以选择以下几种类型：
+
+- `snps`: 只处理 SNP 变异。
+- `indels`: 只处理 INDEL 变异。
+- `both`: 同时处理 SNP 和 INDEL。
+- `all`: 处理所有类型的变异。
+- `some`: 处理部分类型的变异（可以自定义）。
+- `none`: 默认选项，不进行任何类型的折叠。
+
+2. **`-C, --complement`** 输出仅在第一个文件中出现的变异位点（即该位置在其他文件中没有）。
+3. **`-e, --exclude EXPR`** 排除满足指定表达式的变异位点。
+
+## bcftools norm
+
+重新归一化 VCF 文件，如果 `REF` 不一致，可能是 VCF 文件的参考等位基因顺序出现错误，可以使用 `bcftools norm` 归一化：
+
+```
+bcftools norm -f MSU7.0_dna.fa --check-ref fix -o cultivated_norm.vcf.gz cultivated_share_SNP.vcf.gz
+```
+
+
+
 ## bcftools插件
 
  **更新 VCF 文件** 假设你已经删除了某些样品，或者修改了 VCF 文件中的样本信息。接下来，我们需要重新计算和更新 `INFO` 字段。

@@ -50,3 +50,17 @@ find test/ -name "*.gz" |xargs -i mv {} ./data
 find test/ -name "*.gz" |xargs -I {} mv {} .
 ```
 
+从gff3格式得到gene的bed格式位置信息
+
+```bash
+awk -F'\t' '$3=="gene"{
+    # 把第 9 列先按分号拆成若干字段
+    split($9, kv, ";")
+    # kv[1] 是 "ID=LOC_Os01g01010" 这一段
+    split(kv[1], id, "=")
+    gene = id[2]                       # 取真正的基因 ID
+
+    OFS = "\t"
+    print $1, $4-1, $5, gene, ".", $7 # BED6：chr start end id . strand
+}' all.gff3 > genes.bed
+```
